@@ -38,7 +38,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 a{color:inherit;text-decoration:none}
-button{border:none;background:none;cursor:pointer;font-family:inherit;color:inherit} 
+button{border:none;background:none;cursor:pointer;font-family:inherit;color:inherit}
 
 /* ── RTL / ARABIC ─────────────────────────────────────── */
 html[lang="ar"]{direction:rtl}
@@ -930,6 +930,128 @@ h2.sh{
   color:var(--signal);margin-bottom:.75rem;
 }
 .modal-text{font-size:.9rem;color:var(--white-60);line-height:1.7}
+
+/* ── MOBILE ADAPTATION ────────────────────────── */
+@media(max-width:600px){
+  /* Hero */
+  .hero{padding:5rem 1.25rem 4rem}
+  .hero-h1{font-size:clamp(2.5rem,12vw,4rem)}
+  .hero-sub{font-size:.9rem;margin-top:1.25rem}
+  .hero-stats{margin-top:2rem;flex-wrap:wrap}
+  .hero-stat{padding:1rem 1rem;flex:1 1 45%;border-bottom:1px solid var(--white-12)}
+  .hero-stat:nth-child(even){border-right:none}
+  .hero-stat:nth-last-child(-n+2){border-bottom:none}
+  .hero-stat-n{font-size:1.5rem}
+  .hero-scroll-hint{display:none}
+
+  /* Sections */
+  .s{padding:3.5rem 1.25rem}
+  h2.sh{font-size:1.75rem}
+  .eyebrow{font-size:.55rem;margin-bottom:1.25rem}
+
+  /* Nav */
+  .nav{padding:0 1.25rem;height:3rem}
+  .nav-logo img{height:1.1rem!important}
+
+  /* About */
+  .about-pull{font-size:1.15rem}
+  .about-body{font-size:.9rem}
+
+  /* Advantage */
+  .adv-cards{gap:.75rem}
+  .adv-card{padding:1.25rem}
+
+  /* Channels */
+  .ch-grid{grid-template-columns:repeat(2,1fr)!important}
+  .ch-card{padding:1.25rem;gap:.5rem}
+  .ch-logo{height:2rem;max-width:3.5rem}
+  .ch-name{font-size:.9rem}
+  .ch-desc{font-size:.7rem}
+  .fb{padding:.35rem .6rem;font-size:.5rem}
+
+  /* Geography */
+  .reg-card{padding:1.5rem}
+  .reg-card h3{font-size:1.25rem}
+
+  /* Audience */
+  .aud-card{padding:1.5rem}
+  .aud-card-n{font-size:2rem}
+  .aud-footnote{font-size:.8rem}
+
+  /* Production */
+  .prod-stage{padding:1.5rem}
+  .prod-num{font-size:3rem}
+
+  /* Digital */
+  .digital-grid{grid-template-columns:1fr!important}
+  .dig2-hero{gap:2rem}
+  .dig2-big{font-size:3.5rem}
+
+  /* Radio & OOH */
+  .rooh3-big{font-size:3rem}
+  .rooh3-stat-row{gap:2rem}
+  .rooh3-stat-n{font-size:1.5rem}
+  .rooh3-logos{grid-template-columns:repeat(3,1fr)!important;gap:.75rem}
+  .rooh3-logos img{padding:.5rem;height:auto;aspect-ratio:1/1}
+  .rooh3-points{font-size:.85rem}
+
+  /* Cases */
+  .case{padding:1.5rem}
+  .case-img{height:120px}
+  .case-metrics{grid-template-columns:repeat(2,1fr)}
+  .case-overlay{padding:1rem}
+
+  /* Partners */
+  .also-block{padding:1.5rem 0}
+  .also-label{font-size:.55rem;margin-bottom:1.5rem}
+  .also-names{gap:0}
+  .also-names span{padding:1rem 1.25rem}
+  .also-names span img{height:2rem!important;max-width:7rem!important}
+
+  /* Why */
+  .why-grid{grid-template-columns:1fr!important}
+  .why-card{padding:1.75rem}
+  .why-n{font-size:2rem}
+
+  /* Setup CTA */
+  .setup-cta{padding:2rem 1.25rem}
+  .setup-btn{padding:.75rem 1.5rem;font-size:.875rem}
+
+  /* Contact */
+  .contact-layout{gap:3rem}
+  .contact-card{padding:2rem 1.5rem}
+  .contact-name{font-size:1.5rem;margin-bottom:1.75rem}
+  .contact-link{gap:1rem}
+  .contact-socials{gap:.75rem;margin-top:1.5rem;padding-top:1.5rem}
+  .contact-social{width:2.5rem;height:2.5rem}
+  .contact-icon{width:2.25rem;height:2.25rem}
+
+  /* Footer */
+  .footer{padding:1.5rem 1.25rem!important}
+  .footer-logo{font-size:.75rem}
+
+  /* Modal */
+  .modal-box{padding:2rem 1.5rem;max-height:85vh}
+  .modal-logo{height:2.5rem}
+  .modal-title{font-size:1.25rem}
+
+  /* Ticker */
+  .ticker-wrap{overflow:hidden}
+
+  /* Geo v2 Globe */
+  .geo2{padding:4rem 1.25rem;min-height:auto}
+  .geo2-left h2{font-size:1.75rem}
+}
+
+@media(max-width:380px){
+  .hero-h1{font-size:2.25rem}
+  .hero-stat{flex:1 1 100%;border-right:none!important}
+  .ch-grid{grid-template-columns:1fr!important}
+  .rooh3-logos{grid-template-columns:repeat(2,1fr)!important}
+  .also-names span{padding:.75rem 1rem}
+  .also-names span img{height:1.75rem!important}
+  .contact-card{padding:1.5rem 1rem}
+}
 </style>
 </head>
 <body>
