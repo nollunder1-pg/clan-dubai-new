@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>CLAN DUBAI — Satellite Setup Wizard</title>
+<meta name="description" content="Interactive satellite connection setup wizard with automatic optimal satellite selection."/>
+<meta name="keywords" content="satellite, setup, antenna, azimuth, elevation, LNB, CLAN-TV"/>
+<meta name="theme-color" content="#0a0a0c"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=52c4a0c2-7943-427b-8200-e4425f03a639&lang=en_US" defer></script>
+<!-- Yandex.Metrika counter (loads only after consent) -->
+<script type="text/javascript">
+  (function(){
+    try { if (localStorage.getItem('cookieConsent') !== 'accepted') return; } catch(e) { return; }
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105121933', 'ym');
+    if (typeof ym === 'function') {
+      ym(105121933, 'init', { ssr:true, clickmap:true, ecommerce:'dataLayer', accurateTrackBounce:true, trackLinks:true });
+    }
+  })();
+</script>
+<style>
+/* ── RESET ─────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0a0a0c;
+  --signal:#e8c97a;
+  --signal-dim:rgba(232,201,122,.12);
+  --signal-mid:rgba(232,201,122,.4);
+  --white:rgba(242,237,230,1);
+  --white-60:rgba(242,237,230,.6);
+  --white-30:rgba(242,237,230,.3);
+  --white-12:rgba(242,237,230,.12);
+  --white-06:rgba(242,237,230,.06);
+  --syne:"Syne",system-ui,sans-serif;
+  --inter:"Inter",system-ui,sans-serif;
+  --mono:"Space Mono",ui-monospace,monospace;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  /* Compat vars for app.js generated HTML */
+  --primary:#e8c97a;
+  --primary-foreground:#0a0a0c;
+  --foreground:rgba(242,237,230,1);
+  --muted-foreground:rgba(242,237,230,.4);
+  --border:rgba(242,237,230,.12);
+  --radius:0;
+  --background:#0a0a0c;
+  --card:rgba(255,255,255,.03);
+  --muted:rgba(255,255,255,.06);
+  --destructive:#ef4444;
+  --input:rgba(255,255,255,.06);
+  --input-background:rgba(255,255,255,.04);
+  --accent:rgba(232,201,122,.1);
+  --accent-foreground:rgba(242,237,230,1);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--white);
+  font-family:var(--inter);
+  font-weight:300;
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+a{color:inherit;text-decoration:none}
+button{border:none;background:none;cursor:pointer;font-family:inherit;color:inherit}
+html[lang="ar"]{direction:rtl}
+html[lang="ar"] body{font-family:"Noto Sans Arabic",var(--inter)}
+html[lang="ar"] .lang-dd{direction:ltr}
+
+/* ── NAV ───────────────────────────────────────────────── */
+.site-header{
+  position:sticky;top:0;left:0;right:0;z-index:100;
+  padding:0 2rem;height:3.5rem;
+  display:flex;align-items:center;
+  background:rgba(10,10,12,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--white-12);
+}
+.site-header .container{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;max-width:90rem;margin:0 auto;padding:0;
+}
+.logo{display:flex;align-items:center}
+.logo-img{height:18px;display:block}
+.nav-links{display:none;align-items:center;gap:2rem}
+@media(min-width:900px){.nav-links{display:flex}}
+.nav-link{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--white-60);transition:color .2s;
+}
+.nav-link:hover,.nav-link.active{color:var(--signal)}
+.header-controls{display:flex;align-items:center;gap:1.5rem}
+.language-switcher{display:flex;gap:2px;align-items:center;background:var(--white-06);padding:2px}
+.lang-btn{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.35rem .75rem;color:var(--white-30);transition:.2s;border:none;background:none;cursor:pointer;
+}
+.lang-btn:hover{color:var(--white)}
+.lang-btn.active{background:var(--signal);color:var(--ink)}
+.burger{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;
+  color:var(--white-60);padding:4px 8px;border:1px solid var(--white-12);
+}
+@media(min-width:900px){.burger{display:none}}
+.mobile-menu{
+  position:fixed;top:3.5rem;left:0;right:0;
+  background:rgba(10,10,12,.97);padding:2rem;
+  flex-direction:column;gap:1.5rem;border-bottom:1px solid var(--white-12);
+  z-index:99;
+}
+.mobile-menu:not(.hidden){display:flex}
+.mobile-menu.hidden{display:none}
+.flex{display:flex}
+.items-center{align-items:center}
+.gap-4{gap:1rem}
+.gap-2{gap:.5rem}
+
+/* ── LAYOUT ────────────────────────────────────────────── */
+.container{max-width:90rem;margin:0 auto;padding:0 2rem}
+@media(min-width:900px){.container{padding:0 3rem}}
+.min-h-screen{min-height:100vh}
+.relative{position:relative}
+.overflow-hidden{overflow:hidden}
+.p-6{padding:1.5rem}
+.p-8{padding:2rem}
+.p-4{padding:1rem}
+.p-66{padding:1.5rem}
+.mb-2{margin-bottom:.5rem}
+.mb-3{margin-bottom:.75rem}
+.mb-4{margin-bottom:1rem}
+.mb-6{margin-bottom:1.5rem}
+.mb-8{margin-bottom:2rem}
+.mb-12{margin-bottom:3rem}
+.mt-4{margin-top:1rem}
+.mt-6{margin-top:1.5rem}
+.mt-2{margin-top:.5rem}
+.ml-2{margin-left:.5rem}
+.ml-auto{margin-left:auto}
+.mx-auto{margin:0 auto}
+.text-center{text-align:center}
+.hidden{display:none!important}
+.w-full{width:100%}
+.max-w-2xl{max-width:42rem}
+.max-w-6xl{max-width:72rem}
+
+/* ── TYPOGRAPHY ─────────────────────────────────────────── */
+h1{font-family:var(--syne);font-weight:700;font-size:clamp(1.75rem,4vw,2.5rem);letter-spacing:-.02em;line-height:1.1}
+h2{font-family:var(--syne);font-weight:600;font-size:clamp(1.25rem,2.5vw,1.75rem);letter-spacing:-.01em;line-height:1.2}
+h3{font-family:var(--syne);font-weight:600;font-size:1.125rem;letter-spacing:-.01em}
+h4{font-family:var(--syne);font-weight:600;font-size:1rem}
+.text-muted-foreground{color:var(--white-60)}
+.text-sm{font-size:.875rem}
+.text-xs{font-size:.75rem}
+.font-bold{font-weight:700}
+.font-medium{font-weight:500}
+
+/* Gradient text kept for compatibility */
+.bg-gradient-to-r{background:linear-gradient(to right,#e8c97a,#f2e0a0,#e8c97a)}
+.from-indigo-400{--tw-gradient-from:#818cf8}
+.via-purple-400{--tw-gradient-via:#c084fc}
+.to-cyan-400{--tw-gradient-to:#22d3ee}
+.bg-clip-text{-webkit-background-clip:text;background-clip:text}
+.text-transparent{-webkit-text-fill-color:transparent}
+.text-3xl{font-size:1.875rem;font-weight:700}
+.text-white{color:var(--white)}
+
+/* ── PAGE HEADER (breadcrumb) ───────────────────────────── */
+.page-hero{
+  padding:3rem 0 2rem;
+  border-bottom:1px solid var(--white-12);
+}
+.breadcrumb{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--white-30);margin-bottom:1.5rem;
+}
+.breadcrumb a{color:var(--white-30);transition:.2s}
+.breadcrumb a:hover{color:var(--signal)}
+.breadcrumb-sep{opacity:.4}
+.page-hero-inner{display:flex;align-items:center;gap:1.5rem;margin-bottom:1rem}
+.page-hero-icon{
+  width:3rem;height:3rem;border:1px solid var(--white-12);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--signal);font-size:1.125rem;flex-shrink:0;
+}
+.page-hero-title{
+  font-family:var(--syne);font-weight:800;
+  font-size:clamp(1.5rem,4vw,2.25rem);letter-spacing:-.02em;
+}
+.page-hero-desc{color:var(--white-60);font-size:.9375rem;line-height:1.6;max-width:44rem}
+
+/* ── PROGRESS ───────────────────────────────────────────── */
+.progress-block{
+  padding:1.75rem 2rem;
+  border:1px solid var(--white-12);
+  margin-bottom:2.5rem;
+  background:rgba(255,255,255,.02);
+}
+.step-indicators{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;width:100%;
+}
+.step-indicator{
+  width:2.25rem;height:2.25rem;border:1px solid var(--white-12);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.625rem;color:var(--white-30);
+  flex-shrink:0;transition:all .3s;
+}
+.step-indicator.active{
+  border-color:var(--signal);color:var(--signal);background:rgba(232,201,122,.08);
+}
+.step-indicator svg{width:1rem;height:1rem}
+.step-line{
+  flex:1;height:1px;background:var(--white-12);transition:background .3s;
+}
+.step-line.active{background:var(--signal)}
+.progress-bar-track{
+  height:2px;background:var(--white-06);
+}
+.progress-bar-fill{
+  height:100%;background:var(--signal);transition:width .4s var(--ease-out);
+}
+#step-description{
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--white-30);margin-top:.875rem;text-align:center;
+}
+
+/* ── WIZARD STEPS ───────────────────────────────────────── */
+.wizard-step{display:none}
+.wizard-step.active{display:block}
+
+/* ── GLASS CARD RESTYLED ─────────────────────────────────── */
+.glass-card{
+  background:rgba(255,255,255,.025);
+  border:1px solid var(--white-12);
+  border-radius:0;
+  box-shadow:none;
+}
+.neon-border{
+  border-color:rgba(232,201,122,.25);
+  box-shadow:0 0 0 1px rgba(232,201,122,.06) inset;
+}
+
+/* ── STEP 1 BEAM CARDS ──────────────────────────────────── */
+.beam-cards-grid{
+  display:grid;gap:1px;background:var(--white-12);
+  margin-bottom:2rem;
+}
+@media(min-width:600px){.beam-cards-grid{grid-template-columns:repeat(2,1fr)}}
+.beam-card{
+  background:var(--ink);padding:2rem;text-align:center;
+  transition:background .25s;position:relative;
+}
+.beam-card:hover{background:rgba(232,201,122,.04)}
+.beam-card-icon{
+  width:3rem;height:3rem;border:1px solid var(--white-12);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.25rem;transition:border-color .25s;
+}
+.beam-card:hover .beam-card-icon{border-color:var(--signal-mid)}
+.beam-card-icon svg{width:1.25rem;height:1.25rem;color:var(--signal)}
+.step-image{margin:1rem auto 0;display:flex;justify-content:center}
+.instruction-gif{
+  width:200px;height:200px;object-fit:contain;
+  border:1px solid var(--white-06);
+}
+@media(min-width:900px){.instruction-gif{width:220px;height:220px}}
+
+/* ── BUTTONS ─────────────────────────────────────────────── */
+.btn-primary{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--syne);font-size:.875rem;font-weight:600;letter-spacing:-.01em;
+  background:var(--signal);color:var(--ink);
+  padding:.875rem 2rem;transition:all .25s;border:none;cursor:pointer;
+}
+.btn-primary:hover{background:var(--white);transform:translateY(-1px)}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-outline{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.15em;text-transform:uppercase;
+  border:1px solid var(--white-12);color:var(--white-60);
+  padding:.75rem 1.5rem;transition:all .25s;background:none;cursor:pointer;
+}
+.btn-outline:hover{border-color:var(--signal-mid);color:var(--signal)}
+.btn-secondary{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--white-12);color:var(--white-60);
+  padding:.75rem 1.25rem;transition:all .25s;background:none;cursor:pointer;
+  flex-shrink:0;
+}
+.btn-secondary:hover{border-color:var(--signal-mid);color:var(--signal)}
+
+/* ── INPUTS ──────────────────────────────────────────────── */
+.input-field{
+  width:100%;background:rgba(255,255,255,.04);
+  border:1px solid var(--white-12);border-radius:0;
+  padding:.75rem 1rem;color:var(--white);font-family:var(--inter);font-size:.875rem;
+  transition:border-color .2s;outline:none;
+}
+.input-field::placeholder{color:var(--white-30)}
+.input-field:focus{border-color:var(--signal-mid)}
+label{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--white-30)}
+
+/* ── GRID UTILS ─────────────────────────────────────────── */
+.grid{display:grid}
+.grid-cols-1{grid-template-columns:1fr}
+.gap-4{gap:1rem}
+.gap-6{gap:1.5rem}
+.space-y-2>*+*{margin-top:.5rem}
+.space-y-4>*+*{margin-top:1rem}
+@media(min-width:768px){
+  .md\:grid-cols-2{grid-template-columns:repeat(2,1fr)}
+  .md\:grid-cols-3{grid-template-columns:repeat(3,1fr)}
+  .md\:col-span-2{grid-column:span 2}
+}
+@media(min-width:1024px){
+  .lg\:grid-cols-2{grid-template-columns:repeat(2,1fr)}
+}
+.col-span-2{grid-column:span 2}
+
+/* ── BADGES ──────────────────────────────────────────────── */
+.badge{
+  display:inline-block;font-family:var(--mono);font-size:.55rem;
+  letter-spacing:.15em;text-transform:uppercase;
+  border:1px solid var(--signal-mid);color:var(--signal);
+  padding:.2rem .6rem;
+}
+
+/* ── MAP ─────────────────────────────────────────────────── */
+#yandex-map{
+  width:100%;min-height:300px;height:400px;
+  border:1px solid var(--white-12);
+}
+#map-loading{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(10,10,12,.8);
+}
+.map-loading-inner{text-align:center}
+.w-8{width:2rem}.h-8{height:2rem}
+.border-2{border-width:2px}
+.border-primary{border-color:var(--signal)}
+.border-t-transparent{border-top-color:transparent}
+.rounded-full{border-radius:50%}
+.animate-spin{animation:spin 1s linear infinite}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.rounded-lg{border-radius:0}
+.overflow-hidden{overflow:hidden}
+.border{border:1px solid var(--white-12)}
+.border-primary\/30{border-color:rgba(232,201,122,.3)}
+.absolute{position:absolute}
+.inset-0{top:0;right:0;bottom:0;left:0}
+
+/* ── SIGNAL LEGEND ───────────────────────────────────────── */
+.signal-legend{
+  display:grid;gap:.75rem;
+}
+@media(min-width:768px){.signal-legend{grid-template-columns:repeat(3,1fr)}}
+.signal-item{display:flex;align-items:center;gap:.75rem;font-size:.8rem;color:var(--white-30)}
+.signal-dot{width:1rem;height:1rem;flex-shrink:0;border:1px solid rgba(255,255,255,.1)}
+
+/* ── LOCATION RESULT ─────────────────────────────────────── */
+#location-result .grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.text-green-400{color:#4ade80}
+.text-red-400{color:#f87171}
+
+/* ── STEP 3 OUTPUT (generated by app.js) ─────────────────── */
+.antenna-container{
+  position:relative;width:220px;height:220px;margin:0 auto;
+}
+.compass-ring{
+  position:absolute;inset:0;border:2px solid var(--white-12);border-radius:50%;
+}
+.compass-marks{
+  position:absolute;inset:0;
+}
+.compass-mark{
+  position:absolute;top:0;left:50%;width:1px;height:12px;
+  background:var(--white-12);transform-origin:bottom center;
+}
+.compass-directions{position:absolute;inset:0}
+.compass-n,.compass-s,.compass-e,.compass-w{
+  position:absolute;font-family:var(--mono);font-size:.65rem;font-weight:700;color:var(--signal);
+}
+.compass-n{top:6px;left:50%;transform:translateX(-50%)}
+.compass-s{bottom:6px;left:50%;transform:translateX(-50%)}
+.compass-e{right:6px;top:50%;transform:translateY(-50%)}
+.compass-w{left:6px;top:50%;transform:translateY(-50%)}
+.dish-visual{
+  position:absolute;top:50%;left:50%;width:48px;height:48px;
+  margin:-24px 0 0 -24px;border-radius:50%;
+  background:linear-gradient(to bottom right,#e8c97a,#b8993a);
+  box-shadow:0 4px 12px rgba(232,201,122,.3);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .5s ease;
+}
+.dish-center{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+}
+.dish-lnb{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+.dish-pointer{
+  position:absolute;top:-8px;left:50%;
+  width:3px;height:14px;background:var(--signal);margin-left:-1.5px;
+}
+.value-display{position:relative;margin-top:1rem;text-align:center;z-index:3}
+.value-number{font-family:var(--syne);font-size:1.5rem;font-weight:700;color:var(--signal)}
+.value-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white-30)}
+
+/* Tech cards (step 3) */
+.tech-card{
+  border:1px solid var(--white-12);padding:1.25rem;background:rgba(255,255,255,.025);
+  transition:border-color .25s;
+}
+.tech-card:hover{border-color:var(--signal-mid)}
+.tech-card-purple,.tech-card-cyan,.tech-card-emerald,.tech-card-orange,.tech-card-pink,.tech-card-amber{
+  border-color:rgba(232,201,122,.2);
+}
+.tech-icon{
+  width:2.5rem;height:2.5rem;border:1px solid var(--white-12);
+  display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;
+}
+.tech-icon svg{width:1rem;height:1rem;color:var(--signal)}
+.tech-icon-purple,.tech-icon-cyan,.tech-icon-emerald,.tech-icon-orange,.tech-icon-pink,.tech-icon-amber{
+  background:rgba(232,201,122,.08);border-color:rgba(232,201,122,.2);
+}
+.tech-value-purple,.tech-value-cyan,.tech-value-emerald,.tech-value-orange,.tech-value-pink,.tech-value-amber{
+  color:var(--signal);font-family:var(--syne);font-weight:700;font-size:1.25rem;
+}
+.alert{padding:1rem;border:1px solid var(--white-12);display:flex;align-items:flex-start;gap:.75rem}
+.alert-blue{border-color:rgba(232,201,122,.2);background:rgba(232,201,122,.04)}
+.alert-green{border-color:rgba(74,222,128,.2);background:rgba(74,222,128,.04)}
+.alert-blue .alert-icon,.alert-green .alert-icon{color:var(--signal);flex-shrink:0}
+.alert-blue .alert-text{color:var(--white-60);font-size:.875rem;line-height:1.6}
+.alert-green .alert-text{color:rgba(74,222,128,.8);font-size:.875rem;line-height:1.6}
+
+/* Step 3 misc */
+.glow{/* remove glow effect */}
+.bg-gradient-to-br{background:rgba(232,201,122,.08)}
+.from-indigo-500{}.to-purple-600{}.from-purple-500{}.to-indigo-600{}
+.from-green-500{}.to-emerald-600{}.from-blue-500{}.to-cyan-600{}
+.from-orange-500{}.to-red-600{}.from-yellow-500{}.to-orange-600{}
+.rounded-full{border-radius:50%}
+.w-12{width:3rem}.h-12{height:3rem}
+.w-16{width:4rem}.h-16{height:4rem}
+.w-5{width:1.25rem}.h-5{height:1.25rem}
+.w-4{width:1rem}.h-4{height:1rem}
+.w-6{width:1.5rem}.h-6{height:1.5rem}
+.w-7{width:1.75rem}.h-7{height:1.75rem}
+.w-48{width:12rem}
+.flex-1{flex:1}
+.flex-shrink-0{flex-shrink:0}
+.inline-flex{display:inline-flex}
+.gap-2{gap:.5rem}
+.gap-3{gap:.75rem}
+.mr-2{margin-right:.5rem}
+.mr-1{margin-right:.25rem}
+
+/* Instruction step */
+.instruction-step{display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:1.5rem}
+.step-image{flex-shrink:0;margin-left:auto}
+@media(max-width:768px){
+  .instruction-step{flex-direction:column}
+  .step-image{margin-left:0;margin-top:.75rem}
+}
+
+/* ── NAVIGATION BUTTONS ─────────────────────────────────── */
+#navigation{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:1rem;padding:2rem 0;
+}
+#navigation.hidden{display:none}
+#next-btn{margin-left:auto}
+
+/* ── DOWNLOAD BLOCK ─────────────────────────────────────── */
+.download-actions{
+  display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.5rem;
+}
+
+/* ── SECTION WRAPPERS ────────────────────────────────────── */
+.py-8{padding-top:2rem;padding-bottom:2rem}
+.py-4{padding-top:1rem;padding-bottom:1rem}
+.z-10{position:relative;z-index:10}
+.px-4{padding-left:1rem;padding-right:1rem}
+
+/* ── PARTNER CARDS (not used on setup but kept for compat) ── */
+.partner-card{display:flex;align-items:center;gap:.75rem;padding:.75rem;border:1px solid var(--white-12)}
+.partner-logo-img{width:3rem;height:3rem;object-fit:contain}
+.partner-name{font-family:var(--syne);font-size:.875rem;font-weight:600}
+.partner-info{display:flex;flex-direction:column;gap:.25rem}
+.badge{display:inline-block}
+
+/* ── COOKIE BANNER ───────────────────────────────────────── */
+.cookie-banner{
+  position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:10000;
+  background:rgba(10,10,12,.97);color:var(--white);
+  border:1px solid var(--white-12);
+  padding:1.25rem;box-shadow:0 8px 32px rgba(0,0,0,.6);
+  max-width:720px;margin:0 auto;
+}
+@media(min-width:900px){.cookie-banner{left:auto;right:2rem;bottom:2rem;max-width:480px}}
+.cookie-banner p{margin:0 0 .75rem;font-size:.875rem;line-height:1.6;color:var(--white-60)}
+.cookie-banner a{color:var(--signal)}
+.cookie-banner a:hover{text-decoration:underline}
+.cookie-actions{display:flex;gap:.5rem;justify-content:flex-end;flex-wrap:wrap}
+.cookie-btn{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.5rem .9rem;border:1px solid var(--white-12);cursor:pointer;
+  background:transparent;color:var(--white-60);
+}
+.cookie-btn-primary{background:var(--signal);color:var(--ink);border-color:var(--signal)}
+.cookie-btn:hover{filter:brightness(1.1)}
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.site-footer{
+  border-top:1px solid var(--white-12);padding:2rem;margin-top:auto;
+  display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;
+}
+@media(min-width:600px){.site-footer{flex-direction:row;justify-content:space-between;text-align:left}}
+.site-footer .container{
+  display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;
+}
+@media(min-width:600px){.site-footer .container{flex-direction:row;justify-content:space-between}}
+.footer-links{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.footer-email{color:var(--white-30);font-family:var(--mono);font-size:.6rem;letter-spacing:.1em}
+.footer-email .nav-link{color:var(--white-30)}
+.footer-email .nav-link:hover{color:var(--signal)}
+
+/* ── MAIN CONTENT ─────────────────────────────────────────── */
+main{flex:1;padding:2rem 0 4rem}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-header">
+  <div class="container flex justify-between items-center">
+    <a href="index.html" class="logo" aria-label="CLAN DUBAI Home">
+      <img src="img/logo clan.png" alt="CLAN DUBAI" class="logo-img">
+    </a>
+    <div class="header-controls flex items-center gap-4">
+      <div class="lang-dd" id="lang-dd" style="position:relative;display:block">
+        <button class="lang-dd-btn" id="lang-dd-btn" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white-60);border:1px solid var(--white-12);padding:.4rem .9rem;cursor:pointer;display:flex;align-items:center;gap:.5rem;background:none;transition:all .2s">EN</button>
+        <div class="lang-dd-list" style="display:none;position:absolute;top:calc(100% + 4px);right:0;background:rgba(10,10,12,.97);border:1px solid var(--white-12);backdrop-filter:blur(20px);z-index:200;min-width:140px">
+          <button class="lang-dd-item active" onclick="changeLanguage('en')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;color:var(--signal);cursor:pointer;border:none;background:none;width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between">EN<span style="opacity:.4;font-size:.5rem">English</span></button>
+          <button class="lang-dd-item" onclick="changeLanguage('ru')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;color:var(--white-30);cursor:pointer;border:none;background:none;width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between">RU<span style="opacity:.4;font-size:.5rem">Русский</span></button>
+          <button class="lang-dd-item" onclick="changeLanguage('tr')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;color:var(--white-30);cursor:pointer;border:none;background:none;width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between">TR<span style="opacity:.4;font-size:.5rem">Türkçe</span></button>
+          <button class="lang-dd-item" onclick="changeLanguage('ar')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;color:var(--white-30);cursor:pointer;border:none;background:none;width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between">AR<span style="opacity:.4;font-size:.5rem">العربية</span></button>
+          <button class="lang-dd-item" onclick="changeLanguage('de')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;color:var(--white-30);cursor:pointer;border:none;background:none;width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between">DE<span style="opacity:.4;font-size:.5rem">Deutsch</span></button>
+          <button class="lang-dd-item" onclick="changeLanguage('it')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;color:var(--white-30);cursor:pointer;border:none;background:none;width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between">IT<span style="opacity:.4;font-size:.5rem">Italiano</span></button>
+          <button class="lang-dd-item" onclick="changeLanguage('es')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;color:var(--white-30);cursor:pointer;border:none;background:none;width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between">ES<span style="opacity:.4;font-size:.5rem">Español</span></button>
+          <button class="lang-dd-item" onclick="changeLanguage('fr')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;color:var(--white-30);cursor:pointer;border:none;background:none;width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between">FR<span style="opacity:.4;font-size:.5rem">Français</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="space-background" style="display:none"></div>
+
+<main>
+  <div class="container">
+    <!-- Header -->
+    <div style="padding:1.5rem 0 1rem;border-bottom:1px solid var(--white-12);margin-bottom:1.5rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
+        <div>
+          <h1 style="font-family:var(--syne);font-weight:700;font-size:clamp(1.1rem,2.5vw,1.5rem);letter-spacing:-.01em;margin-bottom:.25rem" data-translate="step2Title">Specify Your Location</h1>
+          <p class="text-muted-foreground" style="font-size:.8rem" data-translate="step2Subtitle">Determine your exact location for automatic selection of the satellite with the best signal level.</p>
+        </div>
+        <a href="index.html" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--white-30);border:1px solid var(--white-12);padding:.4rem .9rem;transition:all .2s;text-decoration:none" onmouseover="this.style.borderColor='var(--signal)';this.style.color='var(--signal)'" onmouseout="this.style.borderColor='var(--white-12)';this.style.color='var(--white-30)'">← CLAN DUBAI</a>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div>
+
+      <!-- Step 2 (Location) -->
+      <div id="step-2" class="wizard-step active">
+        <div class="glass-card neon-border p-6">
+          <p class="text-muted-foreground mb-4 text-sm" data-translate="mapDescription">Click on the map to choose the exact location. The marker can be dragged. Purple areas indicate the general coverage of satellites with varying signal levels.</p>
+            <div class="relative">
+              <div id="yandex-map" style="width:100%;min-height:300px;height:420px;border:1px solid var(--white-12)"></div>
+              <div id="map-loading" class="absolute inset-0 flex items-center justify-center" style="background:rgba(10,10,12,.8)">
+                <div class="map-loading-inner text-center">
+                  <div class="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+                  <p class="text-muted-foreground text-sm" data-translate="loadingMap">Loading hybrid coverage map...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Signal legend -->
+          <div class="glass-card p-4 mb-6">
+            <h4 class="mb-3 text-sm flex items-center gap-2">
+              <i data-lucide="signal" style="width:1rem;height:1rem;color:var(--signal)"></i>
+              <span data-translate="signalLevel">Signal Level</span>
+            </h4>
+            <div class="signal-legend">
+              <div class="signal-item">
+                <div class="signal-dot" style="background:rgba(124,58,237,.7)"></div>
+                <span data-translate="mediumSignal">41-43 dB - Medium</span>
+              </div>
+              <div class="signal-item">
+                <div class="signal-dot" style="background:rgba(91,33,182,.7)"></div>
+                <span data-translate="goodSignal">44-47 dB - Good</span>
+              </div>
+              <div class="signal-item">
+                <div class="signal-dot" style="background:rgba(76,29,149,.7)"></div>
+                <span data-translate="excellentSignal">48-54 dB - Excellent</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location input methods -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div class="glass-card p-6">
+              <h3 class="mb-4 flex items-center gap-2">
+                <i data-lucide="navigation" style="width:1.25rem;height:1.25rem;color:var(--signal)"></i>
+                <span data-translate="automaticDetection">Automatic Detection</span>
+              </h3>
+              <p class="text-muted-foreground mb-4 text-sm" data-translate="autoDetectionDesc">Use your device's GPS to accurately determine your coordinates.</p>
+              <button id="get-location" class="btn-primary w-full">
+                <i data-lucide="crosshair" style="width:1rem;height:1rem;margin-right:.5rem"></i>
+                <span data-translate="detectLocation">Detect Location</span>
+              </button>
+            </div>
+            <div class="glass-card p-6">
+              <h3 class="mb-4 flex items-center gap-2">
+                <i data-lucide="search" style="width:1.25rem;height:1.25rem;color:var(--signal)"></i>
+                <span data-translate="addressSearch">Address Search</span>
+              </h3>
+              <p class="text-muted-foreground mb-4 text-sm" data-translate="addressSearchDesc">Enter your address or the name of your locality.</p>
+              <div class="flex gap-2">
+                <input type="text" id="address-input" placeholder="address" class="input-field flex-1" data-translate="address">
+                <button id="search-address" class="btn-secondary">
+                  <i data-lucide="search" style="width:1rem;height:1rem"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Manual coordinates toggle -->
+          <button id="manual-toggle" class="btn-outline w-full mt-6" style="font-size:.75rem;padding:.6rem 1rem;color:var(--white-30);border-color:var(--white-12)" onclick="document.getElementById('manual-coords').classList.toggle('hidden');this.classList.toggle('hidden')">
+            <i data-lucide="map-pin" style="width:.85rem;height:.85rem;margin-right:.5rem"></i>
+            <span data-translate="manualCoordinates">Manual Coordinate Entry</span>
+          </button>
+          <div id="manual-coords" class="glass-card p-6 mt-4 hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="text-sm mb-2 block" data-translate="latitude">Latitude (°N/°S)</label>
+                <input type="text" id="latitude-input" placeholder="__.____" class="input-field">
+              </div>
+              <div>
+                <label class="text-sm mb-2 block" data-translate="longitude">Longitude (°E/°W)</label>
+                <input type="text" id="longitude-input" placeholder="__.____" class="input-field">
+              </div>
+            </div>
+            <button id="apply-coordinates" class="btn-outline w-full mt-4" style="border-color:var(--signal);color:var(--signal)">
+              <span data-translate="applyCoordinates">Apply Coordinates</span>
+            </button>
+          </div>
+
+          <!-- Location result -->
+          <div id="location-result" class="glass-card neon-border p-6 mt-6 hidden">
+            <h4 class="mb-3 flex items-center gap-2">
+              <i data-lucide="map-pin" style="width:1.25rem;height:1.25rem;color:var(--signal)"></i>
+              <span data-translate="yourLocation">Your Location</span>
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <span class="text-muted-foreground" data-translate="latitudeLabel">Latitude:</span>
+                <span id="result-latitude" class="ml-2 text-green-400"></span>
+              </div>
+              <div>
+                <span class="text-muted-foreground" data-translate="longitudeLabel">Longitude:</span>
+                <span id="result-longitude" class="ml-2 text-green-400"></span>
+              </div>
+              <div class="col-span-2">
+                <span class="text-muted-foreground" data-translate="addressLabel">Address:</span>
+                <span id="result-address" class="ml-2"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Error -->
+          <div id="location-error" class="glass-card p-4 mt-4 hidden" style="border-color:rgba(239,68,68,.4)">
+            <div class="flex items-center gap-2">
+              <i data-lucide="alert-circle" style="width:1.25rem;height:1.25rem;color:#f87171;flex-shrink:0"></i>
+              <p class="text-red-400 text-sm" id="error-message"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 (filled by JS) -->
+      <div id="step-3" class="wizard-step"></div>
+
+      <!-- Navigation -->
+      <div id="navigation" class="hidden">
+        <button id="prev-btn" class="btn-outline">
+          <i data-lucide="chevron-left" style="width:1rem;height:1rem;margin-right:.5rem"></i>
+          <span data-translate="back">Back</span>
+        </button>
+        <button id="next-btn" class="btn-primary ml-auto">
+          <span data-translate="next">Next</span>
+          <i data-lucide="chevron-right" style="width:1rem;height:1rem;margin-left:.5rem"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer style="padding:2.5rem 2rem;border-top:1px solid var(--white-12)">
+  <div style="max-width:90rem;margin:0 auto;display:grid;gap:2rem">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <a href="index.html" style="font-family:var(--syne);font-weight:800;font-size:.875rem;letter-spacing:.16em;text-decoration:none;color:var(--white)">CLAN DUBAI</a>
+      <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center">
+        <a href="privacy.html" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white-30);transition:color .2s;text-decoration:none" onmouseover="this.style.color='var(--signal)'" onmouseout="this.style.color='var(--white-30)'" data-translate="privacyPolicy">Privacy Policy</a>
+        <a href="cookies.html" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white-30);transition:color .2s;text-decoration:none" onmouseover="this.style.color='var(--signal)'" onmouseout="this.style.color='var(--white-30)'" data-translate="cookiePolicy">Cookie Policy</a>
+        <a href="terms.html" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white-30);transition:color .2s;text-decoration:none" onmouseover="this.style.color='var(--signal)'" onmouseout="this.style.color='var(--white-30)'" data-translate="termsOfUse">Terms of Use</a>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid var(--white-12);padding-top:1.5rem">
+      <span style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--white-30)">International Media Group</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Lucide icons must load before app.js -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<!-- All original app.js logic — unchanged -->
+<script src="app.js" defer></script>
+<script defer>
+  // Init Yandex suggest after maps load
+  window.addEventListener('load', function() {
+    if (typeof ymaps !== 'undefined') {
+      ymaps.ready(function () {
+        try { new ymaps.SuggestView('address-input'); } catch(e){}
+      });
+    }
+  });
+</script>
+<!-- Nav translations patch -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var navKeys = {
+    en: { nav_about:'About', nav_channels:'Channels', nav_coverage:'Coverage',
+          nav_setup:'Satellite Setup', nav_partners:'For Partners', nav_contacts:'Contacts',
+          nav_home_link:'CLAN DUBAI' },
+    ru: { nav_about:'О компании', nav_channels:'Каналы', nav_coverage:'Покрытие',
+          nav_setup:'Настройка спутника', nav_partners:'Партнёрам', nav_contacts:'Контакты',
+          nav_home_link:'CLAN DUBAI' },
+    tr: { nav_about:'Hakkında', nav_channels:'Kanallar', nav_coverage:'Kapsama',
+          nav_setup:'Uydu Kurulumu', nav_partners:'Ortaklar İçin', nav_contacts:'İletişim',
+          nav_home_link:'CLAN DUBAI' }
+  };
+  if (typeof translations !== 'undefined') {
+    ['en','ru','tr'].forEach(function(lang) {
+      if (translations[lang]) Object.assign(translations[lang], navKeys[lang]);
+    });
+  }
+  // Language dropdown
+  var langDd = document.getElementById('lang-dd');
+  var langDdBtn = document.getElementById('lang-dd-btn');
+  if (langDdBtn && langDd) {
+    langDdBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var list = langDd.querySelector('.lang-dd-list');
+      list.style.display = list.style.display === 'block' ? 'none' : 'block';
+    });
+    document.addEventListener('click', function() {
+      var list = langDd.querySelector('.lang-dd-list');
+      if (list) list.style.display = 'none';
+    });
+  }
+  // Patch changeLanguage to update dropdown button
+  var origChangeLang = window.changeLanguage;
+  window.changeLanguage = function(lang) {
+    if (typeof origChangeLang === 'function') origChangeLang(lang);
+    if (langDdBtn) langDdBtn.textContent = lang.toUpperCase();
+    if (langDd) {
+      langDd.querySelectorAll('.lang-dd-item').forEach(function(btn) {
+        var code = btn.textContent.trim().slice(0,2).toLowerCase();
+        btn.style.color = code === lang ? 'var(--signal)' : 'var(--white-30)';
+      });
+      var list = langDd.querySelector('.lang-dd-list');
+      if (list) list.style.display = 'none';
+    }
+  };
+});
+</script>
+</body>
+</html>

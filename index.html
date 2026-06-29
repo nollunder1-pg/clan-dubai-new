@@ -1,0 +1,2265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>CLAN DUBAI — International Media Group</title>
+<meta name="description" content="CLAN DUBAI — your global partner in the world of media and advertising. 20 years of experience, 24 TV channels, 250M+ viewers across 59 countries."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET ─────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0a0a0c;
+  --paper:#f2ede6;
+  --signal:#e8c97a;
+  --signal-dim:rgba(232,201,122,.12);
+  --signal-mid:rgba(232,201,122,.4);
+  --white:rgba(242,237,230,1);
+  --white-60:rgba(242,237,230,.75);
+  --white-30:rgba(242,237,230,.45);
+  --white-12:rgba(242,237,230,.12);
+  --white-06:rgba(242,237,230,.06);
+  --syne:"Syne",system-ui,sans-serif;
+  --inter:"Inter",system-ui,sans-serif;
+  --mono:"Space Mono",ui-monospace,monospace;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--white);
+  font-family:var(--inter);
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;убери иконку местоположения и вообще
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{border:none;background:none;cursor:pointer;font-family:inherit;color:inherit}
+
+/* ── RTL / ARABIC ─────────────────────────────────────── */
+html[lang="ar"]{direction:rtl}
+html[lang="ar"] body{font-family:"Noto Sans Arabic",var(--inter)}
+html[lang="ar"] .nav-links{direction:ltr}
+html[lang="ar"] .hero-stats{direction:ltr}
+html[lang="ar"] .hero-h1{direction:ltr}
+html[lang="ar"] .nav-logo{direction:ltr}
+html[lang="ar"] .lang-dd{direction:ltr}
+html[lang="ar"] .mob-lang{direction:ltr}
+html[lang="ar"] .stats-ticker-inner{direction:ltr}
+html[lang="ar"] .geo2-number{direction:ltr}
+html[lang="ar"] .geo2-stats{direction:ltr}
+html[lang="ar"] .rooh3-big{direction:ltr}
+html[lang="ar"] .dig2-big{direction:ltr}
+html[lang="ar"] .dig2-cell-n{direction:ltr}
+html[lang="ar"] .case-overlay .case-m-n{direction:ltr}
+html[lang="ar"] .footer-logo{direction:ltr}
+
+/* ── NAV ───────────────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 2rem;height:3.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s;
+}
+.nav.stuck{background:rgba(10,10,12,.92);backdrop-filter:blur(20px)}
+.nav::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:var(--white-12);opacity:0;transition:opacity .4s;
+}
+.nav.stuck::after{opacity:1}
+.nav-logo{
+  font-family:var(--syne);font-weight:800;font-size:.875rem;
+  letter-spacing:.16em;text-transform:uppercase;
+  position:relative;
+}
+.nav-logo::before{
+  content:'';position:absolute;bottom:-3px;left:0;width:100%;height:1px;
+  background:var(--signal);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s var(--ease-out);
+}
+.nav-logo:hover::before{transform:scaleX(1)}
+.nav-links{display:none;align-items:center;gap:2.5rem}
+@media(min-width:900px){.nav-links{display:flex}}
+.nav-links a{
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--white-60);transition:color .2s;
+}
+.nav-links a:hover{color:var(--signal)}
+.nav-cta{
+  display:none;
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.15em;
+  text-transform:uppercase;border:1px solid var(--white-30);
+  padding:.5rem 1.25rem;transition:all .25s;
+}
+@media(min-width:900px){.nav-cta{display:block}}
+.nav-cta:hover{border-color:var(--signal);color:var(--signal)}
+.lang-dd{position:relative;display:none}
+@media(min-width:900px){.lang-dd{display:block}}
+.lang-dd-btn{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--white-60);border:1px solid var(--white-12);padding:.4rem .9rem;
+  cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.5rem;background:none;
+}
+.lang-dd-btn:hover{border-color:var(--signal);color:var(--signal)}
+.lang-dd-btn::after{content:'▾';font-size:.5rem;opacity:.5}
+.lang-dd-list{
+  display:none;position:absolute;top:calc(100% + 4px);right:0;
+  background:rgba(10,10,12,.97);border:1px solid var(--white-12);
+  backdrop-filter:blur(20px);z-index:200;min-width:140px;
+}
+.lang-dd.open .lang-dd-list{display:block}
+.lang-dd-item{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.6rem 1rem;color:var(--white-30);cursor:pointer;transition:all .15s;
+  display:flex;align-items:center;justify-content:space-between;border:none;background:none;width:100%;text-align:left;
+}
+.lang-dd-item:hover{background:rgba(232,201,122,.06);color:var(--white)}
+.lang-dd-item.active{color:var(--signal)}
+.mob-lang{display:flex;flex-wrap:wrap;gap:2px;background:var(--white-06);padding:2px;margin-top:1rem}
+.mob-lang button{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.4rem .65rem;color:var(--white-30);background:none;border:none;cursor:pointer;transition:.2s;
+}
+.mob-lang button:hover{color:var(--white)}
+.mob-lang button.active{background:var(--signal);color:var(--ink)}
+.burger{display:flex;flex-direction:column;gap:5px;padding:4px}
+@media(min-width:900px){.burger{display:none}}
+.burger span{display:block;width:20px;height:1px;background:var(--white);transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(6px)rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-6px)rotate(-45deg)}
+.mob-menu{
+  display:none;position:fixed;inset:0;top:3.5rem;background:rgba(10,10,12,.97);
+  flex-direction:column;align-items:flex-start;justify-content:center;
+  gap:2.5rem;padding:4rem 2rem;z-index:99;
+}
+.mob-menu.open{display:flex}
+.mob-menu a{
+  font-family:var(--syne);font-size:2rem;font-weight:700;
+  color:var(--white-60);transition:.2s;
+}
+.mob-menu a:hover{color:var(--signal)}
+
+/* ── HERO ──────────────────────────────────────────────── */
+.hero{
+  position:relative;min-height:100vh;display:flex;
+  flex-direction:column;justify-content:flex-end;
+  padding:6rem 2rem 8rem;overflow:hidden;
+}
+#hero-canvas{
+  position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
+}
+.hero-noise{
+  position:absolute;inset:0;pointer-events:none;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  opacity:.4;mix-blend-mode:overlay;
+}
+.hero-inner{position:relative;z-index:2;max-width:90rem;width:100%}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.75rem;
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--signal);margin-bottom:2rem;
+  opacity:0;animation:fadeUp .8s .2s var(--ease-out) forwards;
+}
+.hero-eyebrow-dot{
+  width:5px;height:5px;background:var(--signal);border-radius:50%;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero-h1{
+  font-family:var(--syne);font-weight:800;line-height:.88;
+  letter-spacing:-.025em;
+  font-size:clamp(3.5rem,10.5vw,10rem);
+  opacity:0;animation:fadeUp 1s .35s var(--ease-out) forwards;
+}
+.hero-h1 em{font-style:normal;color:var(--signal)}
+.hero-sub{
+  margin-top:2rem;
+  font-size:clamp(1rem,1.8vw,1.35rem);font-weight:300;
+  color:var(--white-60);max-width:44rem;line-height:1.55;
+  opacity:0;animation:fadeUp .8s .8s var(--ease-out) forwards;
+}
+.hero-stats{
+  display:flex;flex-wrap:wrap;gap:0;margin-top:4rem;
+  border-top:1px solid var(--white-12);
+  opacity:0;animation:fadeUp .8s 1.1s var(--ease-out) forwards;
+}
+.hero-stat{
+  padding:1.5rem 2.5rem;flex:1 1 140px;text-align:center;
+  border-right:1px solid var(--white-12);
+}
+.hero-stat:last-child{border-right:none}
+.hero-stat-n{
+  font-family:var(--syne);font-size:clamp(1.75rem,3.5vw,2.5rem);
+  font-weight:700;color:var(--signal);line-height:1;
+}
+.hero-stat-l{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--white-30);margin-top:.4rem;
+}
+.hero-scroll-hint{
+  position:absolute;bottom:2rem;right:2rem;z-index:2;
+  display:flex;align-items:center;gap:.75rem;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--white-30);
+  opacity:0;animation:fadeUp .8s 1.6s var(--ease-out) forwards;
+}
+.hero-scroll-line{
+  width:2rem;height:1px;background:var(--white-30);
+  position:relative;overflow:hidden;
+}
+.hero-scroll-line::after{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:var(--signal);animation:scanline 2s ease-in-out infinite 2s;
+}
+@keyframes scanline{0%{left:-100%}100%{left:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION CORE ──────────────────────────────────────── */
+.s{padding:6rem 2rem}
+@media(min-width:900px){.s{padding:9rem 3rem}}
+.s-alt{background:rgba(255,255,255,.025);border-top:1px solid var(--white-12);border-bottom:1px solid var(--white-12)}
+.wrap{max-width:90rem;margin:0 auto}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.75rem;
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--signal);margin-bottom:1.75rem;
+}
+.eyebrow-line{width:1.5rem;height:1px;background:var(--signal)}
+h2.sh{
+  font-family:var(--syne);font-weight:700;line-height:1.05;
+  font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.02em;
+}
+.text-dim{color:var(--white-60);line-height:1.7;font-size:1rem}
+.text-dim-sm{color:var(--white-30);font-size:.9375rem;line-height:1.7}
+
+/* ── ABOUT ─────────────────────────────────────────────── */
+.about-grid{
+  display:grid;gap:5rem;align-items:start;
+}
+@media(min-width:900px){.about-grid{grid-template-columns:1fr 1fr;gap:8rem}}
+.about-pull{
+  font-family:var(--syne);font-size:clamp(1.25rem,2.5vw,1.875rem);
+  font-weight:600;line-height:1.2;letter-spacing:-.01em;
+  color:var(--white);margin-bottom:2rem;
+}
+.about-pull span{color:var(--signal)}
+.about-body{font-size:1rem;color:var(--white-60);line-height:1.7;margin-bottom:1.5rem}
+.about-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2.5rem}
+.tag{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;
+  border:1px solid var(--white-12);padding:.4rem .9rem;color:var(--white-30);
+  transition:.2s;
+}
+.tag:hover{border-color:var(--signal-mid);color:var(--signal)}
+
+/* ── ADVANTAGE ─────────────────────────────────────────── */
+.adv-layout{display:grid;gap:3rem}
+@media(min-width:900px){.adv-layout{grid-template-columns:5fr 7fr;gap:6rem;align-items:start}}
+.adv-badge{
+  display:inline-block;
+  font-family:var(--syne);font-size:clamp(3.5rem,7vw,6rem);
+  font-weight:800;color:transparent;
+  -webkit-text-stroke:2px rgba(232,201,122,.5);
+  letter-spacing:-.04em;line-height:1;margin-bottom:1.5rem;
+}
+.adv-cards{display:flex;flex-direction:column;gap:1px;background:var(--white-12)}
+.adv-card{
+  background:var(--ink);padding:2rem;
+  position:relative;overflow:hidden;transition:background .3s;
+}
+.adv-card::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:100%;
+  background:var(--signal);transform:scaleY(0);transform-origin:bottom;
+  transition:transform .4s var(--ease-out);
+}
+.adv-card:hover{background:rgba(232,201,122,.04)}
+.adv-card:hover::before{transform:scaleY(1)}
+.adv-title{
+  font-family:var(--syne);font-size:1rem;font-weight:600;
+  margin-bottom:.75rem;letter-spacing:-.01em;
+}
+.adv-desc{font-size:.875rem;color:var(--white-30);line-height:1.6}
+
+/* ── CHANNELS ──────────────────────────────────────────── */
+.filter-row{display:flex;gap:1px;flex-wrap:wrap;background:var(--white-12);margin-bottom:3rem;width:fit-content}
+.fb{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;
+  padding:.625rem 1.25rem;background:var(--ink);color:var(--white-30);transition:.2s;
+}
+.fb:hover{background:rgba(255,255,255,.06);color:var(--white-60)}
+.fb.on{background:var(--signal);color:var(--ink)}
+.ch-grid{
+  display:grid;gap:1px;background:none;
+}
+@media(min-width:600px){.ch-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.ch-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1400px){.ch-grid{grid-template-columns:repeat(4,1fr)}}
+.ch-card{
+  background:transparent;padding:1.75rem;display:flex;flex-direction:column;
+  gap:.75rem;transition:background .25s;cursor:default;position:relative;overflow:hidden;
+}
+.ch-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:var(--signal);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease-out);
+}
+.ch-card:hover{background:rgba(232,201,122,.05)}
+.ch-card:hover::after{transform:scaleX(1)}
+.ch-top{display:flex;align-items:flex-start;justify-content:space-between}
+.ch-cat{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--signal)}
+.ch-name{
+  font-family:var(--syne);font-size:1.125rem;font-weight:600;
+  letter-spacing:-.01em;transition:color .25s;text-transform:uppercase;
+}
+.ch-logo{height:3rem;width:auto;max-width:5rem;object-fit:contain;margin:.5rem 0}
+.ch-card:hover .ch-name{color:var(--signal)}
+.ch-desc{font-size:.75rem;color:var(--white-30);line-height:1.6;flex:1}
+.ch-aud{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:var(--white-30);border-top:1px solid var(--white-06);
+  padding-top:.75rem;margin-top:.25rem;
+}
+
+/* ── GEOGRAPHY ─────────────────────────────────────────── */
+.geo-grid{display:grid;gap:5rem}
+@media(min-width:900px){.geo-grid{grid-template-columns:1fr 1fr;gap:8rem;align-items:start}}
+.geo-big{
+  font-family:var(--syne);font-weight:800;
+  font-size:clamp(5rem,12vw,10rem);line-height:.85;
+  letter-spacing:-.04em;color:transparent;
+  -webkit-text-stroke:2px rgba(232,201,122,.35);
+  user-select:none;
+}
+.regions{display:flex;flex-direction:column}
+.reg{
+  border-top:1px solid var(--white-12);cursor:pointer;
+  transition:border-color .25s;
+}
+.reg:last-child{border-bottom:1px solid var(--white-12)}
+.reg:hover{border-top-color:var(--signal-mid)}
+.reg-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.25rem 0;
+}
+.reg-name{font-family:var(--syne);font-size:1.25rem;font-weight:600;transition:color .2s}
+.reg:hover .reg-name{color:var(--signal)}
+.reg-meta{display:flex;align-items:center;gap:1rem}
+.reg-count{font-family:var(--mono);font-size:.625rem;color:var(--signal);letter-spacing:.1em}
+.reg-icon{
+  width:1.5rem;min-width:1.5rem;height:1.5rem;min-height:1.5rem;border:1px solid var(--white-12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;color:var(--white-30);transition:all .25s;flex-shrink:0;
+}
+.reg.open .reg-icon{border-color:var(--signal);color:var(--signal);transform:rotate(45deg)}
+.reg-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s var(--ease-out),padding .4s;
+}
+.reg.open .reg-body{max-height:200px;padding-bottom:1.25rem}
+.reg-countries{font-size:.875rem;color:var(--white-30);line-height:1.7}
+
+/* ── AUDIENCE STATS ────────────────────────────────────── */
+.stats-ticker{
+  border-top:1px solid var(--white-12);
+  border-bottom:1px solid var(--white-12);
+  overflow:hidden;position:relative;
+}
+.stats-ticker-inner{
+  display:flex;white-space:nowrap;
+  animation:ticker 30s linear infinite;
+}
+.stats-ticker-inner:hover{animation-play-state:paused}
+@keyframes ticker{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:1rem;
+  padding:1rem 2.5rem;border-right:1px solid var(--white-12);
+}
+.ticker-n{
+  font-family:var(--syne);font-weight:700;font-size:1.5rem;color:var(--signal);
+}
+.ticker-l{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--white-30);white-space:nowrap;
+}
+.audience-main{padding:6rem 2rem}
+@media(min-width:900px){.audience-main{padding:9rem 3rem}}
+.aud-grid{display:grid;gap:4rem}
+@media(min-width:900px){.aud-grid{grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--white-12)}}
+.aud-stat{
+  text-align:center;padding:4rem 2rem;background:var(--ink);
+}
+.aud-num{
+  font-family:var(--syne);font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:800;color:var(--signal);line-height:1;letter-spacing:-.04em;
+  margin-bottom:.75rem;
+}
+.aud-label{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--white-30);line-height:1.7;
+}
+.aud-footnote{
+  font-size:.875rem;color:var(--white-60);line-height:1.65;
+  max-width:52rem;margin:3rem auto 0;text-align:center;
+}
+
+/* ── PRODUCTION ────────────────────────────────────────── */
+.prod-grid{display:grid;gap:5rem}
+@media(min-width:900px){.prod-grid{grid-template-columns:1fr 1fr;gap:6rem;align-items:start}}
+.prod-big-num{
+  font-family:var(--syne);font-weight:800;
+  font-size:clamp(4rem,9vw,7rem);color:var(--signal);
+  letter-spacing:-.04em;line-height:1;
+}
+.prod-big-label{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--white-30);margin-top:.75rem;
+}
+.stages{display:flex;flex-direction:column;gap:0;background:var(--white-12)}
+.stage{background:var(--ink);padding:1.75rem;position:relative;overflow:hidden;transition:background .25s}
+.stage:not(:last-child){border-bottom:1px solid var(--white-12)}
+.stage:hover{background:rgba(232,201,122,.04)}
+.stage-label{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--signal);margin-bottom:1rem;
+}
+.stage-items{display:flex;flex-wrap:wrap;gap:.5rem}
+.stage-item{
+  font-size:.8rem;color:var(--white-30);
+  border:1px solid var(--white-06);padding:.3rem .75rem;
+  transition:.2s;
+}
+.stage:hover .stage-item{color:var(--white-60);border-color:var(--white-12)}
+
+/* ── DIGITAL ───────────────────────────────────────────── */
+.digital-grid{display:grid;gap:1px;background:var(--white-12)}
+@media(min-width:600px){.digital-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.digital-grid{grid-template-columns:repeat(3,1fr)}}
+.dig-card{background:var(--ink);padding:2.5rem;transition:background .25s}
+.dig-card:hover{background:rgba(232,201,122,.04)}
+.dig-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--signal);margin-bottom:1rem}
+.dig-value{font-family:var(--syne);font-size:1.5rem;font-weight:600;margin-bottom:.5rem;letter-spacing:-.01em}
+.dig-desc{font-size:.875rem;color:var(--white-30);line-height:1.6}
+.services-grid{display:grid;gap:1px;background:var(--white-12);margin-top:1px}
+@media(min-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+.services-block{background:var(--ink);padding:2.5rem}
+.srv-title{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--signal);margin-bottom:1.5rem}
+.srv-list{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem}
+.srv-item{
+  font-size:.8rem;color:var(--white-30);
+  display:flex;align-items:center;gap:.5rem;
+}
+.srv-dot{width:3px;height:3px;background:var(--signal-mid);border-radius:50%;flex-shrink:0}
+
+/* ── DIGITAL V2 ────────────────────────────────────────── */
+.dig2{position:relative;overflow:hidden}
+.dig2-hero{
+  display:grid;gap:0;
+  border:1px solid var(--white-12);position:relative;
+}
+@media(min-width:900px){.dig2-hero{grid-template-columns:1fr 1fr}}
+.dig2-left{
+  padding:4rem 3rem;display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid var(--white-12);
+}
+.dig2-big{
+  font-family:var(--syne);font-weight:800;
+  font-size:clamp(3rem,8vw,6rem);line-height:1;
+  letter-spacing:-.04em;color:var(--signal);margin-bottom:.5rem;
+}
+.dig2-big-label{
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--white-30);
+}
+.dig2-right{padding:0;display:grid;grid-template-columns:1fr 1fr}
+.dig2-cell{
+  padding:2.5rem;border-bottom:1px solid var(--white-12);
+  position:relative;overflow:hidden;transition:background .3s;
+}
+.dig2-cell:nth-child(odd){border-right:1px solid var(--white-12)}
+.dig2-cell:hover{background:rgba(232,201,122,.04)}
+.dig2-cell-n{
+  font-family:var(--syne);font-size:clamp(2rem,4vw,3rem);
+  font-weight:700;color:var(--signal);line-height:1;
+  margin-bottom:.5rem;letter-spacing:-.03em;
+}
+.dig2-cell-l{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--white-30);margin-bottom:.75rem;
+}
+.dig2-cell-d{font-size:.85rem;color:var(--white-60);line-height:1.6}
+.dig2-services{
+  display:grid;gap:0;margin-top:-1px;
+  border:1px solid var(--white-12);
+}
+@media(min-width:900px){.dig2-services{grid-template-columns:repeat(3,1fr)}}
+.dig2-srv{
+  padding:2rem 2.5rem;border-bottom:1px solid var(--white-12);
+  transition:background .3s;
+}
+@media(min-width:900px){
+  .dig2-srv{border-bottom:none;border-right:1px solid var(--white-12)}
+  .dig2-srv:last-child{border-right:none}
+}
+.dig2-srv:hover{background:rgba(232,201,122,.04)}
+.dig2-srv-title{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--signal);margin-bottom:1.25rem;
+}
+.dig2-srv-list{display:flex;flex-wrap:wrap;gap:.5rem}
+.dig2-srv-item{
+  font-size:.8rem;color:var(--white-30);
+  border:1px solid var(--white-12);padding:.35rem .75rem;
+  transition:all .2s;
+}
+.dig2-srv:hover .dig2-srv-item{color:var(--white-60);border-color:var(--signal-dim)}
+.dig2-srv-item:hover{color:var(--signal)!important;border-color:var(--signal-mid)!important}
+.dig2-cta{
+  display:flex;align-items:center;justify-content:center;
+  padding:3rem;border:1px solid var(--white-12);border-top:none;
+  text-align:center;
+}
+.dig2-cta-text{
+  font-family:var(--syne);font-size:clamp(1.25rem,2.5vw,1.75rem);
+  font-weight:600;color:var(--white-60);letter-spacing:-.01em;
+}
+.dig2-cta-text em{font-style:normal;color:var(--signal)}
+
+/* ── RADIO & OOH V3 ────────────────────────────────────── */
+.rooh3-block{
+  display:grid;gap:6rem;padding-top:2rem;
+}
+.rooh3-row{
+  display:grid;gap:3rem;align-items:start;
+}
+@media(min-width:900px){.rooh3-row{grid-template-columns:5fr 7fr;gap:6rem}}
+.rooh3-big{
+  font-family:var(--syne);font-weight:800;
+  font-size:clamp(3.5rem,8vw,7rem);line-height:.9;
+  letter-spacing:-.04em;color:transparent;
+  -webkit-text-stroke:2px rgba(232,201,122,.35);
+  user-select:none;margin-bottom:1rem;
+}
+.rooh3-sub{
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--signal);
+}
+.rooh3-stat-row{
+  display:flex;gap:3rem;margin-top:2rem;
+}
+.rooh3-stat-n{
+  font-family:var(--syne);font-size:clamp(1.5rem,3vw,2.25rem);
+  font-weight:700;color:var(--signal);line-height:1;margin-bottom:.3rem;
+}
+.rooh3-stat-l{
+  font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--white-30);
+}
+.rooh3-names{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+}
+.rooh3-name{
+  padding:1rem 0;border-bottom:1px solid var(--white-12);
+  font-family:var(--syne);font-size:1.05rem;font-weight:600;
+  color:var(--white-60);transition:all .25s;
+  display:flex;align-items:center;gap:.75rem;
+}
+.rooh3-name:nth-child(odd){padding-right:2rem}
+.rooh3-name:nth-child(even){padding-left:2rem;border-left:1px solid var(--white-12)}
+.rooh3-name::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--signal);opacity:.4;flex-shrink:0;transition:opacity .25s;
+}
+.rooh3-name:hover{color:var(--signal)}
+.rooh3-name:hover::before{opacity:1}
+.rooh3-logos{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;
+}
+@media(max-width:900px){.rooh3-logos{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.rooh3-logos{grid-template-columns:repeat(2,1fr)}}
+.rooh3-logos img{
+  width:100%;height:100%;object-fit:contain;
+  padding:.75rem;opacity:.75;transition:all .3s;
+  aspect-ratio:1/1;
+}
+.rooh3-logos img:hover{opacity:1;transform:scale(1.05)}
+.rooh3-divider{
+  height:1px;background:linear-gradient(to right,var(--signal),var(--white-12),transparent);
+}
+.rooh3-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.rooh3-tag{
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;
+  color:var(--white-30);border:1px solid var(--white-12);
+  padding:.4rem .9rem;transition:all .25s;
+}
+.rooh3-tag:hover{border-color:var(--signal-mid);color:var(--signal)}
+.rooh3-points{display:flex;flex-direction:column;gap:0}
+.rooh3-point{
+  padding:1rem 0 1rem 1.5rem;border-bottom:1px solid var(--white-12);
+  font-size:.95rem;color:var(--white-60);line-height:1.7;
+  position:relative;
+}
+.rooh3-point:first-child{border-top:1px solid var(--white-12)}
+.rooh3-point::before{
+  content:'';position:absolute;left:0;top:1.45rem;
+  width:6px;height:6px;border:1px solid var(--signal);
+  transform:rotate(45deg);
+}
+
+/* ── CASES ─────────────────────────────────────────────── */
+.cases-list{display:flex;flex-direction:column;gap:1px;background:var(--white-12)}
+.case{
+  background:var(--ink);padding:2.5rem;transition:background .25s;
+  display:grid;gap:2.5rem;align-items:center;
+}
+@media(min-width:900px){.case{grid-template-columns:220px 1fr;padding:3rem}}
+.case:hover{background:rgba(232,201,122,.04)}
+.case-head{}
+.case-idx{font-family:var(--mono);font-size:.6rem;color:var(--white-30);margin-bottom:.75rem;letter-spacing:.1em}
+.case-name{
+  font-family:var(--syne);font-size:1.75rem;font-weight:700;
+  letter-spacing:-.02em;transition:color .25s;
+}
+.case:hover .case-name{color:var(--signal)}
+.case-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+@media(min-width:700px){.case-metrics{grid-template-columns:repeat(4,1fr)}}
+.case-m-n{
+  font-family:var(--syne);font-size:1.5rem;font-weight:700;
+  color:var(--signal);letter-spacing:-.03em;line-height:1;margin-bottom:.4rem;
+}
+.case-m-l{font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white-30)}
+.also-block{padding:2rem 0}
+.also-label{
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--signal);text-align:center;display:block;margin-bottom:3rem;
+}
+.also-names{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0;
+}
+.also-names span{
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem 2.5rem;
+  transition:all .3s;cursor:default;position:relative;
+}
+.also-names span img{
+  height:3.5rem;width:auto;max-width:12rem;object-fit:contain;
+  transition:all .4s;
+}
+.also-names span:hover img{transform:scale(1.05)}
+.also-names span::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--signal);transform:scaleX(0);transform-origin:center;
+  transition:transform .4s var(--ease-out);
+}
+.also-names span:hover{background:rgba(232,201,122,.04)}
+.also-names span:hover::after{transform:scaleX(1)}
+
+/* ── WHY ───────────────────────────────────────────────── */
+.why-grid{display:grid;gap:1px;background:var(--white-12)}
+@media(min-width:600px){.why-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.why-grid{grid-template-columns:repeat(4,1fr)}}
+.why-card{
+  background:rgba(255,255,255,.025);padding:2.5rem;
+  display:flex;flex-direction:column;transition:background .25s;
+}
+.why-card:hover{background:rgba(232,201,122,.06)}
+.why-n{
+  font-family:var(--syne);font-size:3rem;font-weight:800;
+  color:transparent;-webkit-text-stroke:1px rgba(232,201,122,.2);
+  letter-spacing:-.04em;line-height:1;margin-bottom:2rem;
+  transition:-webkit-text-stroke-color .25s;
+}
+.why-card:hover .why-n{-webkit-text-stroke-color:rgba(232,201,122,.6)}
+.why-title{font-family:var(--syne);font-size:1.125rem;font-weight:600;margin-bottom:.875rem;letter-spacing:-.01em;transition:color .25s}
+.why-card:hover .why-title{color:var(--signal)}
+.why-desc{font-size:.875rem;color:var(--white-30);line-height:1.65;margin-top:auto}
+
+/* ── CONTACT ───────────────────────────────────────────── */
+.contact-layout{display:grid;gap:5rem;align-items:center}
+@media(min-width:900px){.contact-layout{grid-template-columns:1fr 1fr;gap:8rem}}
+.contact-card{
+  border:1px solid var(--white-12);padding:3rem;
+  position:relative;overflow:hidden;
+}
+.contact-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--signal),transparent);
+}
+.contact-role{font-family:var(--mono);font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--white-30);margin-bottom:.5rem}
+.contact-name{font-family:var(--syne);font-size:1.875rem;font-weight:700;letter-spacing:-.02em;margin-bottom:2.5rem}
+.contact-links{display:flex;flex-direction:column;gap:1.25rem}
+.contact-link{
+  display:flex;align-items:center;gap:1.25rem;
+  font-family:var(--mono);font-size:.8rem;color:var(--white-60);
+  transition:color .2s;
+}
+.contact-link:hover{color:var(--signal)}
+.contact-arrow{
+  width:2rem;height:2rem;border:1px solid var(--white-12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;flex-shrink:0;transition:all .25s;
+}
+.contact-link:hover .contact-arrow{border-color:var(--signal);color:var(--signal)}
+.contact-icon{
+  width:2.5rem;height:2.5rem;border:1px solid var(--white-12);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all .25s;border-radius:50%;
+}
+.contact-link:hover .contact-icon{border-color:var(--signal);color:var(--signal)}
+.contact-socials{
+  display:flex;gap:1rem;margin-top:2rem;padding-top:2rem;
+  border-top:1px solid var(--white-12);
+}
+.contact-social{
+  width:3rem;height:3rem;border:1px solid var(--white-12);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white-30);transition:all .3s;border-radius:50%;
+}
+.contact-social:hover{color:var(--signal);border-color:var(--signal);transform:translateY(-3px)}
+
+/* ── FOOTER ────────────────────────────────────────────── */
+.footer{
+  padding:2rem;border-top:1px solid var(--white-12);
+  display:flex;flex-direction:column;align-items:center;
+  gap:1rem;text-align:center;
+}
+@media(min-width:600px){.footer{flex-direction:row;justify-content:space-between;text-align:left}}
+.footer-logo{font-family:var(--syne);font-weight:800;font-size:.875rem;letter-spacing:.16em}
+.footer-copy{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--white-30)}
+
+/* ── SETUP CTA ─────────────────────────────────────────── */
+.setup-cta{
+  display:grid;gap:4rem;align-items:center;
+  border:1px solid var(--white-12);padding:3rem;position:relative;overflow:hidden;
+}
+@media(min-width:900px){.setup-cta{grid-template-columns:1fr auto;gap:6rem}}
+.setup-cta::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--signal),transparent);
+}
+.setup-cta-right{display:flex;flex-direction:column;align-items:flex-start;gap:1.25rem}
+@media(min-width:900px){.setup-cta-right{align-items:flex-end}}
+.setup-btn{
+  display:inline-flex;align-items:center;gap:1rem;
+  font-family:var(--syne);font-size:1rem;font-weight:600;letter-spacing:-.01em;
+  background:var(--signal);color:var(--ink);
+  padding:1rem 2rem;transition:all .25s;white-space:nowrap;
+}
+.setup-btn:hover{background:var(--white);transform:translateY(-2px)}.setup-btn-icon{
+  width:1.75rem;height:1.75rem;background:rgba(10,10,12,.15);
+  display:flex;align-items:center;justify-content:center;font-size:.875rem;
+  flex-shrink:0;
+}
+.setup-note{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white-30)}
+
+/* ── REVEAL ────────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.reveal.vis{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}
+.reveal-d2{transition-delay:.16s}
+.reveal-d3{transition-delay:.24s}
+.reveal-d4{transition-delay:.32s}
+
+/* ── TICKER WRAPPER ─────────────────────────────────────── */
+.ticker-wrap{border-top:1px solid var(--white-12);border-bottom:1px solid var(--white-12);overflow:hidden}
+
+/* ── GEO V2 — GLOBE ───────────────────────────── */
+.geo2{position:relative;overflow:hidden;padding:6rem 2rem;min-height:100vh;display:flex;align-items:center}
+@media(min-width:900px){.geo2{padding:9rem 3rem}}
+.geo2-canvas{position:absolute;inset:0;width:100%;height:100%}
+.geo2-content{position:relative;z-index:2;max-width:90rem;margin:0 auto;width:100%;display:grid;gap:4rem}
+@media(min-width:900px){.geo2-content{grid-template-columns:1fr 1fr;align-items:center}}
+.geo2-left{text-align:center}
+@media(min-width:900px){.geo2-left{text-align:left}}
+.geo2-number{
+  font-family:var(--syne);font-weight:800;
+  font-size:clamp(6rem,18vw,14rem);line-height:1;
+  letter-spacing:-.05em;padding-bottom:.05em;
+  background:linear-gradient(135deg,var(--signal) 0%,rgba(232,201,122,.3) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.geo2-label{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--signal);margin-top:1rem;
+}
+.geo2-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  margin-top:3rem;
+}
+.geo2-stat{background:transparent;padding:1.5rem;text-align:center}
+.geo2-stat-n{
+  font-family:var(--syne);font-size:clamp(1.5rem,3vw,2.25rem);
+  font-weight:700;color:var(--signal);line-height:1;margin-bottom:.4rem;
+}
+.geo2-stat-l{
+  font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--white-30);
+}
+.geo2-regions{display:flex;flex-direction:column}
+.geo2-reg{border-top:1px solid var(--white-12);cursor:pointer;transition:border-color .25s}
+.geo2-reg:last-child{border-bottom:1px solid var(--white-12)}
+.geo2-reg:hover{border-top-color:var(--signal-mid)}
+.geo2-reg-head{
+  display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0;
+}
+.geo2-reg-name{font-family:var(--syne);font-size:1.125rem;font-weight:600;transition:color .2s}
+.geo2-reg:hover .geo2-reg-name{color:var(--signal)}
+.geo2-reg-meta{display:flex;align-items:center;gap:1rem}
+.geo2-reg-count{
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.12em;
+  color:var(--signal);flex-shrink:0;
+}
+.geo2-reg-icon{
+  width:1.5rem;min-width:1.5rem;height:1.5rem;min-height:1.5rem;
+  border:1px solid var(--white-12);display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;color:var(--white-30);transition:all .25s;flex-shrink:0;
+}
+.geo2-reg.open .geo2-reg-icon{border-color:var(--signal);color:var(--signal);transform:rotate(45deg)}
+.geo2-reg-body{
+  max-height:0;overflow:hidden;transition:max-height .4s var(--ease-out),padding .4s;
+}
+.geo2-reg.open .geo2-reg-body{max-height:200px;padding-bottom:1.25rem}
+.geo2-reg-countries{font-size:.875rem;color:var(--white-30);line-height:1.7}
+.geo2-pulse{
+  position:absolute;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(232,201,122,.15) 0%,transparent 70%);
+  animation:geo2pulse 4s ease-in-out infinite;
+}
+@keyframes geo2pulse{0%,100%{transform:scale(.8);opacity:.5}50%{transform:scale(1.2);opacity:1}}
+
+/* ── CASE CARDS (with images) ──────────────────── */
+.case-cards{display:grid;gap:1.5rem}
+@media(min-width:900px){.case-cards{grid-template-columns:repeat(3,1fr)}}
+.case-card{
+  position:relative;overflow:hidden;border:1px solid var(--white-12);
+  transition:border-color .4s;
+}
+.case-card:hover{border-color:var(--signal-mid)}
+.case-img{
+  width:100%;height:auto;display:block;
+  transition:transform .6s var(--ease-out),opacity .4s;opacity:.85;
+}
+.case-card:hover .case-img{transform:scale(1.03);opacity:1}
+.case-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.75rem;
+  background:linear-gradient(to top,rgba(10,10,12,.95) 0%,rgba(10,10,12,.7) 60%,transparent 100%);
+}
+.case-overlay .case-metrics{
+  display:flex;flex-wrap:wrap;gap:1.25rem 2rem;
+}
+.case-overlay .case-m-n{
+  font-family:var(--syne);font-size:1.25rem;font-weight:700;
+  color:var(--signal);letter-spacing:-.03em;line-height:1;margin-bottom:.25rem;
+}
+.case-overlay .case-m-l{
+  font-family:var(--mono);font-size:.5rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--white-60);
+}
+
+/* ── PLAY BUTTON ───────────────────────────────── */
+.play-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  display:inline-flex;align-items:center;gap:1rem;
+  font-family:var(--syne);font-size:1.125rem;font-weight:600;letter-spacing:-.01em;
+  background:var(--signal);color:var(--ink);
+  padding:1rem 2.5rem;transition:all .3s var(--ease-out);
+  text-decoration:none;white-space:nowrap;
+}
+.play-btn:hover{background:var(--white);transform:translate(-50%,-50%) scale(1.05)}
+.play-icon{
+  width:2rem;height:2rem;background:rgba(10,10,12,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.875rem;flex-shrink:0;
+}
+
+/* ── CHANNEL HOVER & MODAL ─────────────────────── */
+.ch-card{cursor:pointer}
+.ch-more{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(10,10,12,.78);opacity:0;transition:opacity .3s;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--signal);pointer-events:none;
+}
+.ch-card:hover .ch-more{opacity:1}
+.modal-overlay{
+  position:fixed;inset:0;z-index:200;background:rgba(10,10,12,.85);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;padding:2rem;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{
+  background:var(--ink);border:1px solid var(--white-12);max-width:36rem;width:100%;
+  max-height:85vh;overflow-y:auto;position:relative;
+  transform:translateY(20px);transition:transform .3s var(--ease-out);
+}
+.modal-overlay.open .modal-box{transform:none}
+.modal-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--signal),transparent);
+}
+.modal-close{
+  position:absolute;top:1rem;right:1rem;width:2rem;height:2rem;
+  border:1px solid var(--white-12);display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:var(--white-30);transition:.2s;z-index:1;background:var(--ink);
+}
+.modal-close:hover{border-color:var(--signal);color:var(--signal)}
+.modal-header{padding:2.5rem 2.5rem 1.5rem;display:flex;align-items:center;gap:1.5rem}
+.modal-logo{width:80px;height:60px;object-fit:contain;flex-shrink:0}
+.modal-logo-ph{
+  width:80px;height:60px;border:1px solid var(--white-12);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-family:var(--syne);font-size:.65rem;font-weight:700;
+  color:var(--signal);text-align:center;padding:.5rem;line-height:1.2;
+}
+.modal-title{font-family:var(--syne);font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+.modal-cat{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--signal);margin-top:.25rem}
+.modal-body{padding:0 2.5rem 2.5rem}
+.modal-section{margin-bottom:1.5rem}
+.modal-section:last-child{margin-bottom:0}
+.modal-label{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--signal);margin-bottom:.75rem;
+}
+.modal-text{font-size:.9rem;color:var(--white-60);line-height:1.7}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#" class="nav-logo"><img src="img/logo clan.png" alt="CLAN DUBAI" style="height:1.5rem;width:auto"></a>
+  <nav class="nav-links">
+    <a href="#channels" data-t="nav_channels">Channels</a>
+    <a href="#geography" data-t="nav_geography">Geography</a>
+    <a href="#production" data-t="nav_production">Production</a>
+    <a href="#cases" data-t="nav_cases">Cases</a>
+    <a href="#setup" data-t="nav_setup">Setup</a>
+    <a href="#contact" data-t="nav_contact">Contact</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <div class="lang-dd" id="lang-dd">
+      <button class="lang-dd-btn" id="lang-dd-btn">EN</button>
+      <div class="lang-dd-list">
+        <button class="lang-dd-item active" onclick="setLang('en')">EN<span style="opacity:.4;font-size:.5rem">English</span></button>
+        <button class="lang-dd-item" onclick="setLang('ru')">RU<span style="opacity:.4;font-size:.5rem">Русский</span></button>
+        <button class="lang-dd-item" onclick="setLang('tr')">TR<span style="opacity:.4;font-size:.5rem">Türkçe</span></button>
+        <button class="lang-dd-item" onclick="setLang('ar')">AR<span style="opacity:.4;font-size:.5rem">العربية</span></button>
+        <button class="lang-dd-item" onclick="setLang('de')">DE<span style="opacity:.4;font-size:.5rem">Deutsch</span></button>
+        <button class="lang-dd-item" onclick="setLang('it')">IT<span style="opacity:.4;font-size:.5rem">Italiano</span></button>
+        <button class="lang-dd-item" onclick="setLang('es')">ES<span style="opacity:.4;font-size:.5rem">Español</span></button>
+        <button class="lang-dd-item" onclick="setLang('fr')">FR<span style="opacity:.4;font-size:.5rem">Français</span></button>
+      </div>
+    </div>
+    <a href="#contact" class="nav-cta" data-t="nav_cta">Get in touch</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mob-menu" id="mob-menu">
+  <a href="#channels" data-t="nav_channels">Channels</a>
+  <a href="#geography" data-t="nav_geography">Geography</a>
+  <a href="#production" data-t="nav_production">Production</a>
+  <a href="#cases" data-t="nav_cases">Cases</a>
+  <a href="#setup" data-t="nav_setup">Setup</a>
+  <a href="#contact" data-t="nav_contact">Contact</a>
+  <div class="mob-lang">
+    <button data-lang="en" onclick="setLang('en')">EN</button>
+    <button data-lang="ru" onclick="setLang('ru')">RU</button>
+    <button data-lang="tr" onclick="setLang('tr')">TR</button>
+    <button data-lang="ar" onclick="setLang('ar')">AR</button>
+    <button data-lang="de" onclick="setLang('de')">DE</button>
+    <button data-lang="it" onclick="setLang('it')">IT</button>
+    <button data-lang="es" onclick="setLang('es')">ES</button>
+    <button data-lang="fr" onclick="setLang('fr')">FR</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-noise"></div>
+  <div class="hero-inner">
+    <h1 class="hero-h1">CLAN<br><em>DUBAI</em></h1>
+    <p class="hero-sub" data-t="hero_sub">Your global partner in the world of media and advertising</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-n">250M+</div><div class="hero-stat-l" data-t="stat_viewers">Viewers</div></div>
+      <div class="hero-stat"><div class="hero-stat-n">59</div><div class="hero-stat-l" data-t="stat_countries">Countries</div></div>
+      <div class="hero-stat"><div class="hero-stat-n">20</div><div class="hero-stat-l" data-t="stat_years">Years</div></div>
+      <div class="hero-stat"><div class="hero-stat-n">24</div><div class="hero-stat-l" data-t="stat_channels">TV Channels</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint"><span data-t="scroll">Scroll</span><div class="hero-scroll-line"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section class="s">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="eyebrow"><span class="eyebrow-line"></span><span data-t="s_about">About</span></div>
+        <p class="about-pull" data-t="about_pull">20 years of experience across <span>global markets</span></p>
+        <div class="about-tags">
+          <span class="tag" data-t="tag_russia">Russia</span>
+          <span class="tag">CIS</span>
+          <span class="tag" data-t="tag_europe">Europe</span>
+          <span class="tag" data-t="tag_asia">Asia</span>
+          <span class="tag" data-t="tag_me">Middle East</span>
+        </div>
+      </div>
+      <div class="reveal reveal-d2">
+        <p class="about-body" data-t="about_p1">We are an international media group operating in the markets of Russia, the CIS countries, Europe, Asia, and the Middle East.</p>
+        <p class="about-body" data-t="about_p2">Our expertise covers the full cycle of advertising creation and placement — from developing a creative concept to guaranteed reach of a multimillion-dollar audience through our own satellite, digital, and out-of-home channels.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY ADVANTAGE -->
+<section class="s s-alt">
+  <div class="wrap">
+    <div class="adv-layout">
+      <div class="reveal">
+        <div class="eyebrow"><span class="eyebrow-line"></span><span data-t="s_adv">Key Advantage</span></div>
+        <div class="adv-badge">OWN<br>AIR</div>
+        <h2 class="sh" style="margin-bottom:1.5rem" data-t="adv_title">Satellite<br>Broadcasting</h2>
+        <p class="text-dim" style="font-size:.9375rem" data-t="adv_body">Exclusive access to an international audience. Unlike most agencies, we do not buy airtime — <strong style="color:var(--signal)">we own it.</strong> We are one of the largest media sellers, offering exclusive packages on 24 popular Russian TV channels broadcast via satellites worldwide.</p>
+      </div>
+      <div class="adv-cards reveal reveal-d2">
+        <div class="adv-card">
+          <div class="adv-title" data-t="adv1_title">Own Airtime</div>
+          <div class="adv-desc" data-t="adv1_desc">We control advertising placement in the international blocks of federal channels.</div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-title" data-t="adv2_title">HD Technology</div>
+          <div class="adv-desc" data-t="adv2_desc">Broadcasting via international satellites in HD quality, ensuring a stable signal even in remote regions.</div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-title" data-t="adv3_title">Exclusivity</div>
+          <div class="adv-desc" data-t="adv3_desc">Your advertising reaches the most popular and trusted channels — Rossiya 24, RTR Planeta, TNT International, NTV International, and others.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<section id="channels" class="s">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow"><span class="eyebrow-line"></span><span data-t="s_portfolio">Our Portfolio</span></div>
+      <h2 class="sh" style="margin-bottom:1rem" data-t="ch_title">24 TV Channels</h2>
+      <p class="text-dim-sm" style="margin-bottom:3rem;max-width:42rem" data-t="ch_desc">Broadcast worldwide via international satellites. Exclusive advertising packages for every audience segment.</p>
+    </div>
+    <div class="reveal">
+      <div class="filter-row">
+        <button class="fb on" data-cat="All" data-t="cat_all">All</button>
+        <button class="fb" data-cat="Federal" data-t="cat_federal">Federal</button>
+        <button class="fb" data-cat="Entertainment" data-t="cat_ent">Entertainment</button>
+        <button class="fb" data-cat="Thematic" data-t="cat_them">Thematic</button>
+      </div>
+    </div>
+    <div class="ch-grid" id="ch-grid"></div>
+  </div>
+</section>
+
+<!-- GEOGRAPHY -->
+<section class="geo2">
+  <canvas id="globe-canvas" class="geo2-canvas"></canvas>
+  <div class="geo2-pulse" style="width:300px;height:300px;top:10%;left:-5%"></div>
+  <div class="geo2-pulse" style="width:200px;height:200px;bottom:5%;right:-3%;animation-delay:2s"></div>
+  <div class="geo2-content">
+    <div class="geo2-left reveal">
+      <div class="geo2-number">59</div>
+      <div class="geo2-label" data-t="stat_countries">Countries</div>
+      <div class="geo2-stats">
+        <div class="geo2-stat"><div class="geo2-stat-n">250M+</div><div class="geo2-stat-l" data-t="stat_viewers">Viewers</div></div>
+        <div class="geo2-stat"><div class="geo2-stat-n">24</div><div class="geo2-stat-l" data-t="stat_channels">TV Channels</div></div>
+        <div class="geo2-stat"><div class="geo2-stat-n">4</div><div class="geo2-stat-l" data-t="geo2_beams">Satellite Beams</div></div>
+      </div>
+    </div>
+    <div class="reveal reveal-d2">
+      <h2 class="sh" style="margin-bottom:1.5rem" data-t="geo_title">Reach of over 250 million viewers in 59 countries</h2>
+      <p class="text-dim" style="margin-bottom:2.5rem;font-size:.9375rem" data-t="geo_desc">Our satellite broadcasting covers key markets with a high concentration of Russian-speaking audiences, while also attracting the attention of adjacent language groups.</p>
+      <div class="geo2-regions">
+        <div class="geo2-reg">
+          <div class="geo2-reg-head"><span class="geo2-reg-name" data-t="reg_europe">Europe</span><div class="geo2-reg-meta"><span class="geo2-reg-count" data-t="reg_europe_count">18 countries</span><div class="geo2-reg-icon">+</div></div></div>
+          <div class="geo2-reg-body"><div class="geo2-reg-countries" data-t="reg_europe_list">Germany, France, United Kingdom, Spain, Italy, Greece, Turkey, Poland, Romania, Bulgaria, Serbia, Hungary, Czech Republic, Austria, Switzerland, Belgium, Netherlands, Portugal</div></div>
+        </div>
+        <div class="geo2-reg">
+          <div class="geo2-reg-head"><span class="geo2-reg-name" data-t="reg_mena">Middle East &amp; North Africa</span><div class="geo2-reg-meta"><span class="geo2-reg-count" data-t="reg_mena_count">19 countries</span><div class="geo2-reg-icon">+</div></div></div>
+          <div class="geo2-reg-body"><div class="geo2-reg-countries" data-t="reg_mena_list">Saudi Arabia, Qatar, Kuwait, Oman, Bahrain, Iraq, Iran, Jordan, Lebanon, Syria, Israel, Palestine, Egypt, Libya, Tunisia, Algeria, Morocco, Sudan</div></div>
+        </div>
+        <div class="geo2-reg">
+          <div class="geo2-reg-head"><span class="geo2-reg-name" data-t="reg_asia">Asia</span><div class="geo2-reg-meta"><span class="geo2-reg-count" data-t="reg_asia_count">12 countries</span><div class="geo2-reg-icon">+</div></div></div>
+          <div class="geo2-reg-body"><div class="geo2-reg-countries" data-t="reg_asia_list">Nepal, Myanmar, Bangladesh, Maldives, India, Sri Lanka, Laos, Vietnam, Thailand, Cambodia, Indonesia, Malaysia</div></div>
+        </div>
+        <div class="geo2-reg">
+          <div class="geo2-reg-head"><span class="geo2-reg-name" data-t="reg_cis">CIS &amp; Central Asia</span><div class="geo2-reg-meta"><span class="geo2-reg-count" data-t="reg_cis_count">10 countries</span><div class="geo2-reg-icon">+</div></div></div>
+          <div class="geo2-reg-body"><div class="geo2-reg-countries" data-t="reg_cis_list">Kazakhstan, Uzbekistan, Azerbaijan, Armenia, Georgia, Kyrgyzstan, Tajikistan, Turkmenistan, Moldova, Belarus</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="stats-ticker">
+    <div class="stats-ticker-inner" id="ticker"></div>
+  </div>
+</div>
+
+<!-- AUDIENCE -->
+<div class="audience-main">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;margin-bottom:4rem">
+      <div class="eyebrow" style="justify-content:center"><span class="eyebrow-line"></span><span data-t="s_audience">Our Audience</span><span class="eyebrow-line"></span></div>
+      <h2 class="sh" data-t="aud_title">Who watches our channels?</h2>
+      <p class="text-dim-sm" style="margin-top:1rem;max-width:40rem;margin-left:auto;margin-right:auto" data-t="aud_desc">We work with a unique and high-income audience, making our offering extremely attractive for premium brands.</p>
+    </div>
+    <div class="aud-grid reveal">
+      <div class="aud-stat">
+        <div class="aud-num counter" data-target="250" data-suffix="M+">250M+</div>
+        <div class="aud-label" data-t="aud_l1">Million<br>potential viewers</div>
+      </div>
+      <div class="aud-stat">
+        <div class="aud-num counter" data-target="150" data-suffix="M+">150M+</div>
+        <div class="aud-label" data-t="aud_l2">Million travelers<br>temporarily abroad</div>
+      </div>
+      <div class="aud-stat">
+        <div class="aud-num counter" data-target="100" data-suffix="M+">100M+</div>
+        <div class="aud-label" data-t="aud_l3">Million expats<br>permanently residing abroad</div>
+      </div>
+    </div>
+    <p class="aud-footnote reveal" data-t="aud_footnote">A high level of trust in the content and, consequently, in the advertising shown on familiar channels. Our audience includes entrepreneurs, shareholders, and high-income viewers with an active lifestyle and diverse hobbies.</p>
+  </div>
+</div>
+
+<!-- PRODUCTION -->
+<section id="production" class="s s-alt">
+  <div class="wrap">
+    <div class="prod-grid">
+      <div class="reveal">
+        <div class="eyebrow"><span class="eyebrow-line"></span><span data-t="s_prod">Production</span></div>
+        <h2 class="sh" style="margin-bottom:1.5rem" data-t="prod_title">Full-cycle production: from concept to broadcast</h2>
+        <p class="text-dim" style="margin-bottom:3rem" data-t="prod_desc">CLAN DUBAI has its own in-house team of professionals who handle every stage of creating advertising materials. We don't just place advertising — we create hits.</p>
+        <div class="prod-big-num">500+</div>
+        <div class="prod-big-label" data-t="prod_num_label">Successful projects in video production</div>
+      </div>
+      <div class="stages reveal reveal-d2">
+        <div class="stage">
+          <div class="stage-label" data-t="stage1_label">Creative</div>
+          <div class="stage-items">
+            <span class="stage-item" data-t="stage1_i1">Concept development</span>
+            <span class="stage-item" data-t="stage1_i2">Scriptwriting</span>
+            <span class="stage-item" data-t="stage1_i3">Storyboarding</span>
+            <span class="stage-item" data-t="stage1_i4">Authors pool incl. Comedy Club &amp; KVN</span>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="stage-label" data-t="stage2_label">Production</div>
+          <div class="stage-items">
+            <span class="stage-item" data-t="stage2_i1">Professional video shooting</span>
+            <span class="stage-item" data-t="stage2_i2">Aerial cinematography</span>
+            <span class="stage-item" data-t="stage2_i3">Photography</span>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="stage-label" data-t="stage3_label">Post-Production</div>
+          <div class="stage-items">
+            <span class="stage-item" data-t="stage3_i1">Editing</span>
+            <span class="stage-item" data-t="stage3_i2">Color grading</span>
+            <span class="stage-item" data-t="stage3_i3">2D &amp; 3D animation</span>
+            <span class="stage-item" data-t="stage3_i4">Motion design</span>
+            <span class="stage-item" data-t="stage3_i5">Voiceover</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIGITAL -->
+<section class="s dig2">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow"><span class="eyebrow-line"></span><span data-t="s_digital">Digital</span></div>
+      <h2 class="sh" style="margin-bottom:1.5rem" data-t="dig2_title">Digital Advertising Worldwide</h2>
+      <p class="text-dim" style="margin-bottom:3rem;max-width:44rem" data-t="dig2_desc">Multichannel digital campaigns with full localization, delivering millions of views and thousands of leads across 66+ countries.</p>
+    </div>
+    <div class="dig2-hero reveal">
+      <div class="dig2-left">
+        <div class="dig2-big" data-t="dig2_big">66+</div>
+        <div class="dig2-big-label" data-t="dig2_big_label">Countries covered by our digital campaigns</div>
+      </div>
+      <div class="dig2-right">
+        <div class="dig2-cell">
+          <div class="dig2-cell-n">43</div>
+          <div class="dig2-cell-l" data-t="dig2_lang">Languages</div>
+          <div class="dig2-cell-d" data-t="dig2_lang_d">Full content adaptation and translation</div>
+        </div>
+        <div class="dig2-cell">
+          <div class="dig2-cell-n">1B+</div>
+          <div class="dig2-cell-l" data-t="dig2_views">Digital views</div>
+          <div class="dig2-cell-d" data-t="dig2_views_d">Across all platforms combined</div>
+        </div>
+        <div class="dig2-cell">
+          <div class="dig2-cell-n">50K+</div>
+          <div class="dig2-cell-l" data-t="dig2_leads">Leads per campaign</div>
+          <div class="dig2-cell-d" data-t="dig2_leads_d">Proven conversion performance</div>
+        </div>
+        <div class="dig2-cell">
+          <div class="dig2-cell-n">5+</div>
+          <div class="dig2-cell-l" data-t="dig2_platforms">Key platforms</div>
+          <div class="dig2-cell-d">Facebook, Instagram, VK, YouTube, TikTok</div>
+        </div>
+      </div>
+    </div>
+    <div class="dig2-services reveal reveal-d1">
+      <div class="dig2-srv">
+        <div class="dig2-srv-title" data-t="srv1_title">Digital Services</div>
+        <div class="dig2-srv-list">
+          <span class="dig2-srv-item" data-t="srv1_i1">Targeted advertising</span>
+          <span class="dig2-srv-item" data-t="srv1_i2">SEO</span>
+          <span class="dig2-srv-item" data-t="srv1_i3">Contextual advertising</span>
+          <span class="dig2-srv-item" data-t="srv1_i4">Influencer marketing</span>
+          <span class="dig2-srv-item" data-t="srv1_i5">SMM promotion</span>
+          <span class="dig2-srv-item" data-t="srv1_i6">Promotion in messengers</span>
+        </div>
+      </div>
+      <div class="dig2-srv">
+        <div class="dig2-srv-title" data-t="srv2_title">Social Media</div>
+        <div class="dig2-srv-list">
+          <span class="dig2-srv-item">Instagram</span>
+          <span class="dig2-srv-item">TikTok</span>
+          <span class="dig2-srv-item">Facebook</span>
+          <span class="dig2-srv-item">Pinterest</span>
+          <span class="dig2-srv-item">VK</span>
+          <span class="dig2-srv-item">YouTube</span>
+        </div>
+      </div>
+      <div class="dig2-srv">
+        <div class="dig2-srv-title" data-t="dig2_prod">Production</div>
+        <div class="dig2-srv-list">
+          <span class="dig2-srv-item" data-t="dig2_p1">Video ads</span>
+          <span class="dig2-srv-item" data-t="dig2_p2">Banner design</span>
+          <span class="dig2-srv-item" data-t="dig2_p3">Motion graphics</span>
+          <span class="dig2-srv-item" data-t="dig2_p4">Copywriting</span>
+          <span class="dig2-srv-item" data-t="dig2_p5">A/B testing</span>
+        </div>
+      </div>
+    </div>
+    <div class="dig2-cta reveal reveal-d2">
+      <p class="dig2-cta-text" data-t="dig2_cta">From creative concept to <em>measurable results</em> — all under one roof</p>
+    </div>
+  </div>
+</section>
+
+<!-- RADIO & OOH -->
+<section class="s s-alt">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow"><span class="eyebrow-line"></span><span data-t="s_add">Additional Channels</span></div>
+      <h2 class="sh" style="margin-bottom:1rem" data-t="rooh_title">Radio &amp; Media Facades</h2>
+      <p class="text-dim" style="margin-bottom:2rem;max-width:44rem" data-t="rooh_desc2">Extending your brand reach beyond screens — through airwaves and urban landscapes.</p>
+    </div>
+
+    <div class="rooh3-block">
+      <!-- RADIO -->
+      <div class="rooh3-row reveal">
+        <div>
+          <div class="rooh3-big">RA<br>DIO</div>
+          <div class="rooh3-sub" data-t="rooh_cities">Cities across Russia and worldwide</div>
+          <div class="rooh3-stat-row">
+            <div>
+              <div class="rooh3-stat-n">1,000+</div>
+              <div class="rooh3-stat-l" data-t="rooh_cities_tag">Cities</div>
+            </div>
+            <div>
+              <div class="rooh3-stat-n">13</div>
+              <div class="rooh3-stat-l" data-t="rooh_stations">Radio stations</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="text-dim" style="margin-bottom:2rem" data-t="radio_desc">Partnerships with major holdings including Gazprom-Media and Russian Media Group. Reaching millions of listeners in over 1,000 cities across Russia and worldwide.</p>
+          <div class="rooh3-logos">
+            <img src="img/radio/авто радио.png" alt="Avtoradio">
+            <img src="img/radio/комеди.png" alt="Comedy Radio">
+            <img src="img/radio/NRJ.png" alt="NRJ">
+            <img src="img/radio/русское радио.png" alt="Russkoye Radio">
+            <img src="img/radio/монтекарло.png" alt="Monte Carlo">
+            <img src="img/radio/дфм.png" alt="DFM">
+            <img src="img/radio/хит.png" alt="Hit FM">
+            <img src="img/radio/релакс.png" alt="Relax FM">
+            <img src="img/radio/максимум.png" alt="Maximum">
+            <img src="img/radio/детское.png" alt="Detskoe Radio">
+            <img src="img/radio/лайк.png" alt="Like FM">
+            <img src="img/radio/романтика.png" alt="Romantika">
+            <img src="img/radio/юмор фм.png" alt="Humor FM">
+          </div>
+        </div>
+      </div>
+
+      <div class="rooh3-divider"></div>
+
+      <!-- OOH -->
+      <div class="rooh3-row reveal">
+        <div>
+          <div class="rooh3-big">ME<br>DIA</div>
+          <div class="rooh3-sub" data-t="rooh_ooh_title">Media Facades</div>
+          <div class="rooh3-stat-row">
+            <div>
+              <div class="rooh3-stat-n">2,000+</div>
+              <div class="rooh3-stat-l" data-t="ooh_l1">sq.m of structures</div>
+            </div>
+            <div>
+              <div class="rooh3-stat-n">200K</div>
+              <div class="rooh3-stat-l" data-t="ooh_l2">Daily audience reach</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="rooh3-points">
+            <div class="rooh3-point" data-t="ooh_p1">Ownership of our own advertising structures totaling over 2,000 sq. m.</div>
+            <div class="rooh3-point" data-t="ooh_p2">Placement in premium Moscow locations (including the Third Ring Road and Garden Ring) with a daily audience of up to 200,000 people.</div>
+            <div class="rooh3-point" data-t="ooh_p3">Utilization of innovative technologies: 3D screens, dynamic content.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CULLINAN BELEK -->
+<section class="s">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow"><span class="eyebrow-line"></span><span data-t="s_cullinan">Showreel</span></div>
+      <h2 class="sh" style="margin-bottom:1rem" data-t="cullinan_title">Shooting a commercial for the Cullinan Belek Hotel</h2>
+      <p class="text-dim-sm" style="margin-bottom:3rem;max-width:42rem" data-t="cullinan_desc">Promo video for the Ultra All Inclusive Cullinan Belek Hotel, Turkey</p>
+    </div>
+    <div class="reveal" style="position:relative;overflow:hidden;border:1px solid var(--white-12)">
+      <img src="img/cases/culinan.png" alt="Cullinan Belek Hotel" style="width:100%;display:block;opacity:.7;transition:opacity .4s">
+      <a href="https://youtu.be/Fc4cZhYFRxo?si=pBlN2ssIoZrqkwub" target="_blank" rel="noopener" class="play-btn">
+        <span class="play-icon">&#9654;</span>
+        <span data-t="watch_video">Watch Video</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases" class="s">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow"><span class="eyebrow-line"></span><span data-t="s_cases">Case Studies</span></div>
+      <h2 class="sh" style="margin-bottom:1rem" data-t="cases_title">Results that speak for themselves</h2>
+      <p class="text-dim-sm" style="margin-bottom:4rem;max-width:42rem" data-t="cases_desc">We work with market leaders, proving the effectiveness of our solutions in practice.</p>
+    </div>
+    <div class="case-cards">
+      <div class="case-card reveal">
+        <img src="img/cases/rixos.png" alt="Rixos Hotels" class="case-img">
+        <div class="case-overlay">
+          <div class="case-metrics">
+            <div><div class="case-m-n">40+</div><div class="case-m-l" data-t="m_commercials">Commercials</div></div>
+            <div><div class="case-m-n">2,000+</div><div class="case-m-l" data-t="m_banners">Banners</div></div>
+            <div><div class="case-m-n">2,300+</div><div class="case-m-l" data-t="m_leads">Monthly leads</div></div>
+            <div><div class="case-m-n">1B+</div><div class="case-m-l" data-t="m_views">Digital views</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="case-card reveal reveal-d1">
+        <img src="img/cases/titanic.png" alt="Titanic Hotels" class="case-img">
+        <div class="case-overlay">
+          <div class="case-metrics">
+            <div><div class="case-m-n">100+</div><div class="case-m-l" data-t="m_commercials">Commercials</div></div>
+            <div><div class="case-m-n">2,000+</div><div class="case-m-l" data-t="m_banners">Banners</div></div>
+            <div><div class="case-m-n">4,350+</div><div class="case-m-l" data-t="m_leads">Monthly leads</div></div>
+            <div><div class="case-m-n">90,000+</div><div class="case-m-l" data-t="m_tv">TV outputs</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="case-card reveal reveal-d2">
+        <img src="img/cases/lio.png" alt="Lui Resorts" class="case-img">
+        <div class="case-overlay">
+          <div class="case-metrics">
+            <div><div class="case-m-n">38</div><div class="case-m-l" data-t="m_commercials">Commercials</div></div>
+            <div><div class="case-m-n">700+</div><div class="case-m-l" data-t="m_banners">Banners</div></div>
+            <div><div class="case-m-n">1,100+</div><div class="case-m-l" data-t="m_leads">Monthly leads</div></div>
+            <div><div class="case-m-n">90M+</div><div class="case-m-l" data-t="m_views">Digital views</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="also-block reveal">
+      <span class="also-label" data-t="also_label">Also worked with</span>
+      <div class="also-names">
+        <span><img src="img/partners/bork-logo.svg" alt="Bork" style="filter:brightness(0) invert(1)"></span>
+        <span><img src="img/partners/coca-cola-logo-svgrepo-com.svg" alt="Coca-Cola"></span>
+        <span><img src="img/partners/blackstar logo.png" alt="Black Star" style="filter:brightness(0) invert(1)"></span>
+        <span><img src="img/partners/Logo_of_the_Skolkovo_Foundation_(new).svg.png" alt="Skolkovo" class="logo-no-invert"></span>
+        <span><img src="img/partners/tez-tour-agency.svg" alt="Tez Tour"></span>
+        <span><img src="img/partners/глонасс.png" alt="GLONASS" style="filter:brightness(0) invert(1);height:10rem;max-width:none"></span>
+        <span><img src="img/partners/mts.png" alt="MTS" style="height:5rem"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="s s-alt">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow"><span class="eyebrow-line"></span><span data-t="s_why">Why Clan Dubai</span></div>
+      <h2 class="sh" style="margin-bottom:4rem" data-t="why_title">Your key to the global market</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-n">01</div>
+        <div class="why-title" data-t="why1_title">We own the airtime</div>
+        <div class="why-desc" data-t="why1_desc">No need to find intermediaries for placement on international channels. Direct access, guaranteed inventory.</div>
+      </div>
+      <div class="why-card reveal reveal-d1">
+        <div class="why-n">02</div>
+        <div class="why-title" data-t="why2_title">We create content</div>
+        <div class="why-desc" data-t="why2_desc">Full turnkey production cycle all in one place — from concept development to final broadcast.</div>
+      </div>
+      <div class="why-card reveal reveal-d2">
+        <div class="why-n">03</div>
+        <div class="why-title" data-t="why3_title">We know the audience</div>
+        <div class="why-desc" data-t="why3_desc">Years of experience working with the markets of Europe, Asia, and the Middle East.</div>
+      </div>
+      <div class="why-card reveal reveal-d3">
+        <div class="why-n">04</div>
+        <div class="why-title" data-t="why4_title">We guarantee results</div>
+        <div class="why-desc" data-t="why4_desc">Our goal is strategic partnership and achieving your KPIs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP CTA -->
+<section id="setup" class="s">
+  <div class="wrap">
+    <div class="setup-cta reveal">
+      <div class="setup-cta-left">
+        <div class="eyebrow"><span class="eyebrow-line"></span><span data-t="s_setup">Satellite Setup</span></div>
+        <h2 class="sh" data-t="setup_title">Ready to connect?</h2>
+        <p class="text-dim" style="margin-top:1rem;max-width:36rem" data-t="setup_desc">Use our interactive setup wizard to get personalised satellite antenna pointing parameters — azimuth, elevation and LNB skew — calculated automatically for your exact location.</p>
+      </div>
+      <div class="setup-cta-right">
+        <a href="setup.html" class="setup-btn">
+          <span class="setup-btn-icon">↗</span>
+          <span data-t="setup_btn">Open Setup Wizard</span>
+        </a>
+        <p class="setup-note" data-t="setup_note">3 steps · works in any country · EN / RU / TR</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="s s-alt">
+  <div class="wrap">
+    <div class="contact-layout">
+      <div class="reveal">
+        <div class="eyebrow"><span class="eyebrow-line"></span><span data-t="s_contact">Contact</span></div>
+        <h2 class="sh" data-t="contact_title">Let's build your global campaign</h2>
+        <p style="margin-top:1.5rem;font-size:.95rem;color:var(--white-30);line-height:1.65;max-width:28rem" data-t="contact_cta_text">Ready to advertise on international TV?</p>
+        <a href="https://wa.me/971589391000" target="_blank" rel="noopener" class="setup-btn" style="margin-top:2rem;display:inline-flex">
+          <span class="setup-btn-icon">↗</span>
+          <span data-t="contact_cta_wa">Write on WhatsApp</span>
+        </a>
+      </div>
+      <div class="reveal reveal-d2">
+        <div class="contact-card">
+          <div class="contact-role" data-t="contact_role">Manager</div>
+          <div class="contact-name">Alina Gorodyankina</div>
+          <div class="contact-links">
+            <a href="tel:+971589391000" class="contact-link">
+              <div class="contact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+              <span>+971 58 939 1000</span>
+            </a>
+            <a href="mailto:dubai@clan-tv.com" class="contact-link">
+              <div class="contact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></div>
+              <span>dubai@clan-tv.com</span>
+            </a>
+          </div>
+          <div class="contact-socials">
+            <a href="https://wa.me/971589391000" target="_blank" rel="noopener" class="contact-social" title="WhatsApp">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="https://t.me/+971589391000" target="_blank" rel="noopener" class="contact-social" title="Telegram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/clan_dubai" target="_blank" rel="noopener" class="contact-social" title="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" style="padding:2.5rem 2rem;border-top:1px solid var(--white-12)">
+  <div style="max-width:90rem;margin:0 auto;display:grid;gap:2rem">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <a href="index.html" class="footer-logo" style="text-decoration:none">CLAN DUBAI</a>
+      <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center">
+        <a href="privacy.html" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white-30);transition:color .2s;text-decoration:none" onmouseover="this.style.color='var(--signal)'" onmouseout="this.style.color='var(--white-30)'" data-t="privacyPolicy">Privacy Policy</a>
+        <a href="cookies.html" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white-30);transition:color .2s;text-decoration:none" onmouseover="this.style.color='var(--signal)'" onmouseout="this.style.color='var(--white-30)'" data-t="cookiePolicy">Cookie Policy</a>
+        <a href="terms.html" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white-30);transition:color .2s;text-decoration:none" onmouseover="this.style.color='var(--signal)'" onmouseout="this.style.color='var(--white-30)'" data-t="termsOfUse">Terms of Use</a>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid var(--white-12);padding-top:1.5rem">
+      <span class="footer-copy" data-t="footer_tagline">International Media Group — 20 years of expertise</span>
+    </div>
+  </div>
+</footer>
+
+<!-- CHANNEL MODAL -->
+<div class="modal-overlay" id="ch-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeChModal()">&#x2715;</button>
+    <div class="modal-header" id="modal-header"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+/* ── TRANSLATIONS ─────────────────────────────── */
+const T = {
+  en: {
+    nav_channels:'Channels', nav_geography:'Geography', nav_production:'Production',
+    nav_cases:'Cases', nav_setup:'Setup', nav_contact:'Contact', nav_cta:'Get in touch',
+    hero_eyebrow:'International Media Group',
+    hero_sub:'Your global partner in the world of media and advertising',
+    stat_viewers:'Viewers', stat_countries:'Countries', stat_years:'Years', stat_channels:'TV Channels',
+    scroll:'Scroll',
+    s_about:'About',
+    about_pull:'20 years of experience across global markets',
+    about_p1:'We are an international media group operating in the markets of Russia, the CIS countries, Europe, Asia, and the Middle East.',
+    about_p2:"Our expertise covers the full cycle of advertising creation and placement — from developing a creative concept to guaranteed reach of a multimillion-dollar audience through our own satellite, digital, and out-of-home channels.",
+    tag_russia:'Russia', tag_europe:'Europe', tag_asia:'Asia', tag_me:'Middle East',
+    s_adv:'Key Advantage',
+    adv_title:'Satellite\u00adBroadcasting',
+    adv_body:'Exclusive access to an international audience. Unlike most agencies, we do not buy airtime — <strong style="color:var(--signal)">we own it.</strong> We are one of the largest media sellers, offering exclusive packages on 24 popular Russian TV channels broadcast via satellites worldwide.',
+    adv1_title:'Own Airtime', adv1_desc:'We control advertising placement in the international blocks of federal channels.',
+    adv2_title:'HD Technology', adv2_desc:'Broadcasting via international satellites in HD quality, ensuring a stable signal even in remote regions.',
+    adv3_title:'Exclusivity', adv3_desc:'Your advertising reaches the most popular and trusted channels — Rossiya 24, RTR Planeta, TNT International, NTV International, and others.',
+    s_portfolio:'Our Portfolio', ch_title:'24 TV Channels',
+    ch_desc:'Broadcast worldwide via international satellites. Exclusive advertising packages for every audience segment.',
+    cat_all:'All', cat_federal:'Federal', cat_ent:'Entertainment', cat_them:'Thematic',
+    s_geo:'Broadcast Geography',
+    geo_title:'Reach of over 250 million viewers in 59 countries',
+    geo_desc:'Our satellite broadcasting covers key markets with a high concentration of Russian-speaking audiences, while also attracting the attention of adjacent language groups.',
+    reg_europe:'Europe', reg_europe_count:'18 countries',
+    reg_europe_list:'Germany, France, United Kingdom, Spain, Italy, Greece, Turkey, Poland, Romania, Bulgaria, Serbia, Hungary, Czech Republic, Austria, Switzerland, Belgium, Netherlands, Portugal',
+    reg_asia:'Asia', reg_asia_count:'12 countries',
+    reg_asia_list:'Nepal, Myanmar, Bangladesh, Maldives, India, Sri Lanka, Laos, Vietnam, Thailand, Cambodia, Indonesia, Malaysia',
+    reg_cis:'CIS & Central Asia', reg_cis_count:'10 countries',
+    reg_cis_list:'Kazakhstan, Uzbekistan, Azerbaijan, Armenia, Georgia, Kyrgyzstan, Tajikistan, Turkmenistan, Moldova, Belarus',
+    reg_mena:'Middle East & North Africa', reg_mena_count:'19 countries',
+    reg_mena_list:'Saudi Arabia, Qatar, Kuwait, Oman, Bahrain, Iraq, Iran, Jordan, Lebanon, Syria, Israel, Palestine, Egypt, Libya, Tunisia, Algeria, Morocco, Sudan',
+    s_audience:'Our Audience', aud_title:'Who watches our channels?',
+    aud_desc:'We work with a unique and high-income audience, making our offering extremely attractive for premium brands.',
+    aud_l1:'Million\npotential viewers', aud_l2:'Million travelers\ntemporarily abroad', aud_l3:'Million expats\npermanently residing abroad',
+    aud_footnote:'A high level of trust in the content and, consequently, in the advertising shown on familiar channels. Our audience includes entrepreneurs, shareholders, and high-income viewers with an active lifestyle and diverse hobbies.',
+    s_prod:'Production', prod_title:'Full-cycle production: from concept to broadcast',
+    prod_desc:"CLAN DUBAI has its own in-house team of professionals who handle every stage of creating advertising materials. We don't just place advertising — we create hits.",
+    prod_num_label:'Successful projects in video production',
+    stage1_label:'Creative', stage1_i1:'Concept development', stage1_i2:'Scriptwriting', stage1_i3:'Storyboarding', stage1_i4:'Authors pool incl. Comedy Club & KVN',
+    stage2_label:'Production', stage2_i1:'Professional video shooting', stage2_i2:'Aerial cinematography', stage2_i3:'Photography',
+    stage3_label:'Post-Production', stage3_i1:'Editing', stage3_i2:'Color grading', stage3_i3:'2D & 3D animation', stage3_i4:'Motion design', stage3_i5:'Voiceover',
+    s_digital:'Digital', dig_title:'Digital Advertising Worldwide',
+    dig_desc:'Multichannel approach in the digital environment with full content adaptation for local markets.',
+    dig1_label:'Platforms', dig1_val:'All key platforms', dig1_desc:'Facebook, Instagram, VK, YouTube, Rutube',
+    dig2_label:'Localization', dig2_val:'43 languages', dig2_desc:'Content adaptation and translation for over 66 countries',
+    dig3_label:'Results', dig3_val:'Millions of views', dig3_desc:'Tens of thousands of leads generated per campaign',
+    srv1_title:'Digital Services', srv1_i1:'Targeted advertising', srv1_i2:'SEO', srv1_i3:'Contextual advertising', srv1_i4:'Influencer marketing', srv1_i5:'SMM promotion', srv1_i6:'Promotion in messengers',
+    srv2_title:'Social Media',
+    dig2_title:'Digital Advertising Worldwide', dig2_desc:'Multichannel digital campaigns with full localization, delivering millions of views and thousands of leads across 66+ countries.',
+    dig2_big:'66+', dig2_big_label:'Countries covered by our digital campaigns',
+    dig2_lang:'Languages', dig2_lang_d:'Full content adaptation and translation',
+    dig2_views:'Digital views', dig2_views_d:'Across all platforms combined',
+    dig2_leads:'Leads per campaign', dig2_leads_d:'Proven conversion performance',
+    dig2_platforms:'Key platforms',
+    dig2_prod:'Production', dig2_p1:'Video ads', dig2_p2:'Banner design', dig2_p3:'Motion graphics', dig2_p4:'Copywriting', dig2_p5:'A/B testing',
+    dig2_cta:'From creative concept to <em>measurable results</em> — all under one roof',
+    s_add:'Additional Channels', rooh_title:'Radio & Media Facades',
+    rooh_desc2:'Extending your brand reach beyond screens — through airwaves and urban landscapes.',
+    rooh_cities:'Cities across Russia and worldwide',
+    radio_desc:'Partnerships with major holdings including Gazprom-Media and Russian Media Group. Reaching millions of listeners in over 1,000 cities across Russia and worldwide.',
+    ooh_l1:'sq.m of structures', ooh_l2:'Daily audience reach',
+    ooh_loc:'Premium Moscow locations', ooh_ring:'Third Ring Road & Garden Ring',
+    ooh_tech:'Technology', ooh_note:'Innovative technologies: 3D screens, dynamic content.',
+    rooh_stations:'Radio stations', rooh_partners:'Gazprom-Media & Russian Media Group',
+    rooh_radio_title:'Radio Partners', rooh_on_air:'On Air', rooh_outdoor:'Outdoor',
+    rooh_ooh_title:'Media Facades', ooh_desc2:'Our own advertising structures in premium Moscow locations with innovative 3D screens and dynamic content.',
+    rooh_cities_tag:'1,000+ cities', rooh_millions:'Millions of listeners',
+    ooh_p1:'Ownership of our own advertising structures totaling over 2,000 sq. m.',
+    ooh_p2:'Placement in premium Moscow locations (including the Third Ring Road and Garden Ring) with a daily audience of up to 200,000 people.',
+    ooh_p3:'Utilization of innovative technologies: 3D screens, dynamic content.',
+    s_cullinan:'Showreel', cullinan_title:'Shooting a commercial for the Cullinan Belek Hotel', cullinan_desc:'Promo video for the Ultra All Inclusive Cullinan Belek Hotel, Turkey', watch_video:'Watch Video',
+    s_cases:'Case Studies', cases_title:'Results that speak for themselves',
+    cases_desc:'We work with market leaders, proving the effectiveness of our solutions in practice.',
+    m_commercials:'Commercials', m_banners:'Banners', m_leads:'Monthly leads', m_views:'Digital views', m_tv:'TV outputs',
+    also_label:'Also worked with',
+    s_why:'Why Clan Dubai', why_title:'Your key to the global market',
+    why1_title:'We own the airtime', why1_desc:'No need to find intermediaries for placement on international channels. Direct access, guaranteed inventory.',
+    why2_title:'We create content', why2_desc:'Full turnkey production cycle all in one place — from concept development to final broadcast.',
+    why3_title:'We know the audience', why3_desc:'Years of experience working with the markets of Europe, Asia, and the Middle East.',
+    why4_title:'We guarantee results', why4_desc:'Our goal is strategic partnership and achieving your KPIs.',
+    s_setup:'Satellite Setup', setup_title:'Ready to connect?',
+    setup_desc:'Use our interactive setup wizard to get personalised satellite antenna pointing parameters — azimuth, elevation and LNB skew — calculated automatically for your exact location.',
+    setup_btn:'Open Setup Wizard', setup_note:'3 steps · works in any country · EN / RU / TR',
+    s_contact:'Contact', contact_title:"Let's build your global campaign", contact_role:'Manager', contact_cta_text:'Ready to advertise on international TV?', contact_cta_wa:'Write on WhatsApp',
+    footer_tagline:'International Media Group — 20 years of expertise',
+    footer_reach:'250M+ viewers across 59 countries',
+    geo2_beams:'Satellite Beams',
+    more_details:'More details', ch_about:'About the Channel', ch_target:'Target Audience',
+    ch_aud_label:'Audience',
+    ticker:[
+      {n:'250M+',l:'Potential viewers'},{n:'59',l:'Countries'},{n:'24',l:'TV Channels'},
+      {n:'20',l:'Years of expertise'},{n:'500+',l:'Video projects'},{n:'43',l:'Languages'},
+      {n:'2,000+',l:'sq.m facades'},{n:'1B+',l:'Digital views for Rixos'}
+    ],
+    channels:[
+      {name:"NTV MIR",cat:"Federal",viewers:null,aud:"Men & women 35–55",desc:"Part of the first multiplex of digital television in Russia. A large field of opportunities — proven in practice by the world's leading brands."},
+      {name:"Russia 24",cat:"Federal",viewers:"80M+",aud:"Men & women 30–55",desc:"One of the leading information channels in Russia, covering current events at home and abroad. Above-average income, active lifestyle."},
+      {name:"PLANETA RTR",cat:"Federal",viewers:"50M+ abroad",aud:"Men & women 16–65",desc:"98.5% coverage of the Russian population. Documentaries, travel, cultural and educational programs about nature, history, and science."},
+      {name:"Ren TV",cat:"Federal",viewers:null,aud:"Men & women 25–60",desc:"Edgy news programs, investigative documentaries, and entertainment shows with a bold approach to journalism."},
+      {name:"FIVE CHANNEL",cat:"Federal",viewers:"45M+",aud:"Men & women 35–55",desc:"One of the oldest (founded in 1938) and most authoritative federal TV channels in Russia. Current affairs, analytics, documentary projects."},
+      {name:"Domashniy",cat:"Federal",viewers:"50M+",aud:"Women 30–60",desc:"Main concept is to create a comfortable atmosphere. Active women with a high level of solvency who follow fashion trends."},
+      {name:"TNT",cat:"Entertainment",viewers:"100M+",aud:"Core 18–45",desc:"Absolute leader in reaching a young audience. Top 5 most popular TV channels in the country. Active, modern, progressive, trend-oriented."},
+      {name:"STS",cat:"Entertainment",viewers:"100M+",aud:"Core 10–45",desc:"The most recognizable entertainment TV channel in Russia. An independent family-type channel with the largest reach."},
+      {name:"KVN",cat:"Entertainment",viewers:"2.5M+ monthly",aud:"Men & women 14–55",desc:"Dedicated to the cult Russian humor show Club of the Merry and Resourceful — a unique project with no analogues in the world."},
+      {name:"RTVI",cat:"Entertainment",viewers:"25M+",aud:"Men & women 45+",desc:"Leading global Russian-language news channel with talk shows, documentaries, interviews, and analytical programs worldwide."},
+      {name:"WHO IS WHO",cat:"Entertainment",viewers:null,aud:"Intellectually curious viewers",desc:"Unique media platform dedicated to investigative documentaries, biographies of great personalities, and mysteries of history."},
+      {name:"PERETS",cat:"Entertainment",viewers:"20M+",aud:"Core men 30–40",desc:"Focused on a male audience, offering entertainment content with an emphasis on films, series, and programs for family viewing."},
+      {name:"NTV STYLE",cat:"Thematic",viewers:"10–12% market share",aud:"Women 18–45",desc:"One of the prominent women's lifestyle channels in Russia, focusing on fashion, beauty, design, health, and travel."},
+      {name:"NTV PRAVO",cat:"Thematic",viewers:"10M+",aud:"Men & women 25–54",desc:"Specialized information channel focusing on legal issues, justice, and criminal cases. Analytical programs and educational content."},
+      {name:"NTV SERIAL",cat:"Thematic",viewers:"8–10% market share",aud:"Men & women 25–54",desc:"Leading entertainment channel offering gripping Russian TV series — detective stories, thrillers, crime dramas, and melodramas."},
+      {name:"FONMUSIC",cat:"Thematic",viewers:"8M+ monthly",aud:"Men & women 14–45",desc:"Music and entertainment channel broadcasting popular Russian and international music videos, exclusive shows, charts, and interviews."},
+      {name:"START EPIC",cat:"Thematic",viewers:"20M pool",aud:"Men & women 30–55",desc:"Lifestyle entertainment channel featuring exclusive blogger content on travel, automobiles, architecture, and science. Over 20 star bloggers."},
+      {name:"START WORLD",cat:"Thematic",viewers:"60+ countries",aud:"Men & women 25–60",desc:"Features the best international series. Available in basic packages of major providers across more than 60 countries."},
+      {name:"START AIR",cat:"Thematic",viewers:null,aud:"Men & women 25–49",desc:"Exclusive original series: Vampires of the Middle Belt, Container, and The Mediator. Hundreds of hours of premium content."},
+      {name:"NEIZVESTNAYA RUSSIA",cat:"Thematic",viewers:null,aud:"Men & women 25–60",desc:"24/7 documentary channel by NTV focusing on historical events, Russian talents — scientists, doctors, writers, musicians."},
+      {name:"UMKA",cat:"Thematic",viewers:null,aud:"Families with children",desc:"International children's animation channel by Soyuzmultfilm and Multilandia. Classic and modern animation in HD worldwide."},
+      {name:"CHE",cat:"Thematic",viewers:"87.6% Russia",aud:"Men & women 25–49",desc:"Dynamic entertainment channel focused on drive, energy, and action reality shows. Technical coverage of 87.6% in Russia."},
+      {name:"Nostalgiya",cat:"Thematic",viewers:null,aud:"Viewers 40+",desc:"Presents the best programs of Soviet television classics, the golden fund of Russian television, and cultural heritage of several generations."},
+      {name:"IZVESTIYA",cat:"Thematic",viewers:"15M+",aud:"Men & women 25–54",desc:"Modern information TV channel built on the legacy of a legendary media brand. 24/7 news, exclusive analytics, and live event coverage."}
+    ]
+  },
+  ru: {
+    nav_channels:'Каналы', nav_geography:'География', nav_production:'Производство',
+    nav_cases:'Кейсы', nav_setup:'Подключение', nav_contact:'Контакты', nav_cta:'Связаться',
+    hero_eyebrow:'Международная медиагруппа',
+    hero_sub:'Ваш глобальный партнёр в мире медиа и рекламы',
+    stat_viewers:'Зрителей', stat_countries:'Стран', stat_years:'Лет', stat_channels:'ТВ-каналов',
+    scroll:'Прокрутить',
+    s_about:'О нас',
+    about_pull:'20 лет опыта на глобальных рынках',
+    about_p1:'Мы — международная медиагруппа, работающая на рынках России, стран СНГ, Европы, Азии и Ближнего Востока.',
+    about_p2:'Наша экспертиза охватывает полный цикл создания и размещения рекламы — от разработки творческой концепции до гарантированного охвата многомиллионной аудитории через собственные спутниковые, цифровые и наружные каналы.',
+    tag_russia:'Россия', tag_europe:'Европа', tag_asia:'Азия', tag_me:'Ближний Восток',
+    s_adv:'Ключевое преимущество',
+    adv_title:'Спутниковое\u00adвещание',
+    adv_body:'Эксклюзивный доступ к международной аудитории. В отличие от большинства агентств, мы не покупаем эфирное время — <strong style="color:var(--signal)">мы им владеем.</strong> Мы один из крупнейших медиаселлеров, предлагающих эксклюзивные пакеты на 24 популярных российских ТВ-канала, вещающих через спутники по всему миру.',
+    adv1_title:'Собственное эфирное время', adv1_desc:'Мы контролируем размещение рекламы в международных блоках федеральных каналов.',
+    adv2_title:'HD-технологии', adv2_desc:'Вещание через международные спутники в HD-качестве, обеспечивающее стабильный сигнал даже в отдалённых регионах.',
+    adv3_title:'Эксклюзивность', adv3_desc:'Ваша реклама выходит на самых популярных и авторитетных каналах — Россия 24, РТР Планета, TNT International, НТВ Мир и других.',
+    s_portfolio:'Наш портфель', ch_title:'24 ТВ-канала',
+    ch_desc:'Вещание по всему миру через международные спутники. Эксклюзивные рекламные пакеты для каждого сегмента аудитории.',
+    cat_all:'Все', cat_federal:'Федеральные', cat_ent:'Развлекательные', cat_them:'Тематические',
+    s_geo:'География вещания',
+    geo_title:'Охват более 250 миллионов зрителей в 59 странах',
+    geo_desc:'Наше спутниковое вещание охватывает ключевые рынки с высокой концентрацией русскоязычной аудитории, а также привлекает внимание смежных языковых групп.',
+    reg_europe:'Европа', reg_europe_count:'18 стран',
+    reg_europe_list:'Германия, Франция, Великобритания, Испания, Италия, Греция, Турция, Польша, Румыния, Болгария, Сербия, Венгрия, Чехия, Австрия, Швейцария, Бельгия, Нидерланды, Португалия',
+    reg_asia:'Азия', reg_asia_count:'12 стран',
+    reg_asia_list:'Непал, Мьянма, Бангладеш, Мальдивы, Индия, Шри-Ланка, Лаос, Вьетнам, Таиланд, Камбоджа, Индонезия, Малайзия',
+    reg_cis:'СНГ и Центральная Азия', reg_cis_count:'10 стран',
+    reg_cis_list:'Казахстан, Узбекистан, Азербайджан, Армения, Грузия, Кыргызстан, Таджикистан, Туркменистан, Молдова, Беларусь',
+    reg_mena:'Ближний Восток и Северная Африка', reg_mena_count:'19 стран',
+    reg_mena_list:'Саудовская Аравия, Катар, Кувейт, Оман, Бахрейн, Ирак, Иран, Иордания, Ливан, Сирия, Израиль, Палестина, Египет, Ливия, Тунис, Алжир, Марокко, Судан',
+    s_audience:'Наша аудитория', aud_title:'Кто смотрит наши каналы?',
+    aud_desc:'Мы работаем с уникальной высокодоходной аудиторией, что делает наше предложение крайне привлекательным для премиальных брендов.',
+    aud_l1:'Миллионов\nпотенциальных зрителей', aud_l2:'Миллионов туристов\nвременно за рубежом', aud_l3:'Миллионов эмигрантов\nпостоянно проживающих за рубежом',
+    aud_footnote:'Высокий уровень доверия к контенту и, следовательно, к рекламе, показываемой на знакомых каналах. Наша аудитория — предприниматели, акционеры и высокодоходные зрители с активным образом жизни и разнообразными интересами.',
+    s_prod:'Производство', prod_title:'Производство полного цикла: от концепции до эфира',
+    prod_desc:'CLAN DUBAI имеет собственную команду профессионалов, которая ведёт каждый этап создания рекламных материалов. Мы не просто размещаем рекламу — мы создаём хиты.',
+    prod_num_label:'Успешных проектов в видеопроизводстве',
+    stage1_label:'Креатив', stage1_i1:'Разработка концепции', stage1_i2:'Написание сценария', stage1_i3:'Раскадровка', stage1_i4:'Пул авторов, включая Comedy Club и КВН',
+    stage2_label:'Производство', stage2_i1:'Профессиональная видеосъёмка', stage2_i2:'Аэросъёмка', stage2_i3:'Фотосъёмка',
+    stage3_label:'Постпродакшн', stage3_i1:'Монтаж', stage3_i2:'Цветокоррекция', stage3_i3:'2D и 3D анимация', stage3_i4:'Моушн-дизайн', stage3_i5:'Озвучивание',
+    s_digital:'Цифровые каналы', dig_title:'Цифровая реклама по всему миру',
+    dig_desc:'Многоканальный подход в цифровой среде с полной адаптацией контента для локальных рынков.',
+    dig1_label:'Платформы', dig1_val:'Все ключевые платформы', dig1_desc:'Facebook, Instagram, VK, YouTube, Rutube',
+    dig2_label:'Локализация', dig2_val:'43 языка', dig2_desc:'Адаптация и перевод контента для более чем 66 стран',
+    dig3_label:'Результаты', dig3_val:'Миллионы просмотров', dig3_desc:'Десятки тысяч лидов на одну кампанию',
+    srv1_title:'Цифровые услуги', srv1_i1:'Таргетированная реклама', srv1_i2:'SEO', srv1_i3:'Контекстная реклама', srv1_i4:'Инфлюенсер-маркетинг', srv1_i5:'SMM-продвижение', srv1_i6:'Продвижение в мессенджерах',
+    srv2_title:'Социальные сети',
+    dig2_title:'Цифровая реклама по всему миру', dig2_desc:'Мультиканальные цифровые кампании с полной локализацией: миллионы просмотров и тысячи лидов в 66+ странах.',
+    dig2_big:'66+', dig2_big_label:'Стран охвачены нашими цифровыми кампаниями',
+    dig2_lang:'Языков', dig2_lang_d:'Полная адаптация и перевод контента',
+    dig2_views:'Цифровых просмотров', dig2_views_d:'На всех платформах суммарно',
+    dig2_leads:'Лидов за кампанию', dig2_leads_d:'Доказанная конверсия',
+    dig2_platforms:'Ключевых платформ',
+    dig2_prod:'Продакшн', dig2_p1:'Видеореклама', dig2_p2:'Дизайн баннеров', dig2_p3:'Моушн-графика', dig2_p4:'Копирайтинг', dig2_p5:'A/B тестирование',
+    dig2_cta:'От креативной концепции до <em>измеримых результатов</em> — всё под одной крышей',
+    s_add:'Дополнительные каналы', rooh_title:'Радио и медиафасады',
+    rooh_desc2:'Расширяем охват вашего бренда за пределы экранов — через радиоэфир и городское пространство.',
+    rooh_cities:'Городов в России и по всему миру',
+    radio_desc:'Партнёрство с крупными холдингами, включая Газпром-Медиа и Русскую Медиагруппу. Охват миллионов слушателей в более чем 1 000 городов России и по всему миру.',
+    ooh_l1:'кв.м конструкций', ooh_l2:'Ежедневный охват аудитории',
+    ooh_loc:'Премиальные локации Москвы', ooh_ring:'ТТК и Садовое кольцо',
+    ooh_tech:'Технологии', ooh_note:'Инновационные технологии: 3D-экраны, динамический контент.',
+    rooh_stations:'Радиостанций', rooh_partners:'Газпром-Медиа и Русская Медиагруппа',
+    rooh_radio_title:'Радиопартнёры', rooh_on_air:'В эфире', rooh_outdoor:'Наружная реклама',
+    rooh_ooh_title:'Медиафасады', ooh_desc2:'Собственные рекламные конструкции в премиальных локациях Москвы с инновационными 3D-экранами и динамическим контентом.',
+    rooh_cities_tag:'1 000+ городов', rooh_millions:'Миллионы слушателей',
+    ooh_p1:'Владение собственными рекламными конструкциями общей площадью более 2 000 кв. м.',
+    ooh_p2:'Размещение в премиальных локациях Москвы (включая ТТК и Садовое кольцо) с ежедневной аудиторией до 200 000 человек.',
+    ooh_p3:'Использование инновационных технологий: 3D-экраны, динамический контент.',
+    s_cullinan:'Шоурил', cullinan_title:'Съёмка рекламного ролика для отеля Cullinan Belek', cullinan_desc:'Промо-видео для отеля Ultra All Inclusive Cullinan Belek, Турция', watch_video:'Смотреть видео',
+    s_cases:'Кейсы', cases_title:'Результаты говорят сами за себя',
+    cases_desc:'Мы работаем с лидерами рынка, доказывая эффективность наших решений на практике.',
+    m_commercials:'Рекламных ролика', m_banners:'Баннеров', m_leads:'Лидов в месяц', m_views:'Цифровых просмотров', m_tv:'Выходов в эфир',
+    also_label:'Также работали с',
+    s_why:'Почему Clan Dubai', why_title:'Ваш ключ к мировому рынку',
+    why1_title:'Мы владеем эфирным временем', why1_desc:'Не нужно искать посредников для размещения на международных каналах. Прямой доступ, гарантированный инвентарь.',
+    why2_title:'Мы создаём контент', why2_desc:'Полный производственный цикл под ключ в одном месте — от разработки концепции до финального эфира.',
+    why3_title:'Мы знаем аудиторию', why3_desc:'Многолетний опыт работы с рынками Европы, Азии и Ближнего Востока.',
+    why4_title:'Мы гарантируем результат', why4_desc:'Наша цель — стратегическое партнёрство и достижение ваших KPI.',
+    s_setup:'Настройка спутника', setup_title:'Готовы к подключению?',
+    setup_desc:'Воспользуйтесь нашим интерактивным мастером настройки, чтобы получить персональные параметры наведения антенны — азимут, угол места и наклон LNB — рассчитанные автоматически для вашего местоположения.',
+    setup_btn:'Открыть мастер настройки', setup_note:'3 шага · работает в любой стране · EN / RU / TR',
+    s_contact:'Контакты', contact_title:'Давайте создадим вашу глобальную кампанию', contact_role:'Менеджер', contact_cta_text:'Готовы разместить рекламу на международном ТВ?', contact_cta_wa:'Написать в WhatsApp',
+    footer_tagline:'Международная медиагруппа — 20 лет экспертизы',
+    footer_reach:'250M+ зрителей в 59 странах',
+    geo2_beams:'Спутниковых лучей',
+    more_details:'Подробнее', ch_about:'О канале', ch_target:'Целевая аудитория',
+    ch_aud_label:'Аудитория',
+    ticker:[
+      {n:'250M+',l:'Потенциальных зрителей'},{n:'59',l:'Стран'},{n:'24',l:'ТВ-канала'},
+      {n:'20',l:'Лет экспертизы'},{n:'500+',l:'Видеопроектов'},{n:'43',l:'Языка'},
+      {n:'2 000+',l:'кв.м фасадов'},{n:'1B+',l:'Цифровых просмотров Rixos'}
+    ],
+    channels:[
+      {name:"НТВ МИР",cat:"Федеральные",viewers:null,aud:"Мужчины и женщины 35–55",desc:"Часть первого мультиплекса цифрового телевидения в России. Широкие возможности, доказанные мировыми брендами."},
+      {name:"Россия 24",cat:"Федеральные",viewers:"80M+",aud:"Мужчины и женщины 30–55",desc:"Один из ведущих информационных каналов, освещающий события в России и мире. Аудитория с доходом выше среднего."},
+      {name:"РТР Планета",cat:"Федеральные",viewers:"50M+ за рубежом",aud:"Мужчины и женщины 16–65",desc:"Охват 98,5% населения России. Документальные фильмы, путешествия, культурно-познавательные программы."},
+      {name:"РЕН ТВ",cat:"Федеральные",viewers:null,aud:"Мужчины и женщины 25–60",desc:"Острые новостные программы, документальные расследования и развлекательные шоу с нестандартным взглядом на события."},
+      {name:"Пятый канал",cat:"Федеральные",viewers:"45M+",aud:"Мужчины и женщины 35–55",desc:"Один из старейших (основан в 1938 г.) и авторитетных федеральных каналов. Новости, аналитика, документальные проекты."},
+      {name:"Домашний",cat:"Федеральные",viewers:"50M+",aud:"Женщины 30–60",desc:"Главная концепция — уют и комфорт. Активные женщины с высоким уровнем платёжеспособности, следящие за трендами."},
+      {name:"ТНТ",cat:"Развлекательные",viewers:"100M+",aud:"Ядро 18–45",desc:"Абсолютный лидер по охвату молодой аудитории. Топ-5 самых популярных каналов страны. Активные, современные, прогрессивные зрители."},
+      {name:"СТС",cat:"Развлекательные",viewers:"100M+",aud:"Ядро 10–45",desc:"Самый узнаваемый развлекательный канал России. Независимый семейный канал с наибольшим охватом."},
+      {name:"КВН",cat:"Развлекательные",viewers:"2,5M+ в месяц",aud:"Мужчины и женщины 14–55",desc:"Посвящён культовому российскому юмористическому шоу «Клуб Весёлых и Находчивых» — уникальному проекту без аналогов в мире."},
+      {name:"RTVI",cat:"Развлекательные",viewers:"25M+",aud:"Мужчины и женщины 45+",desc:"Ведущий мировой русскоязычный новостной канал с ток-шоу, документальными фильмами, интервью и аналитикой."},
+      {name:"КТО ЕСТЬ КТО",cat:"Развлекательные",viewers:null,aud:"Интеллектуальные зрители",desc:"Уникальная медиаплатформа — документальные расследования, биографии великих людей, тайны истории и культуры."},
+      {name:"ПЕРЕЦ",cat:"Развлекательные",viewers:"20M+",aud:"Мужчины 30–40",desc:"Ориентирован на мужскую аудиторию. Фильмы, сериалы и программы для семейного просмотра."},
+      {name:"НТВ СТИЛЬ",cat:"Тематические",viewers:"10–12% доля рынка",aud:"Женщины 18–45",desc:"Ведущий женский lifestyle-канал России: мода, красота, дизайн, здоровье и путешествия."},
+      {name:"НТВ ПРАВО",cat:"Тематические",viewers:"10M+",aud:"Мужчины и женщины 25–54",desc:"Специализированный канал — правовые вопросы, правосудие, криминальные дела. Аналитические программы."},
+      {name:"НТВ СЕРИАЛ",cat:"Тематические",viewers:"8–10% доля рынка",aud:"Мужчины и женщины 25–54",desc:"Ведущий развлекательный канал с отечественными сериалами — детективы, триллеры, криминальные драмы."},
+      {name:"FONMUSIC",cat:"Тематические",viewers:"8M+ в месяц",aud:"Мужчины и женщины 14–45",desc:"Музыкально-развлекательный канал: популярные российские и зарубежные клипы, эксклюзивные шоу и чарты."},
+      {name:"START EPIC",cat:"Тематические",viewers:"Пул 20M",aud:"Мужчины и женщины 30–55",desc:"Lifestyle-канал с эксклюзивным контентом блогеров о путешествиях, автомобилях, архитектуре и науке. Более 20 звёздных блогеров."},
+      {name:"START WORLD",cat:"Тематические",viewers:"60+ стран",aud:"Мужчины и женщины 25–60",desc:"Лучшие международные сериалы. Доступен в базовых пакетах крупных провайдеров более чем в 60 странах."},
+      {name:"START AIR",cat:"Тематические",viewers:null,aud:"Мужчины и женщины 25–49",desc:"Эксклюзивные оригинальные сериалы: «Вампиры средней полосы», «Контейнер», «Медиатор». Сотни часов премиум-контента."},
+      {name:"НЕИЗВЕСТНАЯ РОССИЯ",cat:"Тематические",viewers:null,aud:"Мужчины и женщины 25–60",desc:"Документальный канал НТВ 24/7: исторические события, российские таланты — учёные, врачи, писатели, музыканты."},
+      {name:"УМКА",cat:"Тематические",viewers:null,aud:"Семьи с детьми",desc:"Международный детский анимационный канал от Союзмультфильма и Multilandia. Классическая и современная анимация в HD."},
+      {name:"ЧЕ",cat:"Тематические",viewers:"87,6% Россия",aud:"Мужчины и женщины 25–49",desc:"Динамичный развлекательный канал: драйв, энергия, реалити-экшн. Техническое покрытие 87,6% в России."},
+      {name:"Ностальгия",cat:"Тематические",viewers:null,aud:"Зрители 40+",desc:"Лучшие программы советского телевидения, золотой фонд российского ТВ и культурное наследие нескольких поколений."},
+      {name:"ИЗВЕСТИЯ",cat:"Тематические",viewers:"15M+",aud:"Мужчины и женщины 25–54",desc:"Современный информационный канал на базе легендарного медиабренда. Новости 24/7, эксклюзивная аналитика, прямые трансляции."}
+    ]
+  },
+  tr: {
+    nav_channels:'Kanallar', nav_geography:'Coğrafya', nav_production:'Üretim',
+    nav_cases:'Vakalar', nav_setup:'Kurulum', nav_contact:'İletişim', nav_cta:'İletişime geç',
+    hero_eyebrow:'Uluslararası Medya Grubu',
+    hero_sub:'Medya ve reklamcılık dünyasında küresel ortağınız',
+    stat_viewers:'İzleyici', stat_countries:'Ülke', stat_years:'Yıl', stat_channels:'TV Kanalı',
+    scroll:'Kaydır',
+    s_about:'Hakkımızda',
+    about_pull:'Küresel pazarlarda 20 yıllık deneyim',
+    about_p1:"Rusya, BDT ülkeleri, Avrupa, Asya ve Orta Doğu pazarlarında faaliyet gösteren uluslararası bir medya grubuyuz.",
+    about_p2:'Uzmanlığımız, reklam oluşturma ve yerleştirmenin tam döngüsünü kapsar — yaratıcı konsept geliştirmeden, kendi uydu, dijital ve açık hava kanallarımız aracılığıyla milyonlarca kişilik kitleye garantili erişime kadar.',
+    tag_russia:'Rusya', tag_europe:'Avrupa', tag_asia:'Asya', tag_me:'Orta Doğu',
+    s_adv:'Temel Avantaj',
+    adv_title:'Uydu\u00adYayıncılığı',
+    adv_body:"Uluslararası kitleye özel erişim. Çoğu ajansın aksine, biz yayın süresi satın almıyoruz — <strong style=\"color:var(--signal)\">biz sahibiyiz.</strong> Dünya genelinde uydu üzerinden yayın yapan 24 popüler Rus TV kanalında özel paketler sunan en büyük medya satıcılarından biriyiz.",
+    adv1_title:'Kendi Yayın Süremiz', adv1_desc:'Federal kanalların uluslararası bloklarındaki reklam yerleşimini biz yönetiyoruz.',
+    adv2_title:'HD Teknoloji', adv2_desc:'Uzak bölgelerde bile istikrarlı sinyal sağlayan uluslararası uydular üzerinden HD kalitede yayın.',
+    adv3_title:'Özellik', adv3_desc:'Reklamınız en popüler ve güvenilir kanallara ulaşır — Rossiya 24, RTR Planeta, TNT International, NTV Mir ve diğerleri.',
+    s_portfolio:'Portföyümüz', ch_title:'24 TV Kanalı',
+    ch_desc:'Uluslararası uydular üzerinden dünya genelinde yayın. Her kitle segmenti için özel reklam paketleri.',
+    cat_all:'Tümü', cat_federal:'Federal', cat_ent:'Eğlence', cat_them:'Tematik',
+    s_geo:'Yayın Coğrafyası',
+    geo_title:"59 ülkede 250 milyonun üzerinde izleyiciye ulaşım",
+    geo_desc:'Uydu yayıncılığımız, Rusça konuşan kitlenin yoğun olduğu kilit pazarları kapsarken komşu dil gruplarının da ilgisini çekiyor.',
+    reg_europe:'Avrupa', reg_europe_count:'18 ülke',
+    reg_europe_list:'Almanya, Fransa, Birleşik Krallık, İspanya, İtalya, Yunanistan, Türkiye, Polonya, Romanya, Bulgaristan, Sırbistan, Macaristan, Çek Cumhuriyeti, Avusturya, İsviçre, Belçika, Hollanda, Portekiz',
+    reg_asia:'Asya', reg_asia_count:'12 ülke',
+    reg_asia_list:'Nepal, Myanmar, Bangladeş, Maldivler, Hindistan, Sri Lanka, Laos, Vietnam, Tayland, Kamboçya, Endonezya, Malezya',
+    reg_cis:'BDT ve Orta Asya', reg_cis_count:'10 ülke',
+    reg_cis_list:'Kazakistan, Özbekistan, Azerbaycan, Ermenistan, Gürcistan, Kırgızistan, Tacikistan, Türkmenistan, Moldova, Belarus',
+    reg_mena:'Orta Doğu ve Kuzey Afrika', reg_mena_count:'19 ülke',
+    reg_mena_list:'Suudi Arabistan, Katar, Kuveyt, Umman, Bahreyn, Irak, İran, Ürdün, Lübnan, Suriye, İsrail, Filistin, Mısır, Libya, Tunus, Cezayir, Fas, Sudan',
+    s_audience:'Kitlelerimiz', aud_title:'Kanallarımızı kimler izliyor?',
+    aud_desc:'Benzersiz ve yüksek gelirli bir kitleyle çalışıyoruz; bu da teklifimizi premium markalar için son derece çekici kılıyor.',
+    aud_l1:'Milyon\npotansiyel izleyici', aud_l2:'Milyon gezgin\ngeçici olarak yurtdışında', aud_l3:'Milyon diaspora\nkalıcı olarak yurtdışında yaşayan',
+    aud_footnote:"Tanıdık kanallarda yayınlanan reklama karşı içeriğe duyulan yüksek güven. Kitlelerimiz girişimciler, hissedarlar ve aktif yaşam tarzına sahip, çeşitli hobiler edinen yüksek gelirli izleyicilerdir.",
+    s_prod:'Üretim', prod_title:'Kavramdan yayına tam döngü üretim',
+    prod_desc:"CLAN DUBAI, reklam materyallerinin oluşturulmasının her aşamasını yöneten kendi iç profesyonel ekibine sahiptir. Sadece reklam yerleştirmiyoruz — hit'ler yaratıyoruz.",
+    prod_num_label:'Video prodüksiyonunda başarılı proje',
+    stage1_label:'Kreatif', stage1_i1:'Konsept geliştirme', stage1_i2:'Senaryo yazımı', stage1_i3:'Storyboard', stage1_i4:"Comedy Club ve KVN üyelerini içeren yazar havuzu",
+    stage2_label:'Prodüksiyon', stage2_i1:'Profesyonel video çekimi', stage2_i2:'Hava çekimi', stage2_i3:'Fotoğrafçılık',
+    stage3_label:'Post-Prodüksiyon', stage3_i1:'Kurgu', stage3_i2:'Renk düzeltme', stage3_i3:'2D ve 3D animasyon', stage3_i4:'Hareket tasarımı', stage3_i5:'Seslendirme',
+    s_digital:'Dijital', dig_title:'Dünya Genelinde Dijital Reklamcılık',
+    dig_desc:'Yerel pazarlar için tam içerik uyarlaması ile dijital ortamda çok kanallı yaklaşım.',
+    dig1_label:'Platformlar', dig1_val:'Tüm ana platformlar', dig1_desc:'Facebook, Instagram, VK, YouTube, Rutube',
+    dig2_label:'Yerelleştirme', dig2_val:'43 dil', dig2_desc:'66 ülke için içerik uyarlaması ve çevirisi',
+    dig3_label:'Sonuçlar', dig3_val:'Milyonlarca görüntülenme', dig3_desc:'Kampanya başına on binlerce potansiyel müşteri',
+    srv1_title:'Dijital Hizmetler', srv1_i1:'Hedefli reklamcılık', srv1_i2:'SEO', srv1_i3:'Bağlamsal reklamcılık', srv1_i4:'Influencer pazarlaması', srv1_i5:'SMM tanıtımı', srv1_i6:'Mesajlaşma uygulamalarında tanıtım',
+    srv2_title:'Sosyal Medya',
+    dig2_title:'Dünya Genelinde Dijital Reklamcılık', dig2_desc:'Tam yerelleştirme ile çok kanallı dijital kampanyalar: 66+ ülkede milyonlarca görüntülenme ve binlerce potansiyel müşteri.',
+    dig2_big:'66+', dig2_big_label:'Dijital kampanyalarımızın kapsadığı ülke',
+    dig2_lang:'Dil', dig2_lang_d:'Tam içerik uyarlaması ve çevirisi',
+    dig2_views:'Dijital görüntülenme', dig2_views_d:'Tüm platformlarda toplam',
+    dig2_leads:'Kampanya başına potansiyel müşteri', dig2_leads_d:'Kanıtlanmış dönüşüm performansı',
+    dig2_platforms:'Ana platform',
+    dig2_prod:'Prodüksiyon', dig2_p1:'Video reklamlar', dig2_p2:'Banner tasarımı', dig2_p3:'Hareket grafikleri', dig2_p4:'Metin yazarlığı', dig2_p5:'A/B testi',
+    dig2_cta:'Yaratıcı konseptten <em>ölçülebilir sonuçlara</em> — hepsi tek çatı altında',
+    s_add:'Ek Kanallar', rooh_title:'Radyo ve Medya Cepheleri',
+    rooh_desc2:'Markanızın erişimini ekranların ötesine taşıyoruz — radyo dalgaları ve kentsel alanlar aracılığıyla.',
+    rooh_cities:"Rusya genelinde ve dünyada şehir",
+    radio_desc:"Gazprom-Media ve Rusya Medya Grubu dahil büyük holdingler ile ortaklık. Rusya genelindeki 1.000'den fazla şehirde ve dünya genelinde milyonlarca dinleyiciye erişim.",
+    ooh_l1:'m² yapı', ooh_l2:'Günlük kitle erişimi',
+    ooh_loc:"Moskova'nın premium konumları", ooh_ring:'Üçüncü Halka Yolu ve Bahçe Çemberi',
+    ooh_tech:'Teknoloji', ooh_note:'Yenilikçi teknolojiler: 3D ekranlar, dinamik içerik.',
+    rooh_stations:'Radyo istasyonu', rooh_partners:'Gazprom-Media ve Rusya Medya Grubu',
+    rooh_radio_title:'Radyo Ortakları', rooh_on_air:'Yayında', rooh_outdoor:'Açık Hava',
+    rooh_ooh_title:'Medya Cepheleri', ooh_desc2:'Yenilikçi 3D ekranlar ve dinamik içerikle Moskova\'nın premium konumlarındaki kendi reklam yapılarımız.',
+    rooh_cities_tag:'1.000+ şehir', rooh_millions:'Milyonlarca dinleyici',
+    ooh_p1:'Toplam 2.000 m²\'yi aşan kendi reklam yapılarımızın sahipliği.',
+    ooh_p2:'Günlük 200.000 kişiye ulaşan, Moskova\'nın premium konumlarında (Üçüncü Halka Yolu ve Bahçe Çemberi dahil) yerleşim.',
+    ooh_p3:'Yenilikçi teknolojilerin kullanımı: 3D ekranlar, dinamik içerik.',
+    s_cullinan:'Tanıtım', cullinan_title:'Cullinan Belek Otel için reklam çekimi', cullinan_desc:'Ultra Her Şey Dahil Cullinan Belek Otel, Türkiye için tanıtım videosu', watch_video:'Videoyu İzle',
+    s_cases:'Örnek Vakalar', cases_title:'Sonuçlar kendi adına konuşur',
+    cases_desc:'Çözümlerimizin etkinliğini pratikte kanıtlayarak pazar liderleriyle çalışıyoruz.',
+    m_commercials:'Reklam filmi', m_banners:'Banner', m_leads:'Aylık potansiyel müşteri', m_views:'Dijital görüntülenme', m_tv:'TV çıkışı',
+    also_label:'Ayrıca çalıştıklarımız',
+    s_why:'Neden Clan Dubai', why_title:'Küresel pazara açılan anahtarınız',
+    why1_title:'Yayın süresine sahibiz', why1_desc:'Uluslararası kanallarda yerleştirme için aracı aramaya gerek yok. Doğrudan erişim, garantili envanter.',
+    why2_title:'İçerik yaratıyoruz', why2_desc:'Kavram geliştirmeden nihai yayına kadar tek çatı altında anahtar teslim tam prodüksiyon döngüsü.',
+    why3_title:'Kitleyi tanıyoruz', why3_desc:"Avrupa, Asya ve Orta Doğu pazarlarında yıllarca deneyim.",
+    why4_title:'Sonuçları garanti ediyoruz', why4_desc:"Amacımız stratejik ortaklık ve KPI'larınıza ulaşmaktır.",
+    s_setup:'Uydu Kurulumu', setup_title:'Bağlanmaya hazır mısınız?',
+    setup_desc:"Konumunuz için otomatik olarak hesaplanan kişiselleştirilmiş uydu çanağı yönlendirme parametrelerini — azimut, yükselti açısı ve LNB eğimi — almak için interaktif kurulum sihirbazımızı kullanın.",
+    setup_btn:'Kurulum Sihirbazını Aç', setup_note:'3 adım · her ülkede çalışır · EN / RU / TR',
+    s_contact:'İletişim', contact_title:'Küresel kampanyanızı birlikte oluşturalım', contact_role:'Yönetici', contact_cta_text:'Uluslararası TV\'de reklam vermeye hazır mısınız?', contact_cta_wa:'WhatsApp\'tan yazın',
+    footer_tagline:'Uluslararası Medya Grubu — 20 yıllık uzmanlık',
+    footer_reach:"59 ülkede 250M+ izleyici",
+    geo2_beams:'Uydu Işını',
+    more_details:'Detaylar', ch_about:'Kanal Hakkında', ch_target:'Hedef Kitle',
+    ch_aud_label:'Kitle',
+    ticker:[
+      {n:'250M+',l:'Potansiyel izleyici'},{n:'59',l:'Ülke'},{n:'24',l:'TV Kanalı'},
+      {n:'20',l:'Yıllık uzmanlık'},{n:'500+',l:'Video projesi'},{n:'43',l:'Dil'},
+      {n:'2.000+',l:'m² cephe'},{n:'1B+',l:"Rixos için dijital görüntülenme"}
+    ],
+    channels:[
+      {name:"NTV MIR",cat:"Federal",viewers:null,aud:"Erkek ve kadın 35–55",desc:"Rusya'daki dijital televizyonun ilk çoğullaştırıcısının bir parçası. Dünyanın önde gelen markaları tarafından pratikte kanıtlanmış geniş fırsatlar."},
+      {name:"Rossiya 24",cat:"Federal",viewers:"80M+",aud:"Erkek ve kadın 30–55",desc:"Rusya'da ve dünyada güncel olayları haberleştiren önde gelen haber kanallarından biri. Ortalamanın üzerinde gelir, aktif yaşam tarzı."},
+      {name:"PLANETA RTR",cat:"Federal",viewers:"50M+ yurtdışı",aud:"Erkek ve kadın 16–65",desc:"Rusya nüfusunun %98,5'ine erişim. Belgeseller, seyahat, doğa, tarih ve bilim üzerine kültürel eğitim programları."},
+      {name:"Ren TV",cat:"Federal",viewers:null,aud:"Erkek ve kadın 25–60",desc:"Cesur gazetecilik anlayışıyla sert haber programları, araştırmacı belgeseller ve eğlence şovları."},
+      {name:"BEŞİNCİ KANAL",cat:"Federal",viewers:"45M+",aud:"Erkek ve kadın 35–55",desc:"Rusya'nın en eski (1938 kuruluşlu) ve en saygın federal TV kanallarından biri. Güncel haberler, analiz ve belgesel projeler."},
+      {name:"Domashniy",cat:"Federal",viewers:"50M+",aud:"Kadın 30–60",desc:"Ana konsept: rahat bir atmosfer yaratmak. Yüksek ödeme gücüne sahip, moda trendlerini takip eden aktif kadınlar."},
+      {name:"TNT",cat:"Eğlence",viewers:"100M+",aud:"Çekirdek 18–45",desc:"Genç kitleye ulaşmada mutlak lider. Ülkenin en popüler 5 TV kanalından biri. Aktif, modern, ilerici, trendlere odaklı."},
+      {name:"STS",cat:"Eğlence",viewers:"100M+",aud:"Çekirdek 10–45",desc:"Rusya'nın en tanınan eğlence TV kanalı. En geniş erişime sahip bağımsız aile tipi kanal."},
+      {name:"KVN",cat:"Eğlence",viewers:"2,5M+ aylık",aud:"Erkek ve kadın 14–55",desc:"Dünyada benzeri olmayan kült Rus mizah şovuna adanmış benzersiz bir proje."},
+      {name:"RTVI",cat:"Eğlence",viewers:"25M+",aud:"Erkek ve kadın 45+",desc:"Dünya genelinde talk şovlar, belgeseller, röportajlar ve analitik programlarla önde gelen küresel Rusça haber kanalı."},
+      {name:"KİM KİMDİR",cat:"Eğlence",viewers:null,aud:"Entelektüel izleyiciler",desc:"Araştırmacı belgesellere, büyük şahsiyetlerin biyografilerine ve tarihin gizemlerine adanmış benzersiz medya platformu."},
+      {name:"PERETS",cat:"Eğlence",viewers:"20M+",aud:"Erkek 30–40",desc:"Erkek kitleye odaklanmış; filmler, diziler ve aile izlencelerine yönelik eğlence içeriği sunan kanal."},
+      {name:"NTV STYLE",cat:"Tematik",viewers:"Pazar payı %10–12",aud:"Kadın 18–45",desc:"Rusya'nın önde gelen kadın yaşam tarzı kanallarından biri; moda, güzellik, tasarım, sağlık ve seyahat."},
+      {name:"NTV PRAVO",cat:"Tematik",viewers:"10M+",aud:"Erkek ve kadın 25–54",desc:"Hukuki konulara, adalete ve suç davalarına odaklanan uzmanlaşmış bilgi kanalı. Analitik programlar ve eğitim içeriği."},
+      {name:"NTV SERIAL",cat:"Tematik",viewers:"Pazar payı %8–10",aud:"Erkek ve kadın 25–54",desc:"Dedektif hikayeleri, gerilimler, suç dramaları ve melodramlarla gripping Rus TV dizileri sunan önde gelen kanal."},
+      {name:"FONMUSIC",cat:"Tematik",viewers:"Aylık 8M+",aud:"Erkek ve kadın 14–45",desc:"Popüler Rus ve uluslararası müzik videoları, özel şovlar, listeler ve röportajlar yayınlayan müzik ve eğlence kanalı."},
+      {name:"START EPIC",cat:"Tematik",viewers:"20M havuzu",aud:"Erkek ve kadın 30–55",desc:"Seyahat, otomobil, mimari ve bilim üzerine özel blogger içeriğine sahip yaşam tarzı kanalı. 20'den fazla ünlü blogger."},
+      {name:"START WORLD",cat:"Tematik",viewers:"60+ ülke",aud:"Erkek ve kadın 25–60",desc:"En iyi uluslararası dizileri sunuyor. 60'tan fazla ülkedeki büyük sağlayıcıların temel paketlerinde mevcut."},
+      {name:"START AIR",cat:"Tematik",viewers:null,aud:"Erkek ve kadın 25–49",desc:"Özel orijinal diziler. Yüzlerce saatlik premium içerik."},
+      {name:"NEİZVESTNAYA ROSSIYA",cat:"Tematik",viewers:null,aud:"Erkek ve kadın 25–60",desc:"NTV'nin 7/24 belgesel kanalı: tarihi olaylar, Rus yetenekler — bilim insanları, doktorlar, yazarlar, müzisyenler."},
+      {name:"UMKA",cat:"Tematik",viewers:null,aud:"Çocuklu aileler",desc:"Soyuzmultfilm ve Multilandia'nın uluslararası çocuk animasyon kanalı. Dünya genelinde HD kalitede klasik ve modern animasyon."},
+      {name:"CHE",cat:"Tematik",viewers:"Rusya %87,6",aud:"Erkek ve kadın 25–49",desc:"Hız, enerji ve aksiyon reality showlarına odaklanan dinamik eğlence kanalı. Rusya'da %87,6 teknik kapsama."},
+      {name:"Nostalgiya",cat:"Tematik",viewers:null,aud:"40+ izleyiciler",desc:"Sovyet televizyonunun en iyi programlarını, Rus televizyonunun altın arşivini ve nesiller boyu kültürel mirası sunuyor."},
+      {name:"İZVESTİYA",cat:"Tematik",viewers:"15M+",aud:"Erkek ve kadın 25–54",desc:"Efsanevi medya markasının mirasına dayanan modern haber kanalı. 7/24 haber, özel analiz ve canlı yayınlar."}
+    ]
+  },
+  ar:{nav_channels:'القنوات',nav_geography:'الجغرافيا',nav_production:'الإنتاج',nav_cases:'دراسات الحالة',nav_setup:'الإعداد',nav_contact:'اتصل بنا',nav_cta:'تواصل معنا',hero_eyebrow:'مجموعة إعلامية دولية',hero_sub:'شريكك العالمي في عالم الإعلام والإعلان',stat_viewers:'مشاهد',stat_countries:'دولة',stat_years:'سنة',stat_channels:'قناة',scroll:'مرر',s_about:'عنّا',about_pull:'20 عامًا من الخبرة في الأسواق العالمية',about_p1:'نحن مجموعة إعلامية دولية تعمل في أسواق روسيا ودول الكومنولث وأوروبا وآسيا والشرق الأوسط.',about_p2:'تغطي خبرتنا الدورة الكاملة لإنشاء الإعلانات — من تطوير المفهوم الإبداعي إلى الوصول المضمون لجمهور الملايين.',tag_russia:'روسيا',tag_europe:'أوروبا',tag_asia:'آسيا',tag_me:'الشرق الأوسط',s_adv:'الميزة الرئيسية',adv_title:'البث الفضائي',adv_body:'وصول حصري إلى الجمهور الدولي. نحن لا نشتري وقت البث — <strong style="color:var(--signal)">نحن نملكه.</strong> نقدم باقات حصرية على 24 قناة تلفزيونية روسية شهيرة.',adv1_title:'وقت بث خاص',adv1_desc:'نتحكم في وضع الإعلانات في الكتل الدولية للقنوات الفيدرالية.',adv2_title:'تقنية HD',adv2_desc:'بث عبر أقمار صناعية دولية بجودة عالية.',adv3_title:'حصرية',adv3_desc:'إعلانك يصل إلى القنوات الأكثر شعبية وموثوقية.',s_portfolio:'محفظتنا',ch_title:'24 قناة تلفزيونية',ch_desc:'بث عالمي عبر أقمار صناعية دولية.',cat_all:'الكل',cat_federal:'فيدرالية',cat_ent:'ترفيهية',cat_them:'موضوعية',s_geo:'جغرافيا البث',geo_title:'وصول لأكثر من 250 مليون مشاهد في 59 دولة',geo_desc:'يغطي بثنا الفضائي الأسواق الرئيسية ذات التركيز العالي للجمهور الناطق بالروسية.',reg_europe:'أوروبا',reg_europe_count:'18 دولة',reg_europe_list:'ألمانيا، فرنسا، المملكة المتحدة، إسبانيا، إيطاليا، اليونان، تركيا، بولندا، رومانيا، بلغاريا، صربيا، المجر، التشيك، النمسا، سويسرا، بلجيكا، هولندا، البرتغال',reg_asia:'آسيا',reg_asia_count:'12 دولة',reg_asia_list:'نيبال، ميانمار، بنغلاديش، المالديف، الهند، سريلانكا، لاوس، فيتنام، تايلاند، كمبوديا، إندونيسيا، ماليزيا',reg_cis:'رابطة الدول المستقلة وآسيا الوسطى',reg_cis_count:'10 دول',reg_cis_list:'كازاخستان، أوزبكستان، أذربيجان، أرمينيا، جورجيا، قيرغيزستان، طاجيكستان، تركمانستان، مولدوفا، بيلاروس',reg_mena:'الشرق الأوسط وشمال أفريقيا',reg_mena_count:'19 دولة',reg_mena_list:'السعودية، قطر، الكويت، عمان، البحرين، العراق، إيران، الأردن، لبنان، سوريا، إسرائيل، فلسطين، مصر، ليبيا، تونس، الجزائر، المغرب، السودان',geo2_beams:'حزم فضائية',s_audience:'جمهورنا',aud_title:'من يشاهد قنواتنا؟',aud_desc:'نعمل مع جمهور فريد وعالي الدخل.',aud_l1:'مليون\nمشاهد محتمل',aud_l2:'مليون مسافر\nمؤقتًا في الخارج',aud_l3:'مليون مغترب\nيقيم في الخارج',aud_footnote:'مستوى عالٍ من الثقة في المحتوى والإعلانات المعروضة على القنوات المألوفة.',s_prod:'الإنتاج',prod_title:'إنتاج متكامل: من المفهوم إلى البث',prod_desc:'لدى CLAN DUBAI فريق محترف خاص يتولى كل مرحلة من مراحل إنشاء المواد الإعلانية.',prod_num_label:'مشروع ناجح في إنتاج الفيديو',stage1_label:'إبداع',stage1_i1:'تطوير المفهوم',stage1_i2:'كتابة السيناريو',stage1_i3:'القصة المصورة',stage1_i4:'فريق مؤلفين',stage2_label:'إنتاج',stage2_i1:'تصوير فيديو احترافي',stage2_i2:'تصوير جوي',stage2_i3:'تصوير فوتوغرافي',stage3_label:'ما بعد الإنتاج',stage3_i1:'المونتاج',stage3_i2:'تصحيح الألوان',stage3_i3:'رسوم متحركة',stage3_i4:'تصميم حركي',stage3_i5:'تعليق صوتي',s_digital:'رقمي',dig_title:'إعلانات رقمية عالمية',dig_desc:'نهج متعدد القنوات مع تكييف كامل للمحتوى.',dig1_label:'منصات',dig1_val:'جميع المنصات الرئيسية',dig1_desc:'Facebook, Instagram, VK, YouTube, Rutube',dig2_label:'توطين',dig2_val:'43 لغة',dig2_desc:'تكييف وترجمة المحتوى لأكثر من 66 دولة',dig3_label:'نتائج',dig3_val:'ملايين المشاهدات',dig3_desc:'عشرات الآلاف من العملاء المحتملين لكل حملة',srv1_title:'خدمات رقمية',srv1_i1:'إعلانات مستهدفة',srv1_i2:'SEO',srv1_i3:'إعلانات سياقية',srv1_i4:'تسويق المؤثرين',srv1_i5:'ترويج SMM',srv1_i6:'ترويج في المراسلات',srv2_title:'وسائل التواصل',dig2_title:'إعلانات رقمية عالمية',dig2_desc:'حملات رقمية متعددة القنوات مع توطين كامل.',dig2_big:'66+',dig2_big_label:'دولة تغطيها حملاتنا الرقمية',dig2_lang:'لغة',dig2_lang_d:'تكييف وترجمة كاملة للمحتوى',dig2_views:'مشاهدة رقمية',dig2_views_d:'عبر جميع المنصات',dig2_leads:'عميل محتمل لكل حملة',dig2_leads_d:'أداء تحويل مثبت',dig2_platforms:'منصات رئيسية',dig2_prod:'إنتاج',dig2_p1:'إعلانات فيديو',dig2_p2:'تصميم بانر',dig2_p3:'رسوم متحركة',dig2_p4:'كتابة محتوى',dig2_p5:'اختبار A/B',dig2_cta:'من المفهوم الإبداعي إلى <em>نتائج قابلة للقياس</em> — كل شيء تحت سقف واحد',s_add:'قنوات إضافية',rooh_title:'الراديو وواجهات الإعلام',rooh_desc2:'توسيع وصول علامتك التجارية خارج الشاشات.',rooh_cities:'مدينة في روسيا والعالم',radio_desc:'شراكات مع كبار الشركات القابضة بما في ذلك غازبروم-ميديا.',ooh_l1:'م² من الهياكل',ooh_l2:'الوصول اليومي للجمهور',ooh_loc:'مواقع متميزة في موسكو',ooh_ring:'الطريق الدائري الثالث وحلقة الحديقة',ooh_tech:'تكنولوجيا',ooh_note:'تقنيات مبتكرة: شاشات ثلاثية الأبعاد، محتوى ديناميكي.',rooh_stations:'محطات راديو',rooh_partners:'غازبروم-ميديا ومجموعة الإعلام الروسية',rooh_radio_title:'شركاء الراديو',rooh_on_air:'على الهواء',rooh_outdoor:'إعلانات خارجية',rooh_ooh_title:'واجهات إعلامية',ooh_desc2:'هياكلنا الإعلانية الخاصة في مواقع متميزة في موسكو.',rooh_cities_tag:'أكثر من 1000 مدينة',rooh_millions:'ملايين المستمعين',ooh_p1:'ملكية هياكل إعلانية خاصة بمساحة تزيد عن 2000 م².',ooh_p2:'التواجد في مواقع متميزة في موسكو بجمهور يومي يصل إلى 200,000 شخص.',ooh_p3:'استخدام تقنيات مبتكرة: شاشات ثلاثية الأبعاد، محتوى ديناميكي.',s_cullinan:'عرض',cullinan_title:'تصوير إعلان لفندق كوليناان بيليك',cullinan_desc:'فيديو ترويجي لفندق كوليناان بيليك الشامل، تركيا',watch_video:'شاهد الفيديو',s_cases:'دراسات حالة',cases_title:'نتائج تتحدث عن نفسها',cases_desc:'نعمل مع قادة السوق مثبتين فعالية حلولنا.',m_commercials:'إعلان',m_banners:'بانر',m_leads:'عميل شهريًا',m_views:'مشاهدة رقمية',m_tv:'بث تلفزيوني',also_label:'عملنا أيضًا مع',s_why:'لماذا كلان دبي',why_title:'مفتاحك للسوق العالمي',why1_title:'نملك وقت البث',why1_desc:'وصول مباشر بدون وسطاء.',why2_title:'نصنع المحتوى',why2_desc:'دورة إنتاج كاملة تحت سقف واحد.',why3_title:'نعرف الجمهور',why3_desc:'سنوات من الخبرة في أسواق أوروبا وآسيا والشرق الأوسط.',why4_title:'نضمن النتائج',why4_desc:'هدفنا شراكة استراتيجية وتحقيق مؤشراتك.',s_setup:'إعداد القمر الصناعي',setup_title:'مستعد للاتصال؟',setup_desc:'استخدم معالج الإعداد التفاعلي للحصول على معلمات توجيه هوائي القمر الصناعي.',setup_btn:'افتح معالج الإعداد',setup_note:'3 خطوات · يعمل في أي دولة',s_contact:'اتصل',contact_title:'لنبني حملتك العالمية',contact_role:'مدير',contact_cta_text:'هل أنتم مستعدون للإعلان على التلفزيون الدولي؟',contact_cta_wa:'اكتب على واتساب',footer_tagline:'مجموعة إعلامية دولية — 20 عامًا من الخبرة',footer_reach:'أكثر من 250 مليون مشاهد في 59 دولة',more_details:'تفاصيل',ch_about:'عن القناة',ch_target:'الجمهور المستهدف',ch_aud_label:'الجمهور',ticker:[{n:'250M+',l:'مشاهد محتمل'},{n:'59',l:'دولة'},{n:'24',l:'قناة'},{n:'20',l:'سنة خبرة'},{n:'500+',l:'مشروع فيديو'},{n:'43',l:'لغة'},{n:'2,000+',l:'م² واجهات'},{n:'1B+',l:'مشاهدة رقمية'}],channels:[{name:"NTV MIR",cat:"فيدرالية",viewers:null,aud:"رجال ونساء 35-55",desc:"جزء من أول مضاعف للتلفزيون الرقمي في روسيا."},{name:"Russia 24",cat:"فيدرالية",viewers:"80M+",aud:"رجال ونساء 30-55",desc:"إحدى القنوات الإخبارية الرائدة في روسيا."},{name:"PLANETA RTR",cat:"فيدرالية",viewers:"50M+",aud:"رجال ونساء 16-65",desc:"تغطية 98.5% من السكان الروس."},{name:"Ren TV",cat:"فيدرالية",viewers:null,aud:"رجال ونساء 25-60",desc:"برامج إخبارية جريئة ووثائقيات استقصائية."},{name:"FIVE CHANNEL",cat:"فيدرالية",viewers:"45M+",aud:"رجال ونساء 35-55",desc:"من أقدم القنوات الفيدرالية الروسية."},{name:"Domashniy",cat:"فيدرالية",viewers:"50M+",aud:"نساء 30-60",desc:"قناة موجهة لخلق أجواء مريحة."},{name:"TNT",cat:"ترفيهية",viewers:"100M+",aud:"18-45",desc:"الرائد المطلق في الوصول للجمهور الشاب."},{name:"STS",cat:"ترفيهية",viewers:"100M+",aud:"10-45",desc:"أشهر قناة ترفيهية في روسيا."},{name:"KVN",cat:"ترفيهية",viewers:"2.5M+",aud:"14-55",desc:"قناة مخصصة لبرنامج الفكاهة الروسي الشهير."},{name:"RTVI",cat:"ترفيهية",viewers:"25M+",aud:"45+",desc:"قناة إخبارية روسية رائدة عالميًا."},{name:"WHO IS WHO",cat:"ترفيهية",viewers:null,aud:"مشاهدون فضوليون",desc:"منصة إعلامية للوثائقيات الاستقصائية."},{name:"PERETS",cat:"ترفيهية",viewers:"20M+",aud:"رجال 30-40",desc:"قناة موجهة للجمهور الذكوري."},{name:"NTV STYLE",cat:"موضوعية",viewers:null,aud:"نساء 18-45",desc:"قناة نمط حياة نسائية رائدة."},{name:"NTV PRAVO",cat:"موضوعية",viewers:"10M+",aud:"25-54",desc:"قناة متخصصة في القضايا القانونية."},{name:"NTV SERIAL",cat:"موضوعية",viewers:null,aud:"25-54",desc:"مسلسلات روسية مشوقة."},{name:"FONMUSIC",cat:"موضوعية",viewers:"8M+",aud:"14-45",desc:"قناة موسيقية وترفيهية."},{name:"START EPIC",cat:"موضوعية",viewers:null,aud:"30-55",desc:"قناة نمط حياة مع محتوى حصري."},{name:"START WORLD",cat:"موضوعية",viewers:null,aud:"25-60",desc:"أفضل المسلسلات الدولية."},{name:"START AIR",cat:"موضوعية",viewers:null,aud:"25-49",desc:"مسلسلات أصلية حصرية."},{name:"NEIZVESTNAYA RUSSIA",cat:"موضوعية",viewers:null,aud:"25-60",desc:"قناة وثائقية على مدار الساعة."},{name:"UMKA",cat:"موضوعية",viewers:null,aud:"عائلات",desc:"قناة رسوم متحركة دولية للأطفال."},{name:"CHE",cat:"موضوعية",viewers:null,aud:"25-49",desc:"قناة ترفيهية ديناميكية."},{name:"Nostalgiya",cat:"موضوعية",viewers:null,aud:"40+",desc:"أفضل برامج التلفزيون السوفيتي."},{name:"IZVESTIYA",cat:"موضوعية",viewers:"15M+",aud:"25-54",desc:"قناة إخبارية حديثة على مدار الساعة."}]},
+  de:{nav_channels:'Kanäle',nav_geography:'Geografie',nav_production:'Produktion',nav_cases:'Referenzen',nav_setup:'Einrichtung',nav_contact:'Kontakt',nav_cta:'Kontaktieren',hero_eyebrow:'Internationale Mediengruppe',hero_sub:'Ihr globaler Partner in der Welt der Medien und Werbung',stat_viewers:'Zuschauer',stat_countries:'Länder',stat_years:'Jahre',stat_channels:'TV-Kanäle',scroll:'Scrollen',s_about:'Über uns',about_pull:'20 Jahre Erfahrung auf globalen Märkten',about_p1:'Wir sind eine internationale Mediengruppe, die auf den Märkten Russlands, der GUS-Staaten, Europas, Asiens und des Nahen Ostens tätig ist.',about_p2:'Unsere Expertise umfasst den gesamten Zyklus der Werbeerstellung und -platzierung — von der Konzeptentwicklung bis zur garantierten Reichweite eines Millionenpublikums.',tag_russia:'Russland',tag_europe:'Europa',tag_asia:'Asien',tag_me:'Naher Osten',s_adv:'Hauptvorteil',adv_title:'Satellitenausstrahlung',adv_body:'Exklusiver Zugang zu einem internationalen Publikum. Anders als die meisten Agenturen kaufen wir keine Sendezeit — <strong style="color:var(--signal)">wir besitzen sie.</strong> Wir sind einer der größten Mediaverkäufer mit exklusiven Paketen auf 24 beliebten russischen TV-Kanälen.',adv1_title:'Eigene Sendezeit',adv1_desc:'Wir kontrollieren die Werbeplatzierung in den internationalen Blöcken.',adv2_title:'HD-Technologie',adv2_desc:'Ausstrahlung über internationale Satelliten in HD-Qualität.',adv3_title:'Exklusivität',adv3_desc:'Ihre Werbung erreicht die beliebtesten und vertrauenswürdigsten Kanäle.',s_portfolio:'Unser Portfolio',ch_title:'24 TV-Kanäle',ch_desc:'Weltweite Ausstrahlung über internationale Satelliten.',cat_all:'Alle',cat_federal:'Bundesweit',cat_ent:'Unterhaltung',cat_them:'Thematisch',s_geo:'Sendegeografie',geo_title:'Reichweite von über 250 Millionen Zuschauern in 59 Ländern',geo_desc:'Unsere Satellitenausstrahlung deckt Schlüsselmärkte mit hoher Konzentration russischsprachiger Zuschauer ab.',reg_europe:'Europa',reg_europe_count:'18 Länder',reg_europe_list:'Deutschland, Frankreich, Großbritannien, Spanien, Italien, Griechenland, Türkei, Polen, Rumänien, Bulgarien, Serbien, Ungarn, Tschechien, Österreich, Schweiz, Belgien, Niederlande, Portugal',reg_asia:'Asien',reg_asia_count:'12 Länder',reg_asia_list:'Nepal, Myanmar, Bangladesch, Malediven, Indien, Sri Lanka, Laos, Vietnam, Thailand, Kambodscha, Indonesien, Malaysia',reg_cis:'GUS & Zentralasien',reg_cis_count:'10 Länder',reg_cis_list:'Kasachstan, Usbekistan, Aserbaidschan, Armenien, Georgien, Kirgisistan, Tadschikistan, Turkmenistan, Moldawien, Belarus',reg_mena:'Naher Osten & Nordafrika',reg_mena_count:'19 Länder',reg_mena_list:'Saudi-Arabien, Katar, Kuwait, Oman, Bahrain, Irak, Iran, Jordanien, Libanon, Syrien, Israel, Palästina, Ägypten, Libyen, Tunesien, Algerien, Marokko, Sudan',geo2_beams:'Satellitenbeams',s_audience:'Unser Publikum',aud_title:'Wer schaut unsere Kanäle?',aud_desc:'Wir arbeiten mit einem einzigartigen, einkommensstarken Publikum.',aud_l1:'Millionen\npotenzielle Zuschauer',aud_l2:'Millionen Reisende\nvorübergehend im Ausland',aud_l3:'Millionen Expats\ndauerhaft im Ausland',aud_footnote:'Hohes Vertrauen in den Inhalt und die Werbung auf vertrauten Kanälen.',s_prod:'Produktion',prod_title:'Vollzyklus-Produktion: vom Konzept zur Ausstrahlung',prod_desc:'CLAN DUBAI verfügt über ein eigenes Team von Fachleuten für jede Phase der Werbematerialerstellung.',prod_num_label:'Erfolgreiche Projekte in der Videoproduktion',stage1_label:'Kreativ',stage1_i1:'Konzeptentwicklung',stage1_i2:'Drehbuchschreiben',stage1_i3:'Storyboarding',stage1_i4:'Autorenpool',stage2_label:'Produktion',stage2_i1:'Professionelle Videoaufnahme',stage2_i2:'Luftaufnahmen',stage2_i3:'Fotografie',stage3_label:'Postproduktion',stage3_i1:'Schnitt',stage3_i2:'Farbkorrektur',stage3_i3:'2D & 3D Animation',stage3_i4:'Motion Design',stage3_i5:'Vertonung',s_digital:'Digital',dig_title:'Digitale Werbung weltweit',dig_desc:'Multikanalansatz mit vollständiger Inhaltsanpassung für lokale Märkte.',dig1_label:'Plattformen',dig1_val:'Alle wichtigen Plattformen',dig1_desc:'Facebook, Instagram, VK, YouTube, Rutube',dig2_label:'Lokalisierung',dig2_val:'43 Sprachen',dig2_desc:'Inhaltsanpassung für über 66 Länder',dig3_label:'Ergebnisse',dig3_val:'Millionen Aufrufe',dig3_desc:'Zehntausende Leads pro Kampagne',srv1_title:'Digitale Dienste',srv1_i1:'Gezielte Werbung',srv1_i2:'SEO',srv1_i3:'Kontextuelle Werbung',srv1_i4:'Influencer-Marketing',srv1_i5:'SMM-Promotion',srv1_i6:'Messenger-Promotion',srv2_title:'Soziale Medien',dig2_title:'Digitale Werbung weltweit',dig2_desc:'Multikanal-Kampagnen mit vollständiger Lokalisierung in 66+ Ländern.',dig2_big:'66+',dig2_big_label:'Länder von unseren Kampagnen abgedeckt',dig2_lang:'Sprachen',dig2_lang_d:'Vollständige Inhaltsanpassung',dig2_views:'Digitale Aufrufe',dig2_views_d:'Über alle Plattformen',dig2_leads:'Leads pro Kampagne',dig2_leads_d:'Bewiesene Konversionsleistung',dig2_platforms:'Hauptplattformen',dig2_prod:'Produktion',dig2_p1:'Videowerbung',dig2_p2:'Bannerdesign',dig2_p3:'Motion Graphics',dig2_p4:'Texterstellung',dig2_p5:'A/B-Tests',dig2_cta:'Vom kreativen Konzept zu <em>messbaren Ergebnissen</em> — alles unter einem Dach',s_add:'Weitere Kanäle',rooh_title:'Radio & Medienfassaden',rooh_desc2:'Erweitern Sie Ihre Markenreichweite über Bildschirme hinaus.',rooh_cities:'Städte in Russland und weltweit',radio_desc:'Partnerschaften mit großen Holdings wie Gazprom-Media und Russian Media Group.',ooh_l1:'m² Werbeflächen',ooh_l2:'Tägliche Reichweite',ooh_loc:'Premium-Standorte in Moskau',ooh_ring:'Dritter Ring & Gartenring',ooh_tech:'Technologie',ooh_note:'Innovative Technologien: 3D-Bildschirme, dynamischer Inhalt.',rooh_stations:'Radiosender',rooh_partners:'Gazprom-Media & Russian Media Group',rooh_radio_title:'Radiopartner',rooh_on_air:'On Air',rooh_outdoor:'Außenwerbung',rooh_ooh_title:'Medienfassaden',ooh_desc2:'Eigene Werbestrukturen an Premium-Standorten in Moskau.',rooh_cities_tag:'1.000+ Städte',rooh_millions:'Millionen Zuhörer',ooh_p1:'Eigene Werbestrukturen mit über 2.000 m² Gesamtfläche.',ooh_p2:'Platzierung an Premium-Standorten in Moskau mit bis zu 200.000 täglichen Kontakten.',ooh_p3:'Einsatz innovativer Technologien: 3D-Bildschirme, dynamischer Inhalt.',s_cullinan:'Showreel',cullinan_title:'Werbedreh für das Cullinan Belek Hotel',cullinan_desc:'Promovideo für das Ultra All Inclusive Cullinan Belek Hotel, Türkei',watch_video:'Video ansehen',s_cases:'Referenzen',cases_title:'Ergebnisse, die für sich sprechen',cases_desc:'Wir arbeiten mit Marktführern und beweisen die Wirksamkeit unserer Lösungen.',m_commercials:'Werbespots',m_banners:'Banner',m_leads:'Monatliche Leads',m_views:'Digitale Aufrufe',m_tv:'TV-Ausstrahlungen',also_label:'Ebenfalls gearbeitet mit',s_why:'Warum Clan Dubai',why_title:'Ihr Schlüssel zum globalen Markt',why1_title:'Wir besitzen die Sendezeit',why1_desc:'Direkter Zugang ohne Vermittler.',why2_title:'Wir erstellen Inhalte',why2_desc:'Kompletter Produktionszyklus aus einer Hand.',why3_title:'Wir kennen das Publikum',why3_desc:'Jahrelange Erfahrung in Europa, Asien und dem Nahen Osten.',why4_title:'Wir garantieren Ergebnisse',why4_desc:'Unser Ziel ist strategische Partnerschaft und Ihre KPIs.',s_setup:'Satelliteneinrichtung',setup_title:'Bereit zur Verbindung?',setup_desc:'Nutzen Sie unseren interaktiven Einrichtungsassistenten für personalisierte Antennenparameter.',setup_btn:'Einrichtungsassistent öffnen',setup_note:'3 Schritte · funktioniert in jedem Land',s_contact:'Kontakt',contact_title:'Lassen Sie uns Ihre globale Kampagne aufbauen',contact_role:'Manager',contact_cta_text:'Bereit für Werbung im internationalen TV?',contact_cta_wa:'Auf WhatsApp schreiben',footer_tagline:'Internationale Mediengruppe — 20 Jahre Expertise',footer_reach:'250M+ Zuschauer in 59 Ländern',more_details:'Details',ch_about:'Über den Kanal',ch_target:'Zielgruppe',ch_aud_label:'Publikum',ticker:[{n:'250M+',l:'Potenzielle Zuschauer'},{n:'59',l:'Länder'},{n:'24',l:'TV-Kanäle'},{n:'20',l:'Jahre Expertise'},{n:'500+',l:'Videoprojekte'},{n:'43',l:'Sprachen'},{n:'2.000+',l:'m² Fassaden'},{n:'1B+',l:'Digitale Aufrufe'}],channels:[{name:"NTV MIR",cat:"Bundesweit",viewers:null,aud:"Männer & Frauen 35–55",desc:"Teil des ersten Multiplexes des digitalen Fernsehens in Russland."},{name:"Russia 24",cat:"Bundesweit",viewers:"80M+",aud:"Männer & Frauen 30–55",desc:"Einer der führenden Nachrichtenkanäle Russlands."},{name:"PLANETA RTR",cat:"Bundesweit",viewers:"50M+",aud:"Männer & Frauen 16–65",desc:"98,5% Abdeckung der russischen Bevölkerung."},{name:"Ren TV",cat:"Bundesweit",viewers:null,aud:"Männer & Frauen 25–60",desc:"Investigative Dokumentationen und Unterhaltungsshows."},{name:"FIVE CHANNEL",cat:"Bundesweit",viewers:"45M+",aud:"Männer & Frauen 35–55",desc:"Einer der ältesten föderalen TV-Kanäle Russlands."},{name:"Domashniy",cat:"Bundesweit",viewers:"50M+",aud:"Frauen 30–60",desc:"Kanal mit gemütlicher Atmosphäre."},{name:"TNT",cat:"Unterhaltung",viewers:"100M+",aud:"Kern 18–45",desc:"Absoluter Marktführer bei jungem Publikum."},{name:"STS",cat:"Unterhaltung",viewers:"100M+",aud:"Kern 10–45",desc:"Bekanntester Unterhaltungskanal Russlands."},{name:"KVN",cat:"Unterhaltung",viewers:"2,5M+",aud:"14–55",desc:"Kultshow Club der Lustigen und Schlagfertigen."},{name:"RTVI",cat:"Unterhaltung",viewers:"25M+",aud:"45+",desc:"Führender globaler russischsprachiger Nachrichtenkanal."},{name:"WHO IS WHO",cat:"Unterhaltung",viewers:null,aud:"Wissbegierige Zuschauer",desc:"Investigative Dokumentationen und Biografien."},{name:"PERETS",cat:"Unterhaltung",viewers:"20M+",aud:"Männer 30–40",desc:"Auf männliches Publikum ausgerichteter Kanal."},{name:"NTV STYLE",cat:"Thematisch",viewers:null,aud:"Frauen 18–45",desc:"Führender Lifestyle-Kanal für Frauen."},{name:"NTV PRAVO",cat:"Thematisch",viewers:"10M+",aud:"25–54",desc:"Spezialisiert auf Rechtsthemen."},{name:"NTV SERIAL",cat:"Thematisch",viewers:null,aud:"25–54",desc:"Fesselnde russische TV-Serien."},{name:"FONMUSIC",cat:"Thematisch",viewers:"8M+",aud:"14–45",desc:"Musik- und Unterhaltungskanal."},{name:"START EPIC",cat:"Thematisch",viewers:null,aud:"30–55",desc:"Lifestyle-Kanal mit exklusivem Blogger-Content."},{name:"START WORLD",cat:"Thematisch",viewers:null,aud:"25–60",desc:"Beste internationale Serien."},{name:"START AIR",cat:"Thematisch",viewers:null,aud:"25–49",desc:"Exklusive Originalserien."},{name:"NEIZVESTNAYA RUSSIA",cat:"Thematisch",viewers:null,aud:"25–60",desc:"24/7 Dokumentarkanal von NTV."},{name:"UMKA",cat:"Thematisch",viewers:null,aud:"Familien mit Kindern",desc:"Internationaler Kinderanimationskanal."},{name:"CHE",cat:"Thematisch",viewers:null,aud:"25–49",desc:"Dynamischer Unterhaltungskanal."},{name:"Nostalgiya",cat:"Thematisch",viewers:null,aud:"40+",desc:"Die besten Programme des sowjetischen Fernsehens."},{name:"IZVESTIYA",cat:"Thematisch",viewers:"15M+",aud:"25–54",desc:"Moderner 24/7-Nachrichtenkanal."}]},
+  it:{nav_channels:'Canali',nav_geography:'Geografia',nav_production:'Produzione',nav_cases:'Casi',nav_setup:'Configurazione',nav_contact:'Contatti',nav_cta:'Contattaci',hero_eyebrow:'Gruppo Mediatico Internazionale',hero_sub:'Il vostro partner globale nel mondo dei media e della pubblicità',stat_viewers:'Telespettatori',stat_countries:'Paesi',stat_years:'Anni',stat_channels:'Canali TV',scroll:'Scorri',s_about:'Chi siamo',about_pull:'20 anni di esperienza nei mercati globali',about_p1:'Siamo un gruppo mediatico internazionale che opera nei mercati di Russia, paesi della CSI, Europa, Asia e Medio Oriente.',about_p2:'La nostra competenza copre l\'intero ciclo di creazione e posizionamento pubblicitario.',tag_russia:'Russia',tag_europe:'Europa',tag_asia:'Asia',tag_me:'Medio Oriente',s_adv:'Vantaggio Chiave',adv_title:'Trasmissione Satellitare',adv_body:'Accesso esclusivo a un pubblico internazionale. Non acquistiamo spazi pubblicitari — <strong style="color:var(--signal)">li possediamo.</strong> Offriamo pacchetti esclusivi su 24 popolari canali TV russi.',adv1_title:'Spazi Propri',adv1_desc:'Controlliamo il posizionamento pubblicitario nei blocchi internazionali dei canali federali.',adv2_title:'Tecnologia HD',adv2_desc:'Trasmissione via satelliti internazionali in qualità HD.',adv3_title:'Esclusività',adv3_desc:'La vostra pubblicità raggiunge i canali più popolari e affidabili.',s_portfolio:'Il Nostro Portfolio',ch_title:'24 Canali TV',ch_desc:'Trasmessi in tutto il mondo via satelliti internazionali.',cat_all:'Tutti',cat_federal:'Federale',cat_ent:'Intrattenimento',cat_them:'Tematico',s_geo:'Geografia di Trasmissione',geo_title:'Copertura di oltre 250 milioni di telespettatori in 59 paesi',geo_desc:'La nostra trasmissione satellitare copre mercati chiave con alta concentrazione di pubblico russofono.',reg_europe:'Europa',reg_europe_count:'18 paesi',reg_europe_list:'Germania, Francia, Regno Unito, Spagna, Italia, Grecia, Turchia, Polonia, Romania, Bulgaria, Serbia, Ungheria, Repubblica Ceca, Austria, Svizzera, Belgio, Paesi Bassi, Portogallo',reg_asia:'Asia',reg_asia_count:'12 paesi',reg_asia_list:'Nepal, Myanmar, Bangladesh, Maldive, India, Sri Lanka, Laos, Vietnam, Thailandia, Cambogia, Indonesia, Malesia',reg_cis:'CSI & Asia Centrale',reg_cis_count:'10 paesi',reg_cis_list:'Kazakistan, Uzbekistan, Azerbaigian, Armenia, Georgia, Kirghizistan, Tagikistan, Turkmenistan, Moldavia, Bielorussia',reg_mena:'Medio Oriente & Nord Africa',reg_mena_count:'19 paesi',reg_mena_list:'Arabia Saudita, Qatar, Kuwait, Oman, Bahrein, Iraq, Iran, Giordania, Libano, Siria, Israele, Palestina, Egitto, Libia, Tunisia, Algeria, Marocco, Sudan',geo2_beams:'Fasci Satellitari',s_audience:'Il Nostro Pubblico',aud_title:'Chi guarda i nostri canali?',aud_desc:'Lavoriamo con un pubblico unico e ad alto reddito.',aud_l1:'Milioni\ndi potenziali telespettatori',aud_l2:'Milioni di viaggiatori\ntemporaneamente all\'estero',aud_l3:'Milioni di espatriati\nresidenti all\'estero',aud_footnote:'Alto livello di fiducia nei contenuti e nella pubblicità sui canali familiari.',s_prod:'Produzione',prod_title:'Produzione a ciclo completo: dal concept alla messa in onda',prod_desc:'CLAN DUBAI dispone di un proprio team interno di professionisti.',prod_num_label:'Progetti di successo nella produzione video',stage1_label:'Creativo',stage1_i1:'Sviluppo del concept',stage1_i2:'Sceneggiatura',stage1_i3:'Storyboarding',stage1_i4:'Pool di autori',stage2_label:'Produzione',stage2_i1:'Riprese video professionali',stage2_i2:'Cinematografia aerea',stage2_i3:'Fotografia',stage3_label:'Post-Produzione',stage3_i1:'Montaggio',stage3_i2:'Color grading',stage3_i3:'Animazione 2D & 3D',stage3_i4:'Motion design',stage3_i5:'Doppiaggio',s_digital:'Digitale',dig_title:'Pubblicità Digitale Mondiale',dig_desc:'Approccio multicanale con adattamento completo dei contenuti.',dig1_label:'Piattaforme',dig1_val:'Tutte le piattaforme principali',dig1_desc:'Facebook, Instagram, VK, YouTube, Rutube',dig2_label:'Localizzazione',dig2_val:'43 lingue',dig2_desc:'Adattamento per oltre 66 paesi',dig3_label:'Risultati',dig3_val:'Milioni di visualizzazioni',dig3_desc:'Migliaia di lead per campagna',srv1_title:'Servizi Digitali',srv1_i1:'Pubblicità mirata',srv1_i2:'SEO',srv1_i3:'Pubblicità contestuale',srv1_i4:'Influencer marketing',srv1_i5:'Promozione SMM',srv1_i6:'Promozione nei messenger',srv2_title:'Social Media',dig2_title:'Pubblicità Digitale Mondiale',dig2_desc:'Campagne digitali multicanale con localizzazione completa in 66+ paesi.',dig2_big:'66+',dig2_big_label:'Paesi coperti dalle nostre campagne',dig2_lang:'Lingue',dig2_lang_d:'Adattamento e traduzione completa',dig2_views:'Visualizzazioni digitali',dig2_views_d:'Su tutte le piattaforme',dig2_leads:'Lead per campagna',dig2_leads_d:'Performance comprovata',dig2_platforms:'Piattaforme principali',dig2_prod:'Produzione',dig2_p1:'Video pubblicitari',dig2_p2:'Design banner',dig2_p3:'Motion graphics',dig2_p4:'Copywriting',dig2_p5:'A/B testing',dig2_cta:'Dal concept creativo ai <em>risultati misurabili</em> — tutto sotto un unico tetto',s_add:'Canali Aggiuntivi',rooh_title:'Radio & Facciate Mediatiche',rooh_desc2:'Estendete la portata del vostro marchio oltre gli schermi.',rooh_cities:'Città in Russia e nel mondo',radio_desc:'Partnership con Gazprom-Media e Russian Media Group. Milioni di ascoltatori in oltre 1.000 città.',ooh_l1:'mq di strutture',ooh_l2:'Copertura giornaliera',ooh_loc:'Posizioni premium a Mosca',ooh_ring:'Terzo Anello & Anello dei Giardini',ooh_tech:'Tecnologia',ooh_note:'Tecnologie innovative: schermi 3D, contenuti dinamici.',rooh_stations:'Stazioni radio',rooh_partners:'Gazprom-Media & Russian Media Group',rooh_radio_title:'Partner Radiofonici',rooh_on_air:'In Onda',rooh_outdoor:'Esterni',rooh_ooh_title:'Facciate Mediatiche',ooh_desc2:'Strutture pubblicitarie in posizioni premium a Mosca con schermi 3D.',rooh_cities_tag:'1.000+ città',rooh_millions:'Milioni di ascoltatori',ooh_p1:'Strutture pubblicitarie proprie per oltre 2.000 mq.',ooh_p2:'Posizioni premium a Mosca con audience giornaliera fino a 200.000 persone.',ooh_p3:'Tecnologie innovative: schermi 3D, contenuti dinamici.',s_cullinan:'Showreel',cullinan_title:'Spot per il Cullinan Belek Hotel',cullinan_desc:'Video promozionale per il Cullinan Belek Hotel, Turchia',watch_video:'Guarda il Video',s_cases:'Casi Studio',cases_title:'Risultati che parlano da soli',cases_desc:'Lavoriamo con i leader di mercato.',m_commercials:'Spot',m_banners:'Banner',m_leads:'Lead mensili',m_views:'Visualizzazioni',m_tv:'Uscite TV',also_label:'Hanno collaborato anche',s_why:'Perché Clan Dubai',why_title:'La vostra chiave per il mercato globale',why1_title:'Possediamo gli spazi',why1_desc:'Accesso diretto senza intermediari.',why2_title:'Creiamo contenuti',why2_desc:'Ciclo completo dal concept alla messa in onda.',why3_title:'Conosciamo il pubblico',why3_desc:'Anni di esperienza in Europa, Asia e Medio Oriente.',why4_title:'Garantiamo risultati',why4_desc:'Partnership strategica e raggiungimento dei vostri KPI.',s_setup:'Configurazione Satellitare',setup_title:'Pronti a connettervi?',setup_desc:'Utilizzate la procedura guidata per i parametri di puntamento dell\'antenna.',setup_btn:'Apri Procedura Guidata',setup_note:'3 passaggi · funziona in qualsiasi paese',s_contact:'Contatti',contact_title:'Costruiamo la vostra campagna globale',contact_role:'Manager',contact_cta_text:'Pronti a fare pubblicità sulla TV internazionale?',contact_cta_wa:'Scrivi su WhatsApp',footer_tagline:'Gruppo Mediatico Internazionale — 20 anni di competenza',footer_reach:'250M+ telespettatori in 59 paesi',more_details:'Dettagli',ch_about:'Informazioni sul Canale',ch_target:'Pubblico di Riferimento',ch_aud_label:'Pubblico',ticker:[{n:'250M+',l:'Telespettatori'},{n:'59',l:'Paesi'},{n:'24',l:'Canali TV'},{n:'20',l:'Anni'},{n:'500+',l:'Progetti video'},{n:'43',l:'Lingue'},{n:'2.000+',l:'mq facciate'},{n:'1B+',l:'Visualizzazioni'}],channels:[{name:"NTV MIR",cat:"Federale",viewers:null,aud:"Uomini e donne 35–55",desc:"Parte del primo multiplex della TV digitale in Russia."},{name:"Russia 24",cat:"Federale",viewers:"80M+",aud:"Uomini e donne 30–55",desc:"Uno dei principali canali informativi in Russia."},{name:"PLANETA RTR",cat:"Federale",viewers:"50M+",aud:"Uomini e donne 16–65",desc:"98,5% di copertura. Documentari e programmi culturali."},{name:"Ren TV",cat:"Federale",viewers:null,aud:"Uomini e donne 25–60",desc:"Giornalismo investigativo e intrattenimento."},{name:"FIVE CHANNEL",cat:"Federale",viewers:"45M+",aud:"Uomini e donne 35–55",desc:"Uno dei più antichi canali federali russi."},{name:"Domashniy",cat:"Federale",viewers:"50M+",aud:"Donne 30–60",desc:"Atmosfera confortevole per il pubblico."},{name:"TNT",cat:"Intrattenimento",viewers:"100M+",aud:"Core 18–45",desc:"Leader assoluto nel pubblico giovane."},{name:"STS",cat:"Intrattenimento",viewers:"100M+",aud:"Core 10–45",desc:"Il canale di intrattenimento più riconoscibile."},{name:"KVN",cat:"Intrattenimento",viewers:"2,5M+",aud:"14–55",desc:"Show umoristico culto russo."},{name:"RTVI",cat:"Intrattenimento",viewers:"25M+",aud:"45+",desc:"Principale canale di notizie russofono."},{name:"WHO IS WHO",cat:"Intrattenimento",viewers:null,aud:"Telespettatori curiosi",desc:"Documentari investigativi e biografie."},{name:"PERETS",cat:"Intrattenimento",viewers:"20M+",aud:"Uomini 30–40",desc:"Contenuti per pubblico maschile."},{name:"NTV STYLE",cat:"Tematico",viewers:null,aud:"Donne 18–45",desc:"Lifestyle per donne: moda, bellezza, design."},{name:"NTV PRAVO",cat:"Tematico",viewers:"10M+",aud:"25–54",desc:"Questioni legali e giustizia."},{name:"NTV SERIAL",cat:"Tematico",viewers:null,aud:"25–54",desc:"Serie TV russe avvincenti."},{name:"FONMUSIC",cat:"Tematico",viewers:"8M+",aud:"14–45",desc:"Musica e intrattenimento."},{name:"START EPIC",cat:"Tematico",viewers:null,aud:"30–55",desc:"Lifestyle con contenuti blogger."},{name:"START WORLD",cat:"Tematico",viewers:null,aud:"25–60",desc:"Migliori serie internazionali."},{name:"START AIR",cat:"Tematico",viewers:null,aud:"25–49",desc:"Serie originali esclusive."},{name:"NEIZVESTNAYA RUSSIA",cat:"Tematico",viewers:null,aud:"25–60",desc:"Documentari 24/7 di NTV."},{name:"UMKA",cat:"Tematico",viewers:null,aud:"Famiglie con bambini",desc:"Animazione per bambini."},{name:"CHE",cat:"Tematico",viewers:null,aud:"25–49",desc:"Intrattenimento dinamico."},{name:"Nostalgiya",cat:"Tematico",viewers:null,aud:"40+",desc:"Classici della TV sovietica."},{name:"IZVESTIYA",cat:"Tematico",viewers:"15M+",aud:"25–54",desc:"Canale informativo moderno 24/7."}]},
+  es:{nav_channels:'Canales',nav_geography:'Geografía',nav_production:'Producción',nav_cases:'Casos',nav_setup:'Configuración',nav_contact:'Contacto',nav_cta:'Contáctenos',hero_eyebrow:'Grupo de Medios Internacional',hero_sub:'Su socio global en el mundo de los medios y la publicidad',stat_viewers:'Espectadores',stat_countries:'Países',stat_years:'Años',stat_channels:'Canales de TV',scroll:'Desplazar',s_about:'Sobre nosotros',about_pull:'20 años de experiencia en mercados globales',about_p1:'Somos un grupo de medios internacional que opera en los mercados de Rusia, la CEI, Europa, Asia y Oriente Medio.',about_p2:'Nuestra experiencia abarca el ciclo completo de creación y colocación de publicidad.',tag_russia:'Rusia',tag_europe:'Europa',tag_asia:'Asia',tag_me:'Oriente Medio',s_adv:'Ventaja Clave',adv_title:'Transmisión Satelital',adv_body:'Acceso exclusivo a una audiencia internacional. No compramos tiempo de emisión — <strong style="color:var(--signal)">lo poseemos.</strong> Ofrecemos paquetes exclusivos en 24 populares canales de TV rusos.',adv1_title:'Tiempo de Emisión Propio',adv1_desc:'Controlamos la colocación de publicidad en los bloques internacionales.',adv2_title:'Tecnología HD',adv2_desc:'Transmisión por satélites internacionales en calidad HD.',adv3_title:'Exclusividad',adv3_desc:'Su publicidad llega a los canales más populares y confiables.',s_portfolio:'Nuestro Portafolio',ch_title:'24 Canales de TV',ch_desc:'Transmitidos a todo el mundo por satélites internacionales.',cat_all:'Todos',cat_federal:'Federal',cat_ent:'Entretenimiento',cat_them:'Temático',s_geo:'Geografía de Transmisión',geo_title:'Alcance de más de 250 millones de espectadores en 59 países',geo_desc:'Nuestra transmisión satelital cubre mercados clave con alta concentración de audiencias rusófonas.',reg_europe:'Europa',reg_europe_count:'18 países',reg_europe_list:'Alemania, Francia, Reino Unido, España, Italia, Grecia, Turquía, Polonia, Rumanía, Bulgaria, Serbia, Hungría, República Checa, Austria, Suiza, Bélgica, Países Bajos, Portugal',reg_asia:'Asia',reg_asia_count:'12 países',reg_asia_list:'Nepal, Myanmar, Bangladés, Maldivas, India, Sri Lanka, Laos, Vietnam, Tailandia, Camboya, Indonesia, Malasia',reg_cis:'CEI y Asia Central',reg_cis_count:'10 países',reg_cis_list:'Kazajistán, Uzbekistán, Azerbaiyán, Armenia, Georgia, Kirguistán, Tayikistán, Turkmenistán, Moldavia, Bielorrusia',reg_mena:'Oriente Medio y Norte de África',reg_mena_count:'19 países',reg_mena_list:'Arabia Saudita, Catar, Kuwait, Omán, Baréin, Irak, Irán, Jordania, Líbano, Siria, Israel, Palestina, Egipto, Libia, Túnez, Argelia, Marruecos, Sudán',geo2_beams:'Haces Satelitales',s_audience:'Nuestra Audiencia',aud_title:'¿Quién ve nuestros canales?',aud_desc:'Trabajamos con una audiencia única y de altos ingresos.',aud_l1:'Millones de\nespectadores potenciales',aud_l2:'Millones de viajeros\nen el extranjero',aud_l3:'Millones de expatriados\nresidiendo en el extranjero',aud_footnote:'Alto nivel de confianza en el contenido y la publicidad en canales familiares.',s_prod:'Producción',prod_title:'Producción de ciclo completo: del concepto a la emisión',prod_desc:'CLAN DUBAI cuenta con su propio equipo de profesionales.',prod_num_label:'Proyectos exitosos en producción de video',stage1_label:'Creativo',stage1_i1:'Desarrollo de concepto',stage1_i2:'Escritura de guión',stage1_i3:'Storyboarding',stage1_i4:'Pool de autores',stage2_label:'Producción',stage2_i1:'Grabación profesional',stage2_i2:'Cinematografía aérea',stage2_i3:'Fotografía',stage3_label:'Postproducción',stage3_i1:'Edición',stage3_i2:'Corrección de color',stage3_i3:'Animación 2D y 3D',stage3_i4:'Motion design',stage3_i5:'Locución',s_digital:'Digital',dig_title:'Publicidad Digital Mundial',dig_desc:'Enfoque multicanal con adaptación completa de contenido.',dig1_label:'Plataformas',dig1_val:'Todas las plataformas clave',dig1_desc:'Facebook, Instagram, VK, YouTube, Rutube',dig2_label:'Localización',dig2_val:'43 idiomas',dig2_desc:'Adaptación para más de 66 países',dig3_label:'Resultados',dig3_val:'Millones de vistas',dig3_desc:'Miles de leads por campaña',srv1_title:'Servicios Digitales',srv1_i1:'Publicidad segmentada',srv1_i2:'SEO',srv1_i3:'Publicidad contextual',srv1_i4:'Marketing de influencers',srv1_i5:'Promoción SMM',srv1_i6:'Promoción en mensajeros',srv2_title:'Redes Sociales',dig2_title:'Publicidad Digital Mundial',dig2_desc:'Campañas multicanal con localización completa en 66+ países.',dig2_big:'66+',dig2_big_label:'Países cubiertos por nuestras campañas',dig2_lang:'Idiomas',dig2_lang_d:'Adaptación y traducción completa',dig2_views:'Vistas digitales',dig2_views_d:'En todas las plataformas',dig2_leads:'Leads por campaña',dig2_leads_d:'Rendimiento comprobado',dig2_platforms:'Plataformas clave',dig2_prod:'Producción',dig2_p1:'Anuncios en video',dig2_p2:'Diseño de banners',dig2_p3:'Motion graphics',dig2_p4:'Redacción',dig2_p5:'Pruebas A/B',dig2_cta:'Del concepto creativo a <em>resultados medibles</em> — todo bajo un mismo techo',s_add:'Canales Adicionales',rooh_title:'Radio y Fachadas de Medios',rooh_desc2:'Ampliando el alcance de su marca más allá de las pantallas.',rooh_cities:'Ciudades en Rusia y en todo el mundo',radio_desc:'Alianzas con Gazprom-Media y Russian Media Group. Millones de oyentes en más de 1.000 ciudades.',ooh_l1:'m² de estructuras',ooh_l2:'Alcance diario',ooh_loc:'Ubicaciones premium en Moscú',ooh_ring:'Tercer Anillo y Anillo de los Jardines',ooh_tech:'Tecnología',ooh_note:'Tecnologías innovadoras: pantallas 3D, contenido dinámico.',rooh_stations:'Estaciones de radio',rooh_partners:'Gazprom-Media y Russian Media Group',rooh_radio_title:'Socios de Radio',rooh_on_air:'Al Aire',rooh_outdoor:'Exterior',rooh_ooh_title:'Fachadas de Medios',ooh_desc2:'Estructuras publicitarias en ubicaciones premium de Moscú con pantallas 3D.',rooh_cities_tag:'1.000+ ciudades',rooh_millions:'Millones de oyentes',ooh_p1:'Estructuras publicitarias propias con más de 2.000 m².',ooh_p2:'Ubicaciones premium en Moscú con audiencia diaria de hasta 200.000 personas.',ooh_p3:'Tecnologías innovadoras: pantallas 3D, contenido dinámico.',s_cullinan:'Showreel',cullinan_title:'Comercial para el Hotel Cullinan Belek',cullinan_desc:'Video promocional para el Cullinan Belek Hotel, Turquía',watch_video:'Ver Video',s_cases:'Casos de Estudio',cases_title:'Resultados que hablan por sí mismos',cases_desc:'Trabajamos con líderes del mercado.',m_commercials:'Comerciales',m_banners:'Banners',m_leads:'Leads mensuales',m_views:'Vistas digitales',m_tv:'Salidas en TV',also_label:'También trabajamos con',s_why:'Por Qué Clan Dubai',why_title:'Su clave para el mercado global',why1_title:'Somos dueños del tiempo',why1_desc:'Acceso directo sin intermediarios.',why2_title:'Creamos contenido',why2_desc:'Ciclo completo llave en mano.',why3_title:'Conocemos la audiencia',why3_desc:'Años de experiencia en Europa, Asia y Oriente Medio.',why4_title:'Garantizamos resultados',why4_desc:'Asociación estratégica y logro de sus KPIs.',s_setup:'Configuración Satelital',setup_title:'¿Listo para conectarse?',setup_desc:'Use nuestro asistente interactivo para parámetros de antena satelital.',setup_btn:'Abrir Asistente',setup_note:'3 pasos · funciona en cualquier país',s_contact:'Contacto',contact_title:'Construyamos su campaña global',contact_role:'Gerente',contact_cta_text:'¿Listos para anunciarse en TV internacional?',contact_cta_wa:'Escríbenos en WhatsApp',footer_tagline:'Grupo de Medios Internacional — 20 años de experiencia',footer_reach:'250M+ espectadores en 59 países',more_details:'Más detalles',ch_about:'Sobre el Canal',ch_target:'Audiencia Objetivo',ch_aud_label:'Audiencia',ticker:[{n:'250M+',l:'Espectadores'},{n:'59',l:'Países'},{n:'24',l:'Canales'},{n:'20',l:'Años'},{n:'500+',l:'Proyectos'},{n:'43',l:'Idiomas'},{n:'2,000+',l:'m² fachadas'},{n:'1B+',l:'Vistas digitales'}],channels:[{name:"NTV MIR",cat:"Federal",viewers:null,aud:"Hombres y mujeres 35–55",desc:"Parte del primer múltiplex de TV digital en Rusia."},{name:"Russia 24",cat:"Federal",viewers:"80M+",aud:"Hombres y mujeres 30–55",desc:"Uno de los principales canales de información en Rusia."},{name:"PLANETA RTR",cat:"Federal",viewers:"50M+",aud:"Hombres y mujeres 16–65",desc:"98.5% de cobertura. Documentales y programas culturales."},{name:"Ren TV",cat:"Federal",viewers:null,aud:"Hombres y mujeres 25–60",desc:"Periodismo investigativo y entretenimiento."},{name:"FIVE CHANNEL",cat:"Federal",viewers:"45M+",aud:"Hombres y mujeres 35–55",desc:"Uno de los canales federales más antiguos de Rusia."},{name:"Domashniy",cat:"Federal",viewers:"50M+",aud:"Mujeres 30–60",desc:"Atmósfera confortable para el público."},{name:"TNT",cat:"Entretenimiento",viewers:"100M+",aud:"Núcleo 18–45",desc:"Líder absoluto en audiencia joven."},{name:"STS",cat:"Entretenimiento",viewers:"100M+",aud:"Núcleo 10–45",desc:"El canal de entretenimiento más reconocido."},{name:"KVN",cat:"Entretenimiento",viewers:"2.5M+",aud:"14–55",desc:"Show de humor ruso emblemático."},{name:"RTVI",cat:"Entretenimiento",viewers:"25M+",aud:"45+",desc:"Principal canal de noticias rusófono."},{name:"WHO IS WHO",cat:"Entretenimiento",viewers:null,aud:"Espectadores curiosos",desc:"Documentales investigativos y biografías."},{name:"PERETS",cat:"Entretenimiento",viewers:"20M+",aud:"Hombres 30–40",desc:"Contenido para público masculino."},{name:"NTV STYLE",cat:"Temático",viewers:null,aud:"Mujeres 18–45",desc:"Lifestyle femenino: moda, belleza, diseño."},{name:"NTV PRAVO",cat:"Temático",viewers:"10M+",aud:"25–54",desc:"Cuestiones legales y justicia."},{name:"NTV SERIAL",cat:"Temático",viewers:null,aud:"25–54",desc:"Series TV rusas apasionantes."},{name:"FONMUSIC",cat:"Temático",viewers:"8M+",aud:"14–45",desc:"Música y entretenimiento."},{name:"START EPIC",cat:"Temático",viewers:null,aud:"30–55",desc:"Lifestyle con contenido de bloggers."},{name:"START WORLD",cat:"Temático",viewers:null,aud:"25–60",desc:"Mejores series internacionales."},{name:"START AIR",cat:"Temático",viewers:null,aud:"25–49",desc:"Series originales exclusivas."},{name:"NEIZVESTNAYA RUSSIA",cat:"Temático",viewers:null,aud:"25–60",desc:"Documentales 24/7 de NTV."},{name:"UMKA",cat:"Temático",viewers:null,aud:"Familias con niños",desc:"Animación infantil."},{name:"CHE",cat:"Temático",viewers:null,aud:"25–49",desc:"Entretenimiento dinámico."},{name:"Nostalgiya",cat:"Temático",viewers:null,aud:"40+",desc:"Clásicos de la TV soviética."},{name:"IZVESTIYA",cat:"Temático",viewers:"15M+",aud:"25–54",desc:"Canal informativo moderno 24/7."}]},
+  fr:{nav_channels:'Chaînes',nav_geography:'Géographie',nav_production:'Production',nav_cases:'Cas',nav_setup:'Installation',nav_contact:'Contact',nav_cta:'Nous contacter',hero_eyebrow:'Groupe Média International',hero_sub:'Votre partenaire mondial dans le monde des médias et de la publicité',stat_viewers:'Téléspectateurs',stat_countries:'Pays',stat_years:'Ans',stat_channels:'Chaînes TV',scroll:'Défiler',s_about:'À propos',about_pull:'20 ans d\'expérience sur les marchés mondiaux',about_p1:'Nous sommes un groupe média international opérant sur les marchés de la Russie, de la CEI, de l\'Europe, de l\'Asie et du Moyen-Orient.',about_p2:'Notre expertise couvre le cycle complet de création et de placement publicitaire.',tag_russia:'Russie',tag_europe:'Europe',tag_asia:'Asie',tag_me:'Moyen-Orient',s_adv:'Avantage Clé',adv_title:'Diffusion Satellitaire',adv_body:'Accès exclusif à une audience internationale. Nous n\'achetons pas de temps d\'antenne — <strong style="color:var(--signal)">nous en sommes propriétaires.</strong> Nous proposons des packages exclusifs sur 24 chaînes TV russes populaires.',adv1_title:'Temps d\'antenne propre',adv1_desc:'Nous contrôlons le placement publicitaire dans les blocs internationaux.',adv2_title:'Technologie HD',adv2_desc:'Diffusion via des satellites internationaux en qualité HD.',adv3_title:'Exclusivité',adv3_desc:'Votre publicité atteint les chaînes les plus populaires et fiables.',s_portfolio:'Notre Portfolio',ch_title:'24 Chaînes TV',ch_desc:'Diffusées dans le monde entier via des satellites internationaux.',cat_all:'Toutes',cat_federal:'Fédérale',cat_ent:'Divertissement',cat_them:'Thématique',s_geo:'Géographie de diffusion',geo_title:'Couverture de plus de 250 millions de téléspectateurs dans 59 pays',geo_desc:'Notre diffusion par satellite couvre les marchés clés avec forte concentration d\'audiences russophones.',reg_europe:'Europe',reg_europe_count:'18 pays',reg_europe_list:'Allemagne, France, Royaume-Uni, Espagne, Italie, Grèce, Turquie, Pologne, Roumanie, Bulgarie, Serbie, Hongrie, République tchèque, Autriche, Suisse, Belgique, Pays-Bas, Portugal',reg_asia:'Asie',reg_asia_count:'12 pays',reg_asia_list:'Népal, Myanmar, Bangladesh, Maldives, Inde, Sri Lanka, Laos, Vietnam, Thaïlande, Cambodge, Indonésie, Malaisie',reg_cis:'CEI & Asie centrale',reg_cis_count:'10 pays',reg_cis_list:'Kazakhstan, Ouzbékistan, Azerbaïdjan, Arménie, Géorgie, Kirghizistan, Tadjikistan, Turkménistan, Moldavie, Biélorussie',reg_mena:'Moyen-Orient & Afrique du Nord',reg_mena_count:'19 pays',reg_mena_list:'Arabie saoudite, Qatar, Koweït, Oman, Bahreïn, Irak, Iran, Jordanie, Liban, Syrie, Israël, Palestine, Égypte, Libye, Tunisie, Algérie, Maroc, Soudan',geo2_beams:'Faisceaux satellitaires',s_audience:'Notre Audience',aud_title:'Qui regarde nos chaînes ?',aud_desc:'Nous travaillons avec une audience unique et à hauts revenus.',aud_l1:'Millions de\ntéléspectateurs potentiels',aud_l2:'Millions de voyageurs\nà l\'étranger',aud_l3:'Millions d\'expatriés\nrésidant à l\'étranger',aud_footnote:'Haut niveau de confiance envers le contenu et la publicité sur les chaînes familières.',s_prod:'Production',prod_title:'Production complète : du concept à la diffusion',prod_desc:'CLAN DUBAI dispose de sa propre équipe de professionnels.',prod_num_label:'Projets réussis en production vidéo',stage1_label:'Créatif',stage1_i1:'Développement de concept',stage1_i2:'Écriture de scénario',stage1_i3:'Storyboarding',stage1_i4:'Pool d\'auteurs',stage2_label:'Production',stage2_i1:'Tournage professionnel',stage2_i2:'Cinématographie aérienne',stage2_i3:'Photographie',stage3_label:'Post-production',stage3_i1:'Montage',stage3_i2:'Étalonnage',stage3_i3:'Animation 2D & 3D',stage3_i4:'Motion design',stage3_i5:'Voix off',s_digital:'Digital',dig_title:'Publicité digitale mondiale',dig_desc:'Approche multicanale avec adaptation complète du contenu.',dig1_label:'Plateformes',dig1_val:'Toutes les plateformes clés',dig1_desc:'Facebook, Instagram, VK, YouTube, Rutube',dig2_label:'Localisation',dig2_val:'43 langues',dig2_desc:'Adaptation pour plus de 66 pays',dig3_label:'Résultats',dig3_val:'Des millions de vues',dig3_desc:'Des milliers de leads par campagne',srv1_title:'Services digitaux',srv1_i1:'Publicité ciblée',srv1_i2:'SEO',srv1_i3:'Publicité contextuelle',srv1_i4:'Marketing d\'influence',srv1_i5:'Promotion SMM',srv1_i6:'Promotion dans les messageries',srv2_title:'Réseaux sociaux',dig2_title:'Publicité digitale mondiale',dig2_desc:'Campagnes multicanales avec localisation complète en 66+ pays.',dig2_big:'66+',dig2_big_label:'Pays couverts par nos campagnes',dig2_lang:'Langues',dig2_lang_d:'Adaptation et traduction complètes',dig2_views:'Vues digitales',dig2_views_d:'Sur toutes les plateformes',dig2_leads:'Leads par campagne',dig2_leads_d:'Performance prouvée',dig2_platforms:'Plateformes clés',dig2_prod:'Production',dig2_p1:'Publicités vidéo',dig2_p2:'Création de bannières',dig2_p3:'Motion graphics',dig2_p4:'Rédaction',dig2_p5:'Tests A/B',dig2_cta:'Du concept créatif aux <em>résultats mesurables</em> — tout sous un même toit',s_add:'Canaux supplémentaires',rooh_title:'Radio & Façades médias',rooh_desc2:'Étendre la portée de votre marque au-delà des écrans.',rooh_cities:'Villes en Russie et dans le monde',radio_desc:'Partenariats avec Gazprom-Media et Russian Media Group. Millions d\'auditeurs dans plus de 1.000 villes.',ooh_l1:'m² de structures',ooh_l2:'Audience quotidienne',ooh_loc:'Emplacements premium à Moscou',ooh_ring:'Troisième Périphérique & Boulevard Sadovoïe',ooh_tech:'Technologie',ooh_note:'Technologies innovantes : écrans 3D, contenu dynamique.',rooh_stations:'Stations de radio',rooh_partners:'Gazprom-Media & Russian Media Group',rooh_radio_title:'Partenaires radio',rooh_on_air:'À l\'antenne',rooh_outdoor:'Extérieur',rooh_ooh_title:'Façades médias',ooh_desc2:'Structures publicitaires en emplacements premium à Moscou avec écrans 3D.',rooh_cities_tag:'1.000+ villes',rooh_millions:'Des millions d\'auditeurs',ooh_p1:'Structures publicitaires propres de plus de 2.000 m².',ooh_p2:'Emplacements premium à Moscou avec audience quotidienne jusqu\'à 200.000 personnes.',ooh_p3:'Technologies innovantes : écrans 3D, contenu dynamique.',s_cullinan:'Showreel',cullinan_title:'Tournage pour le Cullinan Belek Hotel',cullinan_desc:'Vidéo promotionnelle pour le Cullinan Belek Hotel, Turquie',watch_video:'Voir la vidéo',s_cases:'Études de cas',cases_title:'Des résultats qui parlent d\'eux-mêmes',cases_desc:'Nous travaillons avec les leaders du marché.',m_commercials:'Spots',m_banners:'Bannières',m_leads:'Leads mensuels',m_views:'Vues digitales',m_tv:'Passages TV',also_label:'Ont aussi collaboré',s_why:'Pourquoi Clan Dubai',why_title:'Votre clé du marché mondial',why1_title:'Nous possédons le temps d\'antenne',why1_desc:'Accès direct sans intermédiaires.',why2_title:'Nous créons le contenu',why2_desc:'Cycle complet du concept à la diffusion.',why3_title:'Nous connaissons l\'audience',why3_desc:'Années d\'expérience en Europe, Asie et Moyen-Orient.',why4_title:'Nous garantissons les résultats',why4_desc:'Partenariat stratégique et atteinte de vos KPIs.',s_setup:'Installation satellite',setup_title:'Prêt à vous connecter ?',setup_desc:'Utilisez notre assistant pour les paramètres de pointage de votre antenne.',setup_btn:'Ouvrir l\'assistant',setup_note:'3 étapes · fonctionne dans tous les pays',s_contact:'Contact',contact_title:'Construisons votre campagne mondiale',contact_role:'Responsable',contact_cta_text:'Prêts à faire de la publicité sur la TV internationale ?',contact_cta_wa:'Écrire sur WhatsApp',footer_tagline:'Groupe Média International — 20 ans d\'expertise',footer_reach:'250M+ téléspectateurs dans 59 pays',more_details:'Plus de détails',ch_about:'À propos de la chaîne',ch_target:'Audience cible',ch_aud_label:'Audience',ticker:[{n:'250M+',l:'Téléspectateurs'},{n:'59',l:'Pays'},{n:'24',l:'Chaînes TV'},{n:'20',l:'Ans'},{n:'500+',l:'Projets vidéo'},{n:'43',l:'Langues'},{n:'2,000+',l:'m² façades'},{n:'1B+',l:'Vues digitales'}],channels:[{name:"NTV MIR",cat:"Fédérale",viewers:null,aud:"Hommes & femmes 35–55",desc:"Premier multiplex de la TV numérique en Russie."},{name:"Russia 24",cat:"Fédérale",viewers:"80M+",aud:"Hommes & femmes 30–55",desc:"L\'une des principales chaînes d\'information en Russie."},{name:"PLANETA RTR",cat:"Fédérale",viewers:"50M+",aud:"Hommes & femmes 16–65",desc:"98,5% de couverture. Documentaires et programmes culturels."},{name:"Ren TV",cat:"Fédérale",viewers:null,aud:"Hommes & femmes 25–60",desc:"Journalisme d\'investigation et divertissement."},{name:"FIVE CHANNEL",cat:"Fédérale",viewers:"45M+",aud:"Hommes & femmes 35–55",desc:"L\'une des plus anciennes chaînes fédérales russes."},{name:"Domashniy",cat:"Fédérale",viewers:"50M+",aud:"Femmes 30–60",desc:"Atmosphère confortable pour le public."},{name:"TNT",cat:"Divertissement",viewers:"100M+",aud:"Cœur 18–45",desc:"Leader absolu chez les jeunes."},{name:"STS",cat:"Divertissement",viewers:"100M+",aud:"Cœur 10–45",desc:"La chaîne de divertissement la plus reconnue."},{name:"KVN",cat:"Divertissement",viewers:"2,5M+",aud:"14–55",desc:"Émission humoristique culte russe."},{name:"RTVI",cat:"Divertissement",viewers:"25M+",aud:"45+",desc:"Première chaîne d\'info russophone mondiale."},{name:"WHO IS WHO",cat:"Divertissement",viewers:null,aud:"Téléspectateurs curieux",desc:"Documentaires d\'investigation et biographies."},{name:"PERETS",cat:"Divertissement",viewers:"20M+",aud:"Hommes 30–40",desc:"Contenu pour public masculin."},{name:"NTV STYLE",cat:"Thématique",viewers:null,aud:"Femmes 18–45",desc:"Lifestyle féminin : mode, beauté, design."},{name:"NTV PRAVO",cat:"Thématique",viewers:"10M+",aud:"25–54",desc:"Questions juridiques et justice."},{name:"NTV SERIAL",cat:"Thématique",viewers:null,aud:"25–54",desc:"Séries TV russes captivantes."},{name:"FONMUSIC",cat:"Thématique",viewers:"8M+",aud:"14–45",desc:"Musique et divertissement."},{name:"START EPIC",cat:"Thématique",viewers:null,aud:"30–55",desc:"Lifestyle avec contenu de blogueurs."},{name:"START WORLD",cat:"Thématique",viewers:null,aud:"25–60",desc:"Meilleures séries internationales."},{name:"START AIR",cat:"Thématique",viewers:null,aud:"25–49",desc:"Séries originales exclusives."},{name:"NEIZVESTNAYA RUSSIA",cat:"Thématique",viewers:null,aud:"25–60",desc:"Documentaires 24h/24 de NTV."},{name:"UMKA",cat:"Thématique",viewers:null,aud:"Familles avec enfants",desc:"Animation pour enfants."},{name:"CHE",cat:"Thématique",viewers:null,aud:"25–49",desc:"Divertissement dynamique."},{name:"Nostalgiya",cat:"Thématique",viewers:null,aud:"40+",desc:"Classiques de la TV soviétique."},{name:"IZVESTIYA",cat:"Thématique",viewers:"15M+",aud:"25–54",desc:"Chaîne d\'info moderne 24h/24."}]}
+};
+
+let currentLang = localStorage.getItem('clanlang') || 'en';
+
+function t(key){ return T[currentLang][key] ?? T.en[key] ?? key; }
+
+function applyTranslations(){
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const key = el.dataset.t;
+    const val = t(key);
+    if(key==='adv_body' || key==='dig2_cta'){ el.innerHTML = val; return; }
+    // handle newlines in aud labels
+    if(key.startsWith('aud_l')){ el.innerHTML = val.replace(/\n/g,'<br>'); return; }
+    el.textContent = val;
+  });
+  // filter buttons — re-render channels in new language too
+  const activeBtn = document.querySelector('.fb.on');
+  if(activeBtn) renderChannels(activeBtn.dataset.cat);
+  renderTicker();
+  updateLangButtons();
+}
+
+function updateLangButtons(){
+  document.querySelectorAll('[data-lang]').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.lang===currentLang);
+  });
+  document.querySelectorAll('.lang-dd-item').forEach(btn=>{
+    btn.classList.toggle('active', btn.textContent.trim().slice(0,2).toLowerCase()===currentLang);
+  });
+  var ddBtn=document.getElementById('lang-dd-btn');
+  if(ddBtn) ddBtn.textContent=currentLang.toUpperCase();
+}
+
+function setLang(lang){
+  currentLang = lang;
+  localStorage.setItem('clanlang', lang);
+  document.documentElement.lang = lang;
+  if(lang==='ar') document.documentElement.dir='rtl'; else document.documentElement.dir='ltr';
+  applyTranslations();
+  burger.classList.remove('open');
+  mobMenu.classList.remove('open');
+  var dd=document.getElementById('lang-dd');
+  if(dd) dd.classList.remove('open');
+}
+
+/* ── NAV ─────────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>60),{passive:true});
+const burger = document.getElementById('burger');
+const mobMenu = document.getElementById('mob-menu');
+burger.addEventListener('click',()=>{
+  burger.classList.toggle('open');
+  mobMenu.classList.toggle('open');
+});
+mobMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  burger.classList.remove('open');mobMenu.classList.remove('open');
+}));
+var langDd=document.getElementById('lang-dd');
+var langDdBtn=document.getElementById('lang-dd-btn');
+if(langDdBtn&&langDd){
+  langDdBtn.addEventListener('click',function(e){e.stopPropagation();langDd.classList.toggle('open')});
+  document.addEventListener('click',function(){langDd.classList.remove('open')});
+  langDd.querySelector('.lang-dd-list').addEventListener('click',function(e){e.stopPropagation()});
+}
+
+/* ── HERO CANVAS — signal waves ──────────────── */
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let w,h;
+  const GOLD = 'rgba(232,201,122,';
+  function resize(){ w=canvas.width=canvas.offsetWidth; h=canvas.height=canvas.offsetHeight; }
+  resize();
+  window.addEventListener('resize',resize);
+  const waves = Array.from({length:6},(_,i)=>({phase:i*Math.PI/3,speed:.0003+i*.00008,amp:28+i*14,y:.3+i*.08,opacity:.06-i*.008}));
+  const pts = Array.from({length:55},()=>({x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.00015,vy:(Math.random()-.5)*.00015,s:Math.random()*.8+.2,o:Math.random()*.4+.05}));
+  let tt=0;
+  function draw(){
+    ctx.clearRect(0,0,w,h); tt=performance.now();
+    ctx.strokeStyle='rgba(232,201,122,0.018)'; ctx.lineWidth=.5;
+    const step=72;
+    for(let x=0;x<w;x+=step){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke()}
+    for(let y=0;y<h;y+=step){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}
+    const grd=ctx.createRadialGradient(w*.5,h*.4,0,w*.5,h*.4,Math.max(w,h)*.6);
+    grd.addColorStop(0,'rgba(232,201,122,.06)'); grd.addColorStop(1,'transparent');
+    ctx.fillStyle=grd; ctx.fillRect(0,0,w,h);
+    waves.forEach(wave=>{
+      const phase=wave.phase+tt*wave.speed;
+      ctx.beginPath(); ctx.strokeStyle=GOLD+wave.opacity+')'; ctx.lineWidth=1.2;
+      const cy=h*wave.y;
+      for(let x=0;x<=w;x+=2){const y=cy+Math.sin(x*.006+phase)*wave.amp+Math.sin(x*.013+phase*.7)*wave.amp*.4; x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}
+      ctx.stroke();
+    });
+    pts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=1; if(p.x>1)p.x=0; if(p.y<0)p.y=1; if(p.y>1)p.y=0;
+      ctx.beginPath(); ctx.arc(p.x*w,p.y*h,p.s,0,Math.PI*2); ctx.fillStyle=GOLD+p.o+')'; ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── CHANNEL DETAIL DATA ──────────────────────── */
+var chInfo=[
+{logo:'img/channels/ntv_mir.png',desc:'It is part of the first multiplex of digital television in Russia. A large field of opportunities opens up for the advertiser, the effectiveness of which has been proven in practice by the world’s leading brands.',target:'The core consists of men and women aged 35 to 55 years. They are professionals in their field, well-earned, with diverse hobbies and the ability to think critically and analyze.'},
+{logo:'img/channels/rossia_24.png',desc:'With over 80 million viewers, it is one of the leading information channels in Russia, which focuses on covering current events at home and abroad.',target:'The core consists of men and women aged 30 to 55 with an above-average income and an active lifestyle.'},
+{logo:'img/channels/rtr_planeta.png',desc:'With over 50 million viewers abroad and 98.5% coverage of the Russian population, it is one of the leading Russian-language international channels, offering documentaries, travel, cultural, and educational programs about nature, history, and science.',target:'Men and women aged 16–65, including a high share of entrepreneurs, shareholders, and high-income viewers who travel abroad. They are interested in culture, travel, history, and quality educational content.'},
+{logo:'img/channels/rentv_logo.png',desc:'It is one of the most popular federal TV channels in Russia, combining edgy news programs, investigative documentaries, and entertainment shows with a bold approach to journalism and sensational stories.',target:'Men and women aged 25–60, interested in politics, history, and unusual phenomena, as well as younger viewers aged 18–35 attracted by sensationalism and mysticism.'},
+{logo:'img/channels/five_channel.png',desc:'With over 45 million viewers, it is one of the oldest (founded in 1938) and most authoritative federal TV channels in Russia, which combines relevant current affairs, in-depth analytics, socially significant journalism, and high-quality documentary projects.',target:'The core consists of men and women aged 35 to 55 years. They are professionals in their field, well-earned, with diverse hobbies and the ability to think critically and analyze.'},
+{logo:'img/channels/domashniy_logo.png',desc:'More than 50 million viewers. The main concept is to create a comfortable atmosphere for the audience.',target:'The core is women 30–60 years old. Active women with a high level of solvency. They show interest in new products and follow fashion trends.'},
+{logo:'img/channels/tnt.png',desc:'More than 100 million people worldwide. The absolute leader in reaching a young audience. Top 5 most popular TV channels in the country.',target:'The core is 18–45 years old. The audience is active, modern, progressive, trend-oriented and lifestyle-oriented.'},
+{logo:'img/channels/sts.png',desc:'Over 100 million people. The most recognizable entertainment TV channel in Russia, an independent family-type channel and the largest.',target:'The core is 10–45 years old, the focus is on youth and young families. A high percentage of viewers with higher education and above-average income.'},
+{logo:'img/channels/kvn.png',desc:'It is a 24/7 entertainment channel dedicated to the cult Russian humor show “Club of the Merry and Resourceful” (KVN) — a unique project with no analogues in the world, featuring popular comedians, artists, and bloggers.',target:'Men and women aged 14–55, interested in humor, comedy, and team games. The channel attracts about 3–5% of the target audience, with an average monthly reach of 3.6% and over 2.5 million viewers.'},
+{logo:'img/channels/rtvi.png',desc:'With over 25 million viewers, it is one of the leading global Russian-language news channels, offering talk shows, documentaries, interviews, and analytical programs covering international events, politics, and culture for Russian-speaking audiences worldwide.',target:'Men and women aged 45+, interested in global news, socio-political analysis, quality journalism, and balanced coverage of international events.'},
+{logo:'img/channels/whoiswho.png',desc:'It is a unique media platform dedicated to investigative documentaries, biographies of great personalities, and uncovering the mysteries of history, politics, and culture.',target:'Intellectually curious viewers who appreciate trustworthy, well-researched content about influential figures and significant historical events.'},
+{logo:'img/channels/peretz.png',desc:'With over 20 million viewers, it is a Russian TV channel focused on a male audience, offering entertainment content with an emphasis on films, series, and programs for family viewing.',target:'The core consists of men aged 30 to 40 years. They are professionals in their field, well-earned, who value useful leisure time, respect their work, family, and country.'},
+{logo:'img/channels/ntv_slyle.png',desc:'With a female audience share of about 60%, it is one of the prominent women’s lifestyle channels in Russia, focusing on fashion, beauty, design, health, and travel. The channel holds approximately 10–12% of the women’s TV channel market.',target:'The core consists of women aged 18 to 45. They are style-conscious, value aesthetics and comfort, and seek inspiration, expert advice, and fresh trends in everyday life.'},
+{logo:'img/channels/ntv_pravo.png',desc:'With over 10 million viewers, it is a specialized information channel in Russia, focusing on legal issues, justice, and criminal cases. The channel holds approximately 5–7% of the information TV channel market and offers analytical programs, talk shows, and educational content to improve legal literacy.',target:'The core consists of men and women aged 25 to 54. They are interested in law, forensics, security, and social issues, and seek reliable information to understand complex legal situations and current events.'},
+{logo:'img/channels/ntv_serial.png',desc:'With over 10 million viewers, it is a leading entertainment channel in Russia, offering gripping Russian TV series, including detective stories, thrillers, crime dramas, and melodramas. The channel holds approximately 8–10% of the entertainment TV channel market.',target:'Men and women aged 25–54, who appreciate high-quality storytelling, deep characters, and intense drama that keeps them engaged until the very last episode.'},
+{logo:'img/channels/fonmusic.png',desc:'It is a music and entertainment channel broadcasting popular Russian and international music videos, exclusive shows, charts, and interviews, with over 8 million monthly viewers.',target:'Men and women aged 14–45, with 60% in the 18–24 group, interested in current music trends and entertainment content.'},
+{logo:'img/channels/start_epic.png',desc:'Launched in February 2024, it is a lifestyle entertainment channel featuring exclusive blogger content on travel, automobiles, architecture, and science. The channel has brought together over 20 star bloggers with a combined audience of 20 million subscribers.',target:'The core consists of men and women aged 30 to 55 with an above-average income and an active lifestyle.'},
+{logo:'img/channels/start_world.png',desc:'It is a TV channel featuring the best international series, offering viewers a chance to explore world cinema and serial art. The channel is available in basic packages of major providers and reaches viewers across more than 60 countries.',target:'Men and women aged 25–60, interested in foreign dramas, melodramas, and high-quality series, with a focus on fans of Turkish and non-English language content.'},
+{logo:null,desc:'It is a TV channel from the online cinema Start, featuring exclusive original series such as “Vampires of the Middle Belt,” “Container,” and “The Mediator,” offering hundreds of hours of premium content across dramas, detective stories, comedies, and family films.',target:'Men and women aged 25–49, with a significant portion (about 70%) being women aged 30–35, and every fifth viewer between 18 and 25 years old.'},
+{logo:'img/channels/neizvestnaya_russia.png',desc:'Launched in May 2023, it is a 24/7 documentary channel by NTV, focusing on historical events, Russian talents (scientists, doctors, teachers, writers, musicians), and travel routes to nature reserves and landmarks.',target:'Men and women aged 25–60 (peak 30–50), with a slight predominance of women. They have secondary or higher education, average income, and work as teachers, doctors, or office workers.'},
+{logo:'img/channels/umka.png',desc:'Launched on October 30, 2025, it is an international children’s animation channel by Soyuzmultfilm and Multilandia, offering classic and modern animation for family viewing. Available in HD worldwide, it features a safe content library with 15–20 minute slots, subtitles, and sign language support.',target:'Families with children who value safe, educational, and entertaining animation content.'},
+{logo:'img/channels/che.png',desc:'It is a dynamic entertainment channel focused on drive, energy, and action reality shows. The renewed channel went on air in 2018 and has been producing its own projects since the first days, with a technical audience coverage of 87.6% in Russia.',target:'Men and women aged 25–49, with a core audience of men aged 30–40. The channel strives for a 50/50 gender balance and is popular for background viewing, offering advertisers continuous audience reach.'},
+{logo:'img/channels/nostalgiya_logo.png',desc:'It is a unique TV channel presenting the best programs of Soviet television classics, the golden fund of Russian television, and the cultural heritage of several generations, along with a retrospective of the most important events in the country.',target:'Viewers over 40 who remember the best Soviet TV shows and are interested in the history of their country.'},
+{logo:'img/channels/izvestia.png',desc:'With over 15 million viewers, “Izvestia” is a modern information TV channel built on the legacy of a legendary media brand. It combines 24/7 news broadcasting, exclusive analytics, live event coverage, and interactive formats.',target:'The core consists of men and women aged 25 to 54. They are professionals in their field, well-educated, with a stable income, and the ability to think critically and analyze deeply.'}
+];
+
+function openChModal(idx){
+  var ch=T[currentLang].channels[idx];
+  var info=chInfo[idx];
+  var header=document.getElementById('modal-header');
+  var body=document.getElementById('modal-body');
+  var logoHtml=info.logo
+    ?'<img class="modal-logo" src="'+info.logo+'" alt="'+ch.name+'">'
+    :'<div class="modal-logo-ph">'+ch.name+'</div>';
+  header.innerHTML=logoHtml+'<div><div class="modal-title">'+ch.name+'</div><div class="modal-cat">'+ch.cat+'</div></div>';
+  var desc=currentLang==='en'?info.desc:ch.desc;
+  var tgt=currentLang==='en'?info.target:ch.aud;
+  body.innerHTML='<div class="modal-section"><div class="modal-label">'+t('ch_about')+'</div><div class="modal-text">'+desc+'</div></div>'
+    +'<div class="modal-section"><div class="modal-label">'+t('ch_target')+'</div><div class="modal-text">'+tgt+'</div></div>';
+  document.getElementById('ch-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeChModal(){
+  document.getElementById('ch-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('ch-modal').addEventListener('click',function(e){if(e.target===this)closeChModal()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeChModal()});
+
+/* ── CHANNELS ─────────────────────────────────── */
+const chLogos={
+  'NTV MIR':'img/channels/ntv_mir.png','Russia 24':'img/channels/rossia_24.png','PLANETA RTR':'img/channels/rtr_planeta.png',
+  'Ren TV':'img/channels/rentv_logo.png','FIVE CHANNEL':'img/channels/five_channel.png','Domashniy':'img/channels/domashniy_logo.png',
+  'TNT':'img/channels/tnt.png','STS':'img/channels/sts.png','KVN':'img/channels/kvn.png','RTVI':'img/channels/rtvi.png',
+  'WHO IS WHO':'img/channels/whoiswho.png','PERETS':'img/channels/peretz.png','NTV STYLE':'img/channels/ntv_slyle.png',
+  'NTV PRAVO':'img/channels/ntv_pravo.png','NTV SERIAL':'img/channels/ntv_serial.png','FONMUSIC':'img/channels/fonmusic.png',
+  'START EPIC':'img/channels/start_epic.png','START WORLD':'img/channels/start_world.png','START AIR':'img/channels/start_air.png',
+  'NEIZVESTNAYA RUSSIA':'img/channels/neizvestnaya_russia.png','UMKA':'img/channels/umka.png','CHE':'img/channels/che.png',
+  'Nostalgiya':'img/channels/nostalgiya_logo.png','IZVESTIYA':'img/channels/izvestia.png'
+};
+function renderChannels(catKey){
+  const grid=document.getElementById('ch-grid');
+  const channels=T[currentLang].channels;
+  const enChannels=T.en.channels;
+  let items;
+  if(catKey==='All'){
+    items=channels.map((ch,i)=>({ch,i}));
+  } else {
+    items=channels.map((ch,i)=>({ch,i})).filter(item=>enChannels[item.i]&&enChannels[item.i].cat===catKey);
+  }
+  grid.innerHTML=items.map(item=>`
+    <div class="ch-card" onclick="openChModal(${item.i})">
+      <div class="ch-top"><span class="ch-cat">${item.ch.cat}</span></div>
+      ${chLogos[T.en.channels[item.i].name]?`<img class="ch-logo" src="${chLogos[T.en.channels[item.i].name]}" alt="${item.ch.name}">`:''}
+      <div class="ch-name">${item.ch.name}</div>
+      <div class="ch-desc">${item.ch.desc}</div>
+      <div class="ch-more">${t('more_details')}</div>
+    </div>
+  `).join('');
+}
+
+document.querySelectorAll('.fb').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    renderChannels(btn.dataset.cat);
+  });
+});
+/* ── TICKER ───────────────────────────────────── */
+function renderTicker(){
+  const ticker=document.getElementById('ticker');
+  const items=T[currentLang].ticker;
+  const doubled=[...items,...items];
+  ticker.innerHTML=doubled.map(i=>`<div class="ticker-item"><span class="ticker-n">${i.n}</span><span class="ticker-l">${i.l}</span></div>`).join('');
+}
+
+/* ── REGIONS ──────────────────────────────────── */
+document.querySelectorAll('.reg').forEach(el=>{
+  el.addEventListener('click',()=>{
+    const isOpen=el.classList.contains('open');
+    document.querySelectorAll('.reg.open').forEach(r=>r.classList.remove('open'));
+    if(!isOpen)el.classList.add('open');
+  });
+});
+document.querySelectorAll('.geo2-reg').forEach(el=>{
+  el.addEventListener('click',()=>{
+    const isOpen=el.classList.contains('open');
+    document.querySelectorAll('.geo2-reg.open').forEach(r=>r.classList.remove('open'));
+    if(!isOpen)el.classList.add('open');
+  });
+});
+
+/* ── REVEAL ───────────────────────────────────── */
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');revObs.unobserve(e.target)}});
+},{rootMargin:'-60px'});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* ── COUNTERS ─────────────────────────────────── */
+function animCount(el,target){
+  const dur=1800,start=performance.now(),suf=el.dataset.suffix||'';
+  function tick(now){
+    const p=Math.min((now-start)/dur,1),e=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e*target)+suf;
+    if(p<1)requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){animCount(e.target,parseInt(e.target.dataset.target));cObs.unobserve(e.target);}});
+},{rootMargin:'-60px'});
+document.querySelectorAll('.counter').forEach(el=>cObs.observe(el));
+
+/* ── SMOOTH SCROLL ────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href').slice(1);
+    const target=document.getElementById(id);
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+
+/* ── 3D GLOBE ────────────────────────────────── */
+(function(){
+  var gc=document.getElementById('globe-canvas');
+  if(!gc)return;
+  var gx=gc.getContext('2d'),gw,gh,cx,cy,R;
+  var GOLD='rgba(232,201,122,';
+  function gResize(){gw=gc.width=gc.offsetWidth;gh=gc.height=gc.offsetHeight;cx=gw*.5;cy=gh*.5;R=Math.min(gw,gh)*.35}
+  gResize();window.addEventListener('resize',gResize);
+
+  var cities=[
+    {lat:55.75,lon:37.62},{lat:52.52,lon:13.41},{lat:48.86,lon:2.35},{lat:51.51,lon:-.13},
+    {lat:40.42,lon:-3.7},{lat:41.01,lon:28.98},{lat:37.97,lon:23.73},{lat:41.9,lon:12.5},
+    {lat:25.2,lon:55.27},{lat:24.71,lon:46.68},{lat:25.29,lon:51.53},{lat:29.38,lon:47.99},
+    {lat:33.89,lon:35.5},{lat:31.95,lon:35.93},{lat:30.04,lon:31.24},{lat:36.8,lon:10.18},
+    {lat:33.97,lon:-6.85},{lat:51.17,lon:71.43},{lat:41.3,lon:69.28},{lat:40.41,lon:49.87},
+    {lat:28.61,lon:77.21},{lat:13.76,lon:100.5},{lat:3.14,lon:101.69},{lat:-6.2,lon:106.85},
+    {lat:19.43,lon:72.88},{lat:6.93,lon:79.84},{lat:4.18,lon:73.51},{lat:27.72,lon:85.32},
+    {lat:42.87,lon:74.59},{lat:38.56,lon:68.77},{lat:47.01,lon:28.86},{lat:53.9,lon:27.57},
+    {lat:40.18,lon:44.51},{lat:41.72,lon:44.79},{lat:50.45,lon:30.52},{lat:52.23,lon:21.01},
+    {lat:44.43,lon:26.1},{lat:42.7,lon:23.32},{lat:44.82,lon:20.46},{lat:47.5,lon:19.04},
+    {lat:48.15,lon:17.11},{lat:48.21,lon:16.37},{lat:46.95,lon:7.45},{lat:50.85,lon:4.35},
+    {lat:52.37,lon:4.9},{lat:38.72,lon:-9.14},{lat:35.69,lon:51.39},{lat:33.31,lon:44.37},
+    {lat:23.59,lon:58.38},{lat:26.07,lon:50.56}
+  ];
+
+  function project(lat,lon,rot){
+    var phi=lat*Math.PI/180, lam=(lon*Math.PI/180)+rot;
+    var x=Math.cos(phi)*Math.sin(lam);
+    var y=-Math.sin(phi);
+    var z=Math.cos(phi)*Math.cos(lam);
+    return {x:cx+x*R, y:cy+y*R, z:z};
+  }
+
+  function gDraw(){
+    gx.clearRect(0,0,gw,gh);
+    var t=performance.now()*.0002;
+
+    var gr=gx.createRadialGradient(cx,cy,0,cx,cy,R*1.5);
+    gr.addColorStop(0,'rgba(232,201,122,.03)');gr.addColorStop(1,'transparent');
+    gx.fillStyle=gr;gx.fillRect(0,0,gw,gh);
+
+    gx.strokeStyle=GOLD+'.04)';gx.lineWidth=.5;
+    for(var lat=-80;lat<=80;lat+=20){
+      gx.beginPath();
+      for(var lon=0;lon<=360;lon+=3){
+        var p=project(lat,lon,t);
+        if(p.z<0)continue;
+        if(lon===0||project(lat,lon-3,t).z<0)gx.moveTo(p.x,p.y);
+        else gx.lineTo(p.x,p.y);
+      }
+      gx.stroke();
+    }
+    for(var lon=0;lon<360;lon+=30){
+      gx.beginPath();
+      for(var lat=-90;lat<=90;lat+=3){
+        var p=project(lat,lon,t);
+        if(p.z<0)continue;
+        if(lat===-90||project(lat-3,lon,t).z<0)gx.moveTo(p.x,p.y);
+        else gx.lineTo(p.x,p.y);
+      }
+      gx.stroke();
+    }
+
+    gx.strokeStyle=GOLD+'.08)';gx.lineWidth=1;
+    gx.beginPath();gx.arc(cx,cy,R,0,Math.PI*2);gx.stroke();
+
+    var dubai=project(25.2,55.27,t);
+    cities.forEach(function(c){
+      var p=project(c.lat,c.lon,t);
+      if(p.z<0)return;
+      var sz=2+p.z*2;
+      var pulse=.6+Math.sin(t*5+c.lat)*0.4;
+      gx.beginPath();gx.arc(p.x,p.y,sz*1.5,0,Math.PI*2);
+      gx.fillStyle=GOLD+(0.08*pulse)+')';gx.fill();
+      gx.beginPath();gx.arc(p.x,p.y,sz*.7,0,Math.PI*2);
+      gx.fillStyle=GOLD+(0.6*pulse)+')';gx.fill();
+
+      if(dubai.z>0){
+        gx.beginPath();gx.moveTo(dubai.x,dubai.y);gx.lineTo(p.x,p.y);
+        gx.strokeStyle=GOLD+(.04*pulse)+')';gx.lineWidth=.5;gx.stroke();
+      }
+    });
+
+    if(dubai.z>0){
+      gx.beginPath();gx.arc(dubai.x,dubai.y,6,0,Math.PI*2);
+      gx.fillStyle=GOLD+'.2)';gx.fill();
+      gx.beginPath();gx.arc(dubai.x,dubai.y,3,0,Math.PI*2);
+      gx.fillStyle=GOLD+'.9)';gx.fill();
+      var ring=8+Math.sin(t*3)*3;
+      gx.beginPath();gx.arc(dubai.x,dubai.y,ring,0,Math.PI*2);
+      gx.strokeStyle=GOLD+'.3)';gx.lineWidth=1;gx.stroke();
+    }
+
+    requestAnimationFrame(gDraw);
+  }
+  gDraw();
+})();
+
+/* ── INIT ─────────────────────────────────────── */
+applyTranslations();
+renderChannels('All');
+renderTicker();
+</script>
+</body>
+</html>
